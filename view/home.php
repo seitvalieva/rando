@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <title>Accueil</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <div>
-                <img src="../public/assets/logo-hiking-100x100.png" alt="logo">
-                <h3>Rando</h3>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__logo">
+                <img src="../public/assets/logo-hiking-100x100.png" alt="logo" class="nav__logo-img">
+                 <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
             </div>
-            <div>
-                <a href="">Publier une rando</a>
-                <a href="">Connexion</a>
-                <a href="">Inscription</a>
+            <div class="nav__links">
+                <a class="nav__link nav__link-cta" href="#">Publier une rando</a>
+                <a class="nav__link nav__link-login" href="#">Connexion</a>
+                <a class="nav__link nav__link-registration" href="#">Inscription</a>
             </div>
         </nav>
     </header>

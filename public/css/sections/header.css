@@ -1,0 +1,63 @@
+.header {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid rgb(var(--secondary-color), 0.2);
+
+    display: flex;
+    justify-content: center;
+}
+.nav {
+    width: 100%;
+    max-width: 1120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    padding: 0 10px 0 0;
+}
+.nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nav__logo-img {
+    width: 88px;
+    height: 88px;
+    border: 1px sold black;
+}
+.nav__logo-title {
+    font-family: var(--logo-font-family);
+    color: rgb(var(--secondary-color));
+    font-size: var(--logo-font-size);
+}
+.nav__logo-title-do {
+    color: rgb(var(--primary-color));
+}
+.nav__links {
+    display: flex;
+    gap: 24px;
+}
+.nav__link {
+    border-radius: 24px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    font-family: var(--body-font-family);
+    font-size: var(--title-font-size);
+    
+}
+.nav__link-cta {
+    background-color: rgb(var(--secondary-color));
+    border: rgb(var(--secondary-color));
+    color: rgb(var(--white-color));
+}
+.nav__link-login {
+    background-color: rgb(var(--white-color));
+    border: 2px solid rgb(var(--primary-color));
+    color: rgb(var(--primary-color));
+}
+.nav__link-registration {
+    background-color: rgb(var(--primary-color));
+    border: 2px solid rgb(var(--primary-color));
+    color: rgb(var(--white-color));
+}

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('global.css');
+@import url('sections/header.css');
+
+:root{
+    --primary-color: 110, 109, 38;  /*green*/
+    --secondary-color: 132, 55, 10; /*brown*/
+
+    --blue-color: 104, 169, 190;
+    --orange-color: 194,94,0;
+
+    --white-color: 255, 255, 255;
+    --black-color: 0, 0, 0;
+
+    --grey-color: 69, 69, 69;
+    --search-input: 130, 130, 130;
+
+    --logo-font-family: "Sonsie One", system-ui;
+    --logo-font-size: 32px;
+
+    --title-font-size: 18px;
+    --title-font-weight: 600;
+    --body-font-family: "Roboto", sans-serif;
+    --body-font-size: 14px;
+
+}   
