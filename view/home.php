@@ -24,16 +24,16 @@
     <main class="main">
         <div class="main__features-container">
             <div class="main__features-subscription">
-                <h3>Inscrivez-vous gratuitement <br>
+                <h3 class="main__features-subscription-title">Inscrivez-vous gratuitement <br>
                 et rejoignez des randos</h3>
-                <a href="">Consulter nos randos</a>
+                <a href="#" class="main__features-subscription-btn">Consulter nos randos</a>
             </div>
             <div class="main__features-search">
                 <form action="">
                     <label for="search">Rechercher une rando</label>
-                    <div>
+                    <div class="main__features-search-container">
                         <input type="search" id="search" name="search" placeholder="Ville où lieu à visiter">
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" id="main__features-search-btn">
                     </div>
                 </form>
             </div>
@@ -42,69 +42,69 @@
             <h3>Les dernières randonnées </h3>
             <div class="main__cards">
                 <div class="card">
-                    <img src="..//public/assets/forest-340x200.png" alt="Forest">
+                    <img src="../public/assets/forest-340x200.png" alt="Forest">
                     <div>
                         <h4>Les deux Donons</h4>
                         <p>
-                            <img src="..//public/assets/calendar.svg" alt="Calendar">
+                            <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
                         </p>
                         <p>
-                            <img src="..//public/assets/distance.svg" alt="Distance">
+                            <img src="../public/assets/distance.svg" alt="Distance">
                             11.25 km
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-black.svg" alt="Location">
+                        <img src="../public/assets/map-pin-black.svg" alt="Location">
                             Schirmek
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-white.svg" alt="Location">
+                        <img src="../public/assets/map-pin-white.svg" alt="Location">
                             Temple Donon
                         </p>
                     </div>                   
 
                 </div>
                 <div class="card">
-                    <img src="..//public/assets/forest-340x200.png" alt="Forest">
+                    <img src="../public/assets/forest-340x200.png" alt="Forest">
                     <div>
                         <h4>Les deux Donons</h4>
                         <p>
-                            <img src="..//public/assets/calendar.svg" alt="Calendar">
+                            <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
                         </p>
                         <p>
-                            <img src="..//public/assets/distance.svg" alt="Distance">
+                            <img src="../public/assets/distance.svg" alt="Distance">
                             11.25 km
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-black.svg" alt="Location">
+                        <img src="../public/assets/map-pin-black.svg" alt="Location">
                             Schirmek
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-white.svg" alt="Location">
+                        <img src="../public/assets/map-pin-white.svg" alt="Location">
                             Temple Donon
                         </p>
                     </div>                   
 
                 </div>
                 <div class="card">
-                    <img src="..//public/assets/forest-340x200.png" alt="Forest">
+                    <img src="../public/assets/forest-340x200.png" alt="Forest">
                     <div>
                         <h4>Les deux Donons</h4>
                         <p>
-                            <img src="..//public/assets/calendar.svg" alt="Calendar">
+                            <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
                         </p>
                         <p>
-                            <img src="..//public/assets/distance.svg" alt="Distance">
+                            <img src="../public/assets/distance.svg" alt="Distance">
                             11.25 km
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-black.svg" alt="Location">
+                        <img src="../public/assets/map-pin-black.svg" alt="Location">
                             Schirmek
                         </p>
                         <p>
-                        <img src="..//public/assets/map-pin-white.svg" alt="Location">
+                        <img src="../public/assets/map-pin-white.svg" alt="Location">
                             Temple Donon
                         </p>
                     </div>                   
