@@ -39,12 +39,15 @@
             </div>
         </div>
         <div class="main__cards-container">
-            <h3>Les dernières randonnées </h3>
+            <div class="main__cards-container-heading" >
+                <h3 class="main__cards-container-title">Les dernières randonnées</h3>
+                <a href="#"><span class="main__cards-container-arrow"> Voir tous ➔</span></a>
+            </div>
             <div class="main__cards">
-                <div class="card">
+                <div class="main__card">
                     <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div>
-                        <h4>Les deux Donons</h4>
+                    <div class="main__card-details">
+                        <h4><a href="">Les deux Donons</a></h4>
                         <p>
                             <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
@@ -64,10 +67,10 @@
                     </div>                   
 
                 </div>
-                <div class="card">
+                <div class="main__card">
                     <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div>
-                        <h4>Les deux Donons</h4>
+                    <div class="main__card-details">
+                    <h4><a href="">Les deux Donons</a></h4>
                         <p>
                             <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
@@ -87,10 +90,10 @@
                     </div>                   
 
                 </div>
-                <div class="card">
+                <div class="main__card">
                     <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div>
-                        <h4>Les deux Donons</h4>
+                    <div class="main__card-details">
+                        <h4><a href="">Les deux Donons</a></h4>
                         <p>
                             <img src="../public/assets/calendar.svg" alt="Calendar">
                             13 juin 2024
