@@ -1,0 +1,8 @@
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+}

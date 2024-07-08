@@ -21,14 +21,14 @@
             </div>
         </nav>
     </header>
-    <main>
-        <div class="features container">
-            <div class="subscription-container">
+    <main class="main">
+        <div class="main__features-container">
+            <div class="main__features-subscription">
                 <h3>Inscrivez-vous gratuitement <br>
                 et rejoignez des randos</h3>
                 <a href="">Consulter nos randos</a>
             </div>
-            <div class="search-container">
+            <div class="main__features-search">
                 <form action="">
                     <label for="search">Rechercher une rando</label>
                     <div>
@@ -38,12 +38,12 @@
                 </form>
             </div>
         </div>
-        <div class="cards container">
+        <div class="main__cards-container">
             <h3>Les dernières randonnées </h3>
-            <div>
+            <div class="main__cards">
                 <div class="card">
                     <img src="..//public/assets/forest-340x200.png" alt="Forest">
-                    <div class="container">
+                    <div>
                         <h4>Les deux Donons</h4>
                         <p>
                             <img src="..//public/assets/calendar.svg" alt="Calendar">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="card">
                     <img src="..//public/assets/forest-340x200.png" alt="Forest">
-                    <div class="container">
+                    <div>
                         <h4>Les deux Donons</h4>
                         <p>
                             <img src="..//public/assets/calendar.svg" alt="Calendar">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="card">
                     <img src="..//public/assets/forest-340x200.png" alt="Forest">
-                    <div class="container">
+                    <div>
                         <h4>Les deux Donons</h4>
                         <p>
                             <img src="..//public/assets/calendar.svg" alt="Calendar">
