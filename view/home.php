@@ -11,8 +11,10 @@
     <header class="header">
         <nav class="nav">
             <div class="nav__logo">
-                <img src="../public/assets/logo-hiking-100x100.png" alt="logo" class="nav__logo-img">
-                 <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
+                <!-- <img src="../public/assets/logo-hiking-100x100.png" alt="logo" class="nav__logo-img"> -->
+                 <a href="#"><img src="../public/assets/logo-hiking-100x100.png" alt="logo" class="nav__logo-img"></a>
+                 <!-- <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3> -->
+                 <h3><a href="#" class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></a></h3>
             </div>
             <div class="nav__links">
                 <a class="nav__link nav__link-cta" href="#">Publier une rando</a>
@@ -22,114 +24,116 @@
         </nav>
     </header>
     <main class="main">
-        <div class="main__features-container">
-            <div class="main__features-subscription">
-                <h3 class="main__features-subscription-title">Inscrivez-vous gratuitement <br>
-                et rejoignez des randos</h3>
-                <a href="#" class="main__features-subscription-btn">Consulter nos randos</a>
+        <div class="main__container">
+            <div class="main__features-container">
+                <div class="main__feature-subscription">
+                    <h3 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
+                    et rejoignez des randos</h3>
+                    <a href="#" class="main__feature-subscription-btn">Consulter nos randos</a>
+                </div>
+                <div class="main__feature-search">
+                    <form action="">
+                        <label for="search">Rechercher une rando</label>
+                        <div class="main__feature-search-container">
+                            <input type="search" id="search" name="search" placeholder="  Ville où lieu à visiter">
+                            <input type="submit" value="Search" id="main__feature-search-btn">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="main__features-search">
-                <form action="">
-                    <label for="search">Rechercher une rando</label>
-                    <div class="main__features-search-container">
-                        <input type="search" id="search" name="search" placeholder="Ville où lieu à visiter">
-                        <input type="submit" value="Search" id="main__features-search-btn">
+            <div class="main__cards-container">
+                <div class="main__cards-container-heading" >
+                    <h3 class="main__cards-container-title">Les dernières randonnées</h3>
+                    <a href="#"><span class="main__cards-container-arrow"> Voir tous ➔</span></a>
+                </div>
+                <div class="main__cards">
+                    <div class="main__card">
+                        <img src="../public/assets/forest-340x200.png" alt="Forest">
+                        <div class="main__card-details">
+                            <h4><a href="">Les deux Donons</a></h4>
+                            <p>
+                                <img src="../public/assets/calendar.svg" alt="Calendar">
+                                13 juin 2024
+                            </p>
+                            <p>
+                                <img src="../public/assets/distance.svg" alt="Distance">
+                                11.25 km
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-black.svg" alt="Location">
+                                Schirmek
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-white.svg" alt="Location">
+                                Temple Donon
+                            </p>
+                        </div>                   
+    
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="main__cards-container">
-            <div class="main__cards-container-heading" >
-                <h3 class="main__cards-container-title">Les dernières randonnées</h3>
-                <a href="#"><span class="main__cards-container-arrow"> Voir tous ➔</span></a>
-            </div>
-            <div class="main__cards">
-                <div class="main__card">
-                    <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div class="main__card-details">
+                    <div class="main__card">
+                        <img src="../public/assets/forest-340x200.png" alt="Forest">
+                        <div class="main__card-details">
                         <h4><a href="">Les deux Donons</a></h4>
-                        <p>
-                            <img src="../public/assets/calendar.svg" alt="Calendar">
-                            13 juin 2024
-                        </p>
-                        <p>
-                            <img src="../public/assets/distance.svg" alt="Distance">
-                            11.25 km
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-black.svg" alt="Location">
-                            Schirmek
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-white.svg" alt="Location">
-                            Temple Donon
-                        </p>
-                    </div>                   
-
-                </div>
-                <div class="main__card">
-                    <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div class="main__card-details">
-                    <h4><a href="">Les deux Donons</a></h4>
-                        <p>
-                            <img src="../public/assets/calendar.svg" alt="Calendar">
-                            13 juin 2024
-                        </p>
-                        <p>
-                            <img src="../public/assets/distance.svg" alt="Distance">
-                            11.25 km
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-black.svg" alt="Location">
-                            Schirmek
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-white.svg" alt="Location">
-                            Temple Donon
-                        </p>
-                    </div>                   
-
-                </div>
-                <div class="main__card">
-                    <img src="../public/assets/forest-340x200.png" alt="Forest">
-                    <div class="main__card-details">
-                        <h4><a href="">Les deux Donons</a></h4>
-                        <p>
-                            <img src="../public/assets/calendar.svg" alt="Calendar">
-                            13 juin 2024
-                        </p>
-                        <p>
-                            <img src="../public/assets/distance.svg" alt="Distance">
-                            11.25 km
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-black.svg" alt="Location">
-                            Schirmek
-                        </p>
-                        <p>
-                        <img src="../public/assets/map-pin-white.svg" alt="Location">
-                            Temple Donon
-                        </p>
-                    </div>                   
-
+                            <p>
+                                <img src="../public/assets/calendar.svg" alt="Calendar">
+                                13 juin 2024
+                            </p>
+                            <p>
+                                <img src="../public/assets/distance.svg" alt="Distance">
+                                11.25 km
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-black.svg" alt="Location">
+                                Schirmek
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-white.svg" alt="Location">
+                                Temple Donon
+                            </p>
+                        </div>                   
+    
+                    </div>
+                    <div class="main__card">
+                        <img src="../public/assets/forest-340x200.png" alt="Forest">
+                        <div class="main__card-details">
+                            <h4><a href="">Les deux Donons</a></h4>
+                            <p>
+                                <img src="../public/assets/calendar.svg" alt="Calendar">
+                                13 juin 2024
+                            </p>
+                            <p>
+                                <img src="../public/assets/distance.svg" alt="Distance">
+                                11.25 km
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-black.svg" alt="Location">
+                                Schirmek
+                            </p>
+                            <p>
+                            <img src="../public/assets/map-pin-white.svg" alt="Location">
+                                Temple Donon
+                            </p>
+                        </div>                   
+    
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-        <div>
+    <footer class="footer">
+        <div class="footer__container">
             <div class="footer-top">
-                <div class="footer-left">
-                    <div>
-                        <a href="#home">
+                <div class="footer__top-left">
+                    <div class="footer__logo">
+                        <a href="#">
                             <img src="../public/assets/logo-hiking-100x100.png" alt="logo">
-                            <h3>Rando</h3>
                         </a>
+                        <h3><a href="">Rando</a></h3>
                     </div>
                     <p>Votre plateforme de choix des randonnées</p>
-                    <div>
-                        <p>Retrouvez-nous sur</p>
-                        <div>
+                    <div class="footer__socials-container">
+                        <p class="footer__socials-title">Retrouvez-nous sur</p>
+                        <div class="footer__socials">
                             <a href="https://www.linkedin.com/">
                                 <img src="../public/assets/linkedin.svg" alt="Linkedin">
                             </a>
@@ -142,11 +146,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-middle">
+                <div class="footer__top-middle">
                     <a href="#">À propos</a>
                     <p>Logo generated by <a href="https://www.freepik.com/">Freepik</a></p>
                 </div>
-                <div class="footer-right">
+                <div class="footer__top-right">
                     <p>Contact</p>
                     <p>
                         <img src="../public/assets/email.svg" alt="Email">
@@ -162,15 +166,15 @@
                     </p>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer__bottom">
                 <p>
                     &copy; 
                     <?= date_create("now")->format("Y") ?> 
                     Rando LLC Tous droits réservés
                 </p>
-                <p>Conditions générales d’utilisation</p>
-                <p>Mentions légales </p>
-                <p>Politique de confidentialité</p>
+                <p><a href="">Conditions générales d’utilisation</a></p>
+                <p><a href="">Mentions légales</a> </p>
+                <p><a href="">Politique de confidentialité</a></p>
             </div>
         </div>
     </footer>

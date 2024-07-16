@@ -8,6 +8,12 @@
     padding: 16px 10px;
     
 }
+.main__container {
+    width: 100%;
+    max-width: 1120px;
+
+    border: 1px solid;
+}
 .main__features-container {
     width: 100%;
     max-width: 1120px;
@@ -16,10 +22,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
-    gap: 10px;
 }
-.main__features-subscription {
+.main__feature-subscription {
     width: 100%;
     max-width: 500px;
     height: 200px;
@@ -32,9 +36,13 @@
 
     padding: 16px;
     border-radius: 10px;
-    background: rgb(var(--orange-color));
+    /* background: rgb(var(--orange-color)); */
+    background-image: url(../../assets/sun-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
-.main__features-subscription-title {
+.main__feature-subscription-title {
     text-align: center;
     color: rgb(var(--white-color));
     /* font-weight: var(--title-font-weight); */
@@ -43,17 +51,19 @@
     line-height: 28px;
     font-style: normal;
 }
-.main__features-subscription-btn {
+.main__feature-subscription-btn {
     width:fit-content;
     height: 43px;
     border: 2px solid rgb(var(--secondary-color));
     border-radius: 24px;
-    padding: 10px;
+    padding: 10px 15px;
     color: rgb(var(--secondary-color));
-    font-weight: 590;
-    background-color: rgb(var(--white-color));;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: var(--body-font-family);
+    background-color: rgb(var(--white-color));
 }
-.main__features-search {
+.main__feature-search {
     width: 100%;
     max-width: 590px;
     height: 200px;
@@ -62,16 +72,20 @@
     flex-direction: column;
     align-items:flex-start;
     justify-content:flex-start;
-    background-color: rgb(var(--blue-color));
+    /* background-color: rgb(var(--blue-color)); */
+    background-image: url(../../assets/sky-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     padding: 16px;
     
 }
-.main__features-search form{
+.main__feature-search form{
     width: 100%;
     
 }
-.main__features-search-container {
+.main__feature-search-container {
     height: 124px;
     background-color: rgb(var(--white-color), 0.7);
     padding: 16px;
@@ -89,13 +103,14 @@
     height: 40px;
     border-radius: 8px;
 }
-#main__features-search-btn {
+#main__feature-search-btn {
     width: 86px;
     height: 36px;
     border-radius: 8px;
+
+    font-size: 16px;
+    font-family: var(--body-font-family);
 }
-
-
 .main__cards-container {
     width: 100%;
     max-width: 1120px;
