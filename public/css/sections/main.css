@@ -45,23 +45,29 @@
 .main__feature-subscription-title {
     text-align: center;
     color: rgb(var(--white-color));
-    /* font-weight: var(--title-font-weight); */
-    font-weight: 700;
-    font-size: var(--title-font-size);
+    font-weight: var(--title-font-weight);
+    font-size: var(--logo-font-size);
     line-height: 28px;
     font-style: normal;
+    line-height: 1.5em;
+    /* border: 2px solid; */
 }
 .main__feature-subscription-btn {
     width:fit-content;
-    height: 43px;
+    height: 44px;
     border: 2px solid rgb(var(--secondary-color));
     border-radius: 24px;
-    padding: 10px 15px;
+    padding: 8px 15px;
+    text-align: center;
+
     color: rgb(var(--secondary-color));
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--title-font-size);
     font-family: var(--body-font-family);
     background-color: rgb(var(--white-color));
+}
+.main__feature-subscription-btn:hover {
+    background-color: transparent;
 }
 .main__feature-search {
     width: 100%;
@@ -78,12 +84,17 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    padding: 16px;
-    
+    padding: 16px;  
 }
 .main__feature-search form{
     width: 100%;
     
+}
+.main__feature-search-label {
+    color: rgb(var(--secondary-color));
+    /* color: rgb(var(--white-color)); */
+    /* color: #147eb3; */
+    font-weight: var(--title-font-weight);
 }
 .main__feature-search-container {
     height: 124px;
@@ -104,12 +115,18 @@
     border-radius: 8px;
 }
 #main__feature-search-btn {
-    width: 86px;
-    height: 36px;
+    width: 120px;
+    height: 44px;
     border-radius: 8px;
-
-    font-size: 16px;
+    background-color: #fff;
+    color: rgb(var(--secondary-color));
+    font-size: var(--title-font-size);
     font-family: var(--body-font-family);
+    font-weight: var(--title-font-weight);
+}
+#main__feature-search-btn:hover {
+    background-color: transparent;
+    cursor: pointer;
 }
 .main__cards-container {
     width: 100%;

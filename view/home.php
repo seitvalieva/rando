@@ -30,7 +30,7 @@
     </header>
     <main class="main">
         <div class="main__container">
-            <div class="main__features-container">
+            <section class="main__features-container">
                 <div class="main__feature-subscription">
                     <h3 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
                     et rejoignez des randos</h3>
@@ -38,15 +38,15 @@
                 </div>
                 <div class="main__feature-search">
                     <form action="">
-                        <label for="search">Rechercher une rando</label>
+                        <label for="search"><h3 class="main__feature-search-label">Rechercher une rando</h3></label>
                         <div class="main__feature-search-container">
                             <input type="search" id="search" name="search" placeholder="  Ville où lieu à visiter">
                             <input type="submit" value="Search" id="main__feature-search-btn">
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="main__cards-container">
+            </section>
+            <section class="main__cards-container">
                 <div class="main__cards-container-heading" >
                     <h3 class="main__cards-container-title">Les dernières randonnées</h3>
                     <a href="#"><span class="main__cards-container-arrow"> Voir tous ➔</span></a>
@@ -122,7 +122,7 @@
     
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
     <footer class="footer">
