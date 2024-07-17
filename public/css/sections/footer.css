@@ -17,17 +17,15 @@
 .footer__bottom
 {
     display: flex;
-    /* border: 1px solid; */
+    border: 1px solid;
 }
 .footer__container {
     width: 100%;
     max-width: 1120px;
 
-    
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 .footer-top {
     width: 100%;
@@ -42,7 +40,6 @@
     gap: 5px;
 }
 .footer__logo {
-    
     align-items: center;
     gap: 8px;
 }
