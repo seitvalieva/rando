@@ -16,11 +16,16 @@
                  <!-- <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3> -->
                  <h3><a href="#" class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></a></h3>
             </div>
-            <div class="nav__links">
+            <!-- <div class="nav__links">
                 <a class="nav__link nav__link-cta" href="#">Publier une rando</a>
                 <a class="nav__link nav__link-login" href="#">Connexion</a>
                 <a class="nav__link nav__link-registration" href="#">Inscription</a>
-            </div>
+            </div> -->
+            <ul class="nav__menu">
+                <li><a class="nav__menu-link nav__menu-link-cta" href="#">Publier une rando</a></li>
+                <li><a class="nav__menu-link nav__menu-link-login" href="#">Connexion</a></li>
+                <li><a class="nav__menu-link nav__menu-link-registration" href="#">Inscription</a></li>
+            </ul>
         </nav>
     </header>
     <main class="main">
