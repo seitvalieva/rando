@@ -30,8 +30,8 @@
 .footer-top {
     width: 100%;
 
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: start; */
+    /* align-items: center; */
 }
 .footer__top-left {
     width: 30%;
@@ -53,8 +53,15 @@
     width: 20%;
 
     flex-direction: column;
-    justify-content: center;
+    align-items: start;
     gap: 8px;
+}
+.footer__email,
+.footer__telephone,
+.footer__address {
+    display: flex;
+    align-items: start;
+    gap: 4px;
 }
 .footer__bottom {
     width: 100%;
