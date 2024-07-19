@@ -6,9 +6,9 @@
 @import url('sections/footer.css');
 
 :root{
-    --primary-color: 110, 109, 38;  /*green*/
-    /* --secondary-color: 132, 55, 10; brown */
-    --secondary-color: 65, 37, 32; /*brown*/
+    --primary-color: 110, 109, 38;  /*green #6e6d26*/
+    /* --secondary-color: 65, 37, 32; brown */
+    --secondary-color: 98, 48, 39; /*brown lighter #623027*/
 
     --blue-color: 104, 169, 190;
     --orange-color: 194,94,0;

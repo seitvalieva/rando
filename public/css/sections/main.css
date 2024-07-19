@@ -1,18 +1,22 @@
 .main {
-    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
-    padding: 16px 10px;
     
 }
 .main__container {
     width: 100%;
     max-width: 1120px;
 
-    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 10px;
+    gap: 16px;
+
 }
 .main__features-container {
     width: 100%;
@@ -22,6 +26,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+    /* gap: 16px; */
 }
 .main__feature-subscription {
     width: 100%;
@@ -133,27 +140,40 @@
     max-width: 1120px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 12px;
     
 }
+.main__cards-container-heading {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 140px;
+}
 .main__cards-container-title {
+    width: 75%;
     text-align: center;
     color: rgb(var(--secondary-color));
-    font-size: var(--title-font-size);
-    font-weight: var(--title-font-weight);
+    /* font-size: var(--title-font-size); */
+    /* font-weight: var(--title-font-weight); */
+}
+.main__cards-container-arrow:hover {
+    text-decoration: underline;
 }
 .main__cards {
-    /* width: 100%; */
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
 .main__card {
+    width: 350px;
     box-shadow: 0px 8px 8px 0 rgb(var(--black-color), 0.2);
     border-radius: 16px;
 }
-.main__card img {
+.main__card-img {
+    width: 350px;
     border-radius: 16px 16px 0px 0px;
 }
 .main__card-details {
@@ -161,6 +181,15 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-
-    padding: 2px 16px;
+    gap: 4px;
+    padding: 10px;
+}
+.main__card-title {
+    color: rgb(var(--secondary-color));
+    /* word-wrap: break-word; */
+}
+.main__card-detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
