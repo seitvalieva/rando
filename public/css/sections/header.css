@@ -1,6 +1,6 @@
 .header {
     width: 100%;
-    height: auto;
+    min-height: 75px;
     border-bottom: 2px solid rgb(var(--secondary-color), 0.2);
 
     display: flex;
@@ -82,4 +82,7 @@
     background-color: rgb(var(--white-color));
     color: rgb(var(--primary-color));
     border: 2px solid rgb(var(--primary-color));
+}
+.nav__burger-menu {
+    display: none;
 }
