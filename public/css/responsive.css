@@ -23,8 +23,13 @@
         width: 100%;
         margin-bottom: 10px;
     }
+    .footer__logo-img {
+        width: 60px;
+        height: 60px;
+    }
 
 }
+/* ====================================MOBILE====================================== */
 @media (max-width: 600px) {
     .nav__logo-img {
         display: none;
@@ -38,5 +43,42 @@
     .main__card, 
     .main__card-img {
         width: 100%;
+    }
+    .main__cards-container-heading {
+        gap: 10px;
+    }
+
+    .footer__container {
+        gap: 8px;
+    }
+    .footer__top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .footer__top-right,
+    .footer__top-middle,
+    .footer__top-left {
+        width: 100%;
+        border: 1px solid;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer__socials {
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer__top-contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    .footer__bottom {
+        padding-top: 8px;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        border: 1px solid;
     }
 }
