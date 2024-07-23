@@ -84,7 +84,8 @@
 .footer__bottom {
     width: 100%;
     border-top: 2px solid rgb(var(--white-color), 0.2);;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 90px;
 }
 .footer__link:hover {
     text-decoration: underline;
