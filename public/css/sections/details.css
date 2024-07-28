@@ -1,6 +1,14 @@
+
+.main__rando-info {
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    gap: 20px;
+}
 /* Slideshow container */
 .slideshow-container {
   max-width: 644px;
+  /* width: 65%; */
   height: auto;
   position: relative;
   margin: auto;
