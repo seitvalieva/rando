@@ -1,0 +1,224 @@
+/* ================== SEARCH FIELD ================== */
+.main__search-form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+form.main__search-form {
+  max-width: 100%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form.main__search-form input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-radius: 8px 0 0 8px;
+  float: left;
+  width: 90%;
+  height: 48px;
+  background: #f1f1f1;
+}
+form.main__search-form button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: #f1f1f1;
+  border: 1px solid grey;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+/* ================== RANDO DETAILS SECTION ================== */
+.main__rando-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.main__rando-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: auto;
+}
+.main__rando-title {
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  text-align: center;
+  color: rgb(var(--secondary-color));
+}
+.main__rando-subtitle {
+  font-size: 18px;
+  text-align: center;
+}
+/* ================== SLIDESHOW container ================== */
+.slideshow-container {
+  max-width: 100%;
+  width: 624px;
+  height: 428px;
+  position: relative;
+  overflow: hidden;
+  background-color: #000; /* Background color to fill the area around smaller images */
+}
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.mySlides img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Stretch or compress the image to fit the container */
+}
+/* Next & previous buttons */
+.prev,
+.next {
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+/* FADING ANIMATION for slideshow immages */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* ================== RANDO DETAILS card ==================  */
+.main__rando-info-card {
+  background-color: rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  padding: 10px;
+}
+.main__rando-info-card-title {
+  font-size: var(--heading-font-size);
+  text-align: center;
+  color: rgb(var(--secondary-color));
+  padding-bottom: 24px;
+}
+/* ================== RANDO AUTHOR INFO ================== */
+.main__rando-info-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.main__rando-author-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+.main__rando-author-info-img {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #623027;
+  border-radius: 50%;
+}
+.main__rando-author-info img {
+  height: 36px;
+  width: 36px;
+}
+.main__rando-author-info p {
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+}
+.main__rando-info-aside-btn {
+  width: 100%;
+}
+.main__rando-info-aside button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  height: 48px;
+  width: 100%;
+  background-color: rgb(var(--secondary-color));
+  font-size: var(--button-font-size);
+  color: rgb(var(--white-color));
+}
+.main__rando-info-aside button:hover {
+  background-color: rgb(var(--white-color));
+  border: 2px solid rgb(var(--secondary-color));
+  color: rgb(var(--secondary-color));
+  transition: all 700ms;
+}
+/* ================== RANDO MAP ================== */
+.main_rando-map-card {
+  background-color: rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.main_rando-map-card-title {
+  font-size: var(--heading-font-size);
+  text-align: center;
+  color: rgb(var(--secondary-color));
+  padding-bottom: 24px;
+}
+/*  ================== RANDO DESCRIPTION ================== */
+.main__rando-description {
+  background-color: rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  padding: 10px;
+}
+.main__rando-description-title {
+  text-align: center;
+  font-size: var(--heading-font-size);
+  color: rgb(var(--secondary-color));
+  padding-bottom: 24px;
+}
+.main__rando-description-text {
+  background-color: rgb(var(--white-color));
+  border-radius: 16px;
+  padding: 10px;
+}

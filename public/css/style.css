@@ -5,6 +5,7 @@
 @import url('sections/main.css');
 @import url('sections/footer.css');
 @import url('responsive.css');
+@import url('sections/randoDetails.css');
 
 :root{
      --primary-color: 110, 109, 38;  /* green #6e6d26 */
