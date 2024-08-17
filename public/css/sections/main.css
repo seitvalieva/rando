@@ -148,7 +148,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 180px;
+    
 }
 .main__cards-container-title {
     width: 75%;
@@ -157,6 +157,7 @@
     /* font-size: var(--title-font-size); */
     /* font-weight: var(--title-font-weight); */
 }
+
 .main__cards-container-arrow:hover {
     text-decoration: underline;
 }

@@ -33,6 +33,11 @@ form.main__search-form button {
   cursor: pointer;
 }
 /* ================== RANDO DETAILS SECTION ================== */
+.main__rando-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 .main__rando-info {
   display: flex;
   justify-content: space-between;
@@ -48,7 +53,6 @@ form.main__search-form button {
 .main__rando-subtitle {
   font-size: 18px;
   text-align: center;
-  padding: 24px;
 }
 /* ================== SLIDESHOW container ================== */
 .slideshow-container {
@@ -143,7 +147,7 @@ form.main__search-form button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 .main__rando-author-info {
   display: flex;
@@ -168,7 +172,7 @@ form.main__search-form button {
   font-size: var(--body-font-size);
   font-weight: var(--body-font-weight);
 }
-.main__rando-info-aside-button {
+.main__rando-info-aside-btn {
   width: 100%;
 }
 .main__rando-info-aside button {
@@ -187,4 +191,34 @@ form.main__search-form button {
   border: 2px solid rgb(var(--secondary-color));
   color: rgb(var(--secondary-color));
   transition: all 700ms;
+}
+/* ================== RANDO MAP ================== */
+.main_rando-map-card {
+  background-color: rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.main_rando-map-card-title {
+  font-size: var(--heading-font-size);
+  text-align: center;
+  color: rgb(var(--secondary-color));
+  padding-bottom: 24px;
+}
+/*  ================== RANDO DESCRIPTION ================== */
+.main__rando-description {
+  background-color: rgba(51, 51, 51, 0.1);
+  border-radius: 16px;
+  padding: 10px;
+}
+.main__rando-description-title {
+  text-align: center;
+  font-size: var(--heading-font-size);
+  color: rgb(var(--secondary-color));
+  padding-bottom: 24px;
+}
+.main__rando-description-text {
+  background-color: rgb(var(--white-color));
+  border-radius: 16px;
+  padding: 10px;
 }
