@@ -24,7 +24,8 @@
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
                 <header class="header">
                     <nav class="nav">
-                    <a href="index.php?ctrl=forum&action=index" class="nav__logo">
+                    <!-- <a href="index.php?ctrl=forum&action=index" class="nav__logo"> -->
+                    <a href="index.php?ctrl=home&action=index" class="nav__logo">
                         <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
                         <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                     </a>
@@ -34,7 +35,7 @@
                             if(App\Session::getUser()){
                                 ?>
                                 <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
+                                <!-- <a href="index.php?ctrl=forum&action=index">Liste des catégories</a> -->
                                 <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                 <?php
                             }

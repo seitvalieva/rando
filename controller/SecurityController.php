@@ -57,5 +57,58 @@ class SecurityController extends AbstractController {
             "view" => VIEW_DIR . "connection/register.php",
             "meta_description" => "Formulaire d'inscription"
         ];
-    }      
+    }   
+    
+    //MISE EN PLACE DE LA FONCTION SE CONNECTER
+    public function login() {
+
+            if(isset($_POST["submitLogin"])) {
+       
+                //PROTECTION XSS (=FILTRES)
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+                if($email && $password) {//REQUETE PREPARE POUR LUTTER CTRE LES INJECTIONS SQL
+                    // var_dump("ok");die;
+                    //si l'utilisateur existe
+                    $userManager = new UtilisateurManager();
+                    $utilisateur = $userManager->checkUserExists($email);
+
+                    if($utilisateur){
+                        // var_dump($utilisateur);die;
+                        $hash = $utilisateur->getPassword();
+
+                        if(password_verify($password, $hash)){//VERIFICATION DU MDP
+                            $_SESSION["utilisateur"] = $utilisateur; //on stocke dans un tableau SESSION l'intégralité des infos du user
+                            header("Location:index.php?ctrl=home&action=index");//SI CONNEXION REUSSIE: REDIRECTION VERS PAGE D ACCUEIL
+                        //Dans Forum, la redirection sera par exemple: header("Location: index.php?ctrl=home&action=index&id=");    
+                            exit;  
+                        
+                            } else {
+                        // Erreur d'adresse mail ou de mot de passe
+                            header("Location: index.php?ctrl=security&action=login");
+                            exit;
+                            }
+                        } else {
+                            // Utilisateur introuvable
+                            header("Location: index.php?security&action=login");
+                            exit;
+                        }
+                    }
+
+                // Afficher le formulaire de connexion
+            }
+            return [
+                "view" => VIEW_DIR . "connexion/login.php",
+                "meta_description" => "Formulaire de connexion"
+            ];
+    }
+    
+    
+    public function logout() {
+        session_unset();// Supprimer toutes les données de la session
+        // Redirection après la déconnexion
+        header("Location: index.php");
+        exit;
+    }
 }
