@@ -27,9 +27,19 @@
 
     --logo-font-family: "Sonsie One", system-ui;
     --logo-font-size: 24px;
-
-    --title-font-size: 18px;
+    
+    --title-font-size: 30px;
     --title-font-weight: 700;
+
+    --heading-font-size: 20px;
+    --heading-font-weight: 700;
+
+    --cardTitle-font-size: 20px;
+    --cardTitle-font-weight: 700;
+
+    --btn-font-size: 18px;
+    --btn-font-weight: 700;
+
     --body-font-family: "Roboto", sans-serif;
     --body-font-size: 14px;
 }   

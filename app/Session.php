@@ -5,16 +5,12 @@ class Session{
 
     private static $categories = ['error', 'success'];
 
-    /**
-    *   ajoute un message en session, dans la catégorie $categ
-    */
+        //adds a message in session, in the category $categ
     public static function addFlash($categ, $msg){
         $_SESSION[$categ] = $msg;
     }
-
-    /**
-    *   renvoie un message de la catégorie $categ, s'il y en a !
-    */
+  
+        // returns a message from the category $categ, if any!
     public static function getFlash($categ){
         
         if(isset($_SESSION[$categ])){
@@ -26,9 +22,7 @@ class Session{
         return $msg;
     }
 
-    /**
-    *   met un user dans la session (pour le maintenir connecté)
-    */
+      // puts a user in the session (to keep them logged in)
     public static function setUser($user){
         $_SESSION["user"] = $user;
     }
@@ -38,7 +32,7 @@ class Session{
     }
 
     public static function isAdmin(){
-        // attention de bien définir la méthode "hasRole" dans l'entité User en fonction de la façon dont sont gérés les rôles en base de données
+        // be careful to define the "hasRole" method in the User entity according to the way roles are managed in the database
         if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
             return true;
         }

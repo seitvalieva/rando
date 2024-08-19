@@ -15,19 +15,16 @@ abstract class Entity{
                 
                 $FQCName = "Model\Managers\\".$manName;
                 
-                
                 $man = new $FQCName();
                
                 $value = $man->findOneById($value);
             }
 
+            $method = "set".ucfirst($fieldArray[0]);        // making the name of the setter to call (ex: setName)
             
-            $method = "set".ucfirst($fieldArray[0]);
-            
-            
-            if(method_exists($this, $method)){
+            if(method_exists($this, $method)){              // if setName is a method that exists in the entity (this)
                 
-                $this->$method($value);
+                $this->$method($value);                     // $this->setName("value")
             }
         }
     }
