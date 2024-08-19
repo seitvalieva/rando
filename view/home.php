@@ -21,12 +21,13 @@
                 <li><a class="nav__menu-link nav__menu-link-login" href="#">Connexion</a></li>
                 <li><a class="nav__menu-link nav__menu-link-registration" href="#">Inscription</a></li>
             </ul>
+            <!-- ============= BURGER btn ============= -->
             <div class="nav__burger-menu" id="navBurgerMenu">
                 <img src="../public/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
             </div>
         </nav>
     </header>
-
+    <!-- ============= MOBILE MENU ============= -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
         <nav class="mobile-menu__nav">
@@ -35,15 +36,17 @@
             <a href="#" class="">Inscription</a>
         </nav>
     </div>
-
+    <!-- ============= MAIN section ============= -->
     <main class="main">
         <div class="main__container">
+            <!-- ============= FEATURES section ============= -->
             <section class="main__features-container">
                 <div class="main__feature-subscription">
                     <h2 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
                         et rejoignez des randos</h2>
                     <a href="#" class="main__feature-subscription-btn">Consulter nos randos</a>
                 </div>
+                <!-- ============= SEARCH form ============= -->
                 <div class="main__feature-search">
                     <form action="">
                         <h2 class="main__feature-search-label">Rechercher une rando</h2>
@@ -54,6 +57,7 @@
                     </form>
                 </div>
             </section>
+            <!-- ============= LES DERNIERES RANDOS section ============= -->
             <section class="main__cards-container">
                 <div class="main__cards-container-heading">
                     <h1 class="main__cards-container-title">Les dernières randonnées</h1>
@@ -215,7 +219,7 @@
             </section>
         </div>
     </main>
-
+    <!-- ============= FOOTER ============= -->
     <footer class="footer">
         <div class="footer__container">
             <div class="footer__top">
