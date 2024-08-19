@@ -1,10 +1,4 @@
-
-
-<body>
-   
-    <!-- ============= MAIN section ============= -->
-    <main class="main">
-        <div class="main__container">
+<div class="main__container">
             <!-- ============= FEATURES section ============= -->
             <section class="main__features-container">
                 <div class="main__feature-subscription">
@@ -180,14 +174,6 @@
                             </p>
                         </div>
                     </div>
-                    
-
                 </div>
             </section>
         </div>
-    </main>
-    
-    <!-- <script src="<?= PUBLIC_DIR ?>/js/script.js"></script> -->
-</body>
-
-</html>

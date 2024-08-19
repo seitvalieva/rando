@@ -6,3 +6,7 @@ use App\ControllerInterface;
 use PDO;
 
 use Model\Managers\UserManager;
+
+class SecurityController extends AbstractController {
+    
+}
