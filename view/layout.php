@@ -13,9 +13,9 @@
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+        <link rel="shortcut icon" href="<?= PUBLIC_DIR ?>/assets/favicon.png" type="image/x-icon">
         <title> Title </title>
     </head>
-
     <body>
         <div id="wrapper"> 
             <div id="mainpage">
@@ -25,7 +25,7 @@
                 <header class="header">
                     <nav class="nav">
                     <a href="index.php?ctrl=forum&action=index" class="nav__logo">
-                        <img src="../public/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
+                        <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
                         <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                     </a>
                         <div id="nav-right">
@@ -47,7 +47,16 @@
                                 </ul>
                                 <!-- ============= BURGER btn ============= -->
                                 <div class="nav__burger-menu" id="navBurgerMenu">
-                                    <img src="../public/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
+                                    <img src="<?= PUBLIC_DIR ?>/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
+                                </div>
+                                <!-- ============= MOBILE MENU ============= -->
+                                <div class="mobile-menu" id="mobileMenu">
+                                    <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
+                                    <nav class="mobile-menu__nav">
+                                        <a href="#" class="">Publier une rando</a>
+                                        <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
+                                        <a href="index.php?ctrl=security&action=register" class="">Inscription</a>
+                                    </nav>
                                 </div>
                                 
                             <?php
@@ -68,7 +77,7 @@
                 <div class="footer__top-left">
                     <div class="footer__logo">
                         <a href="#">
-                            <img src="../public/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
+                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
                         </a>
                         <h3><a href="" class="footer__logo-title">Rando</a></h3>
                     </div>
@@ -77,13 +86,13 @@
                         <p class="footer__socials-title">Retrouvez-nous sur</p>
                         <div class="footer__socials">
                             <a href="https://www.linkedin.com/">
-                                <img src="../public/assets/linkedin.svg" alt="Linkedin" class="footer__social-icon">
+                                <img src="<?= PUBLIC_DIR ?>/assets/linkedin.svg" alt="Linkedin" class="footer__social-icon">
                             </a>
                             <a href="https://www.facebook.com/">
-                                <img src="../public/assets/facebook.svg" alt="Facebook" class="footer__social-icon">
+                                <img src="<?= PUBLIC_DIR ?>/assets/facebook.svg" alt="Facebook" class="footer__social-icon">
                             </a>
                             <a href="https://www.instagram.com/">
-                                <img src="../public/assets/instagram.svg" alt="Instagram" class="footer__social-icon">
+                                <img src="<?= PUBLIC_DIR ?>/assets/instagram.svg" alt="Instagram" class="footer__social-icon">
                             </a>
                         </div>
                     </div>
@@ -96,15 +105,15 @@
                     <p class="footer__top-right-title">Contact</p>
                     <div class="footer__top-contacts">
                         <div class="footer__email">
-                            <img src="../public/assets/email.svg" alt="Email" class="footer__social-icon">
+                            <img src="<?= PUBLIC_DIR ?>/assets/email.svg" alt="Email" class="footer__social-icon">
                             <p>rando@example.com</p>
                         </div>
                         <div class="footer__telephone">
-                            <img src="../public/assets/phone.svg" alt="Phone" class="footer__social-icon">
+                            <img src="<?= PUBLIC_DIR ?>/assets/phone.svg" alt="Phone" class="footer__social-icon">
                             <p>+33 1 23 45 67 89</p>
                         </div>
                         <div class="footer__address">
-                            <img src="../public/assets/map-pin.svg" alt="Location" class="footer__social-icon">
+                            <img src="<?= PUBLIC_DIR ?>/assets/map-pin.svg" alt="Location" class="footer__social-icon">
                             <p>1 rue de la Gare, <br> 67000 Alsace <br> France</p>
                         </div>
                     </div>
@@ -156,7 +165,7 @@
                 });
             })
         </script>
-        <!-- <script src="<?= PUBLIC_DIR ?>/js/script.js"></script> -->
-        <script src="../public/js/script.js"></script>
+        <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
+        <!-- <script src="../public/js/script.js"></script> -->
     </body>
 </html>
