@@ -4,62 +4,66 @@ namespace Controller;
 use App\AbstractController;
 use App\ControllerInterface;
 use PDO;
+use Model\Managers\UtilisateurManager;
 
-use Model\Managers\UserManager;
 
-class SecurityController extends AbstractController {
-                    // will contain the methods related to authentication: register, login and logout
-                    // Displays the register form view
-                    //session_start();   
-    // setting up the REGISTER function
-    public function register() {
-        if (isset($_POST["submitRegister"])) {
+class SecurityController extends AbstractController{
 
-            // filter the registration form fields
-            $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-            $pass1 = filter_input(INPUT_POST, "pass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $pass2 = filter_input(INPUT_POST, "pass2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+     // contiendra les méthodes liées à l'authentification : register, login et logout
+     // Affiche la vue du formulaire register
+          //session_start();
+    
+    //MISE EN PLACE DE LA FONCTION S INSCRIRE
+    public function register(){
+    
+           if (isset($_POST["submitRegister"])) {
+            
+                //FILTRER LES CHAMPS DU FORMULAIRE D INSCRIPTION:
+                $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+                $pass1 = filter_input(INPUT_POST, "pass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $pass2 = filter_input(INPUT_POST, "pass2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+                //VERIFIER LA VALIDITE DES FILTRES:
+                if($username && $email && $pass1 && $pass2){
 
-            //CHECK THE VALIDITY OF THE FILTERS:
-            if($username && $email && $pass1 && $pass2) {
-                // var_dump("ok");die;
-                $userManager = new UserManager();
-                //creation of the function checkUserExists in userManager to check if the user exists
-                $user = $userManager->checkUserExists($email);
-                
-                // if the user exists
-                if($utilisateur){
-                    header("Location: index.php?ctrl=security&action=register"); 
-                    exit;
-                } else {
-                    //var_dump("utilisateur inexistant");die;
-
-                    //insert user into database
-                    if($pass1 == $pass2 && strlen($pass1) >= 8) {   //VERIFY THAT THE PASSWORDS ARE IDENTICAL
-                        $userManager->add([                         //we retrieve the add function from the Manager file
-                            "username" => $username,
-                            "email" => $email,
-                            "password" => password_hash($pass1, PASSWORD_DEFAULT)
-                        ]);
-                        //REDIRECTION AFTER REGISTRATION
-                        header("Location: index.php?ctrl=security&action=login");
-                        exit;
+                    // var_dump("ok");die;
+                    $userManager = new UtilisateurManager();
+                    $utilisateur = $userManager->checkUserExists($email);//création de la function checkUserExists dans utilisateurManager pour vérifier si l'utilisateur existe
+                //SI L UTILISATEUR EXISTE
+                    if($utilisateur){
+                        header("Location: index.php?ctrl=security&action=register"); 
+                        exit; 
                     } else {
-                        header("Location: index.php?ctrl=security&action=register");
-                        exit;
-                        // $this->redirectTo("security","register")
+                        //var_dump("utilisateur inexistant");die;
+                        //insertion de l'utilisateur en BDD
+                        if($pass1 == $pass2 && strlen($pass1) >= 5) {//VERIFICATION QUE LES MDP SONT IDENTIQUES
+                            
+                            $userManager->add([//on récupère la function add du fichier Manager
+                                "username" => $username,
+                                "email" => $email,
+                                "password" => password_hash($pass1, PASSWORD_DEFAULT)
+                            ]);
+
+                            //REDIRECTION APRES L INSCRIPTION
+                            header("Location: index.php?ctrl=security&action=login");
+                            exit;
+                        } else {
+                            header("Location: index.php?ctrl=security&action=register");
+                            exit;
+                            // $this->redirectTo("security","register")
+                        }
                     }
                 }
             }
-        }
-        return [
-            "view" => VIEW_DIR . "connection/register.php",
-            "meta_description" => "Formulaire d'inscription"
-        ];
-    }   
-    
-    //setting up the LOGIN function
+             return [
+                "view" => VIEW_DIR . "connection/register.php",
+                "meta_description" => "Formulaire d'inscription"
+            ];
+    }  
+
+
+    //MISE EN PLACE DE LA FONCTION SE CONNECTER
     public function login() {
 
             if(isset($_POST["submitLogin"])) {
@@ -68,29 +72,29 @@ class SecurityController extends AbstractController {
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-                if($email && $password) {               //PREPARED QUERY TO FIGHT SQL INJECTIONS
+                if($email && $password) {//REQUETE PREPARE POUR LUTTER CTRE LES INJECTIONS SQL
                     // var_dump("ok");die;
-                    //if the user exists
-                    $userManager = new UserManager();
-                    $user = $userManager->checkUserExists($email);
+                    //si l'utilisateur existe
+                    $userManager = new UtilisateurManager();
+                    $utilisateur = $userManager->checkUserExists($email);
 
-                    if($user){
-                        // var_dump($user);die;
-                        $hash = $user->getPassword();
+                    if($utilisateur){
+                        // var_dump($utilisateur);die;
+                        $hash = $utilisateur->getPassword();
 
-                        if(password_verify($password, $hash)){          // verification of the password
-                            $_SESSION["user"] = $user;                  //we store all the user's information in a SESSION table
-                            header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE
-                            //In Forum, the redirection will be for example: header("Location: index.php?ctrl=home&action=index&id=");  
+                        if(password_verify($password, $hash)){//VERIFICATION DU MDP
+                            $_SESSION["utilisateur"] = $utilisateur; //on stocke dans un tableau SESSION l'intégralité des infos du user
+                            header("Location:index.php?ctrl=home&action=index");//SI CONNEXION REUSSIE: REDIRECTION VERS PAGE D ACCUEIL
+                        //Dans Forum, la redirection sera par exemple: header("Location: index.php?ctrl=home&action=index&id=");    
                             exit;  
                         
                             } else {
-                        // Email address or password error
+                        // Erreur d'adresse mail ou de mot de passe
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                             }
                         } else {
-                            // User not found
+                            // Utilisateur introuvable
                             header("Location: index.php?security&action=login");
                             exit;
                         }
@@ -111,4 +115,5 @@ class SecurityController extends AbstractController {
         header("Location: index.php");
         exit;
     }
+
 }
