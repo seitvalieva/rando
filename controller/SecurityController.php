@@ -4,7 +4,7 @@ namespace Controller;
 use App\AbstractController;
 use App\ControllerInterface;
 use PDO;
-use Model\Managers\UtilisateurManager;
+use Model\Managers\UserManager;
 
 
 class SecurityController extends AbstractController{
@@ -28,7 +28,7 @@ class SecurityController extends AbstractController{
                 if($username && $email && $pass1 && $pass2){
 
                     // var_dump("ok");die;
-                    $userManager = new UtilisateurManager();
+                    $userManager = new UserManager();
                     $utilisateur = $userManager->checkUserExists($email);//création de la function checkUserExists dans utilisateurManager pour vérifier si l'utilisateur existe
                 //SI L UTILISATEUR EXISTE
                     if($utilisateur){
@@ -75,7 +75,7 @@ class SecurityController extends AbstractController{
                 if($email && $password) {//REQUETE PREPARE POUR LUTTER CTRE LES INJECTIONS SQL
                     // var_dump("ok");die;
                     //si l'utilisateur existe
-                    $userManager = new UtilisateurManager();
+                    $userManager = new UserManager();
                     $utilisateur = $userManager->checkUserExists($email);
 
                     if($utilisateur){
