@@ -10,9 +10,9 @@
 foreach($randos as $rando ){
     // var_dump($rando); ?>
 
-    <p><a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>">
-        <?= $rando->getTitle() ?>
-    </a></p>
+    <p>
+        <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>"><?= $rando->getTitle() ?></a>
+    </p>
     <div class="main__card">
         <a href="" target="_blank">
             <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Les deux Donons"

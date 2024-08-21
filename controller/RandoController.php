@@ -26,6 +26,26 @@ class RandoController extends AbstractController implements ControllerInterface 
             ];
      }
     
+     // display details of a rando
+     public function getRandoDetails($id) {
+
+        $randoManager = new RandoManager();
+        $rando = $randoManager->findOneById($id);
+
+        return [
+            "view" => VIEW_DIR."rando/randoDetails.php",
+            "meta_description" => "Details de la rando ".$rando,
+            "data" => [
+                "rando" => $rando,
+            ]
+        ];
+
+     }
+
+
+
+
+
      // create une rando
     
      //
