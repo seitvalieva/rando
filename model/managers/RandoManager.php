@@ -1,17 +1,19 @@
 <?php
-
 namespace Model\Managers;
 
 use App\Manager;
 use App\DAO;
-
+// use Model\Managers\SujetManager;
 
 class RandoManager extends Manager{
 
-    protected $classname = "Model\Entities\Rando";
+    // on indique la classe POO et la table correspondante en BDD pour le manager concerné
+    protected $className = "Model\Entities\Rando";
     protected $tableName = "rando";
 
     public function __construct(){
         parent::connect();
     }
+
+
 }

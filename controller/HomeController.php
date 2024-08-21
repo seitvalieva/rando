@@ -3,7 +3,7 @@ namespace Controller;
 
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\UtilisateurManager;
+use Model\Managers\UserManager;
 
 class HomeController extends AbstractController implements ControllerInterface {
 

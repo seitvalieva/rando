@@ -15,7 +15,7 @@ final class Rando extends Entity {
     private $departure;
     private $destination;
     private $image;
-    private $itinerary;
+    // private $itinerary;
     private $user;
     
     public function __construct($data){         
@@ -130,17 +130,17 @@ final class Rando extends Entity {
         return $this;
     }
 
-    public function getItinerary()
-    {
-        return $this->itinerary;
-    }
+    // public function getItinerary()
+    // {
+    //     return $this->itinerary;
+    // }
 
-    public function setItinerary($itinerary)
-    {
-        $this->itinerary = $itinerary;
+    // public function setItinerary($itinerary)
+    // {
+    //     $this->itinerary = $itinerary;
 
-        return $this;
-    }
+    //     return $this;
+    // }
  
     public function getUser()
     {
@@ -153,4 +153,11 @@ final class Rando extends Entity {
 
         return $this;
     }
+
+    
+    // METHODE TO__STRING POUR L'AFFICHAGE
+        public function __toString()
+        {
+            return $this->rando;
+        }
 }

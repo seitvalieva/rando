@@ -32,11 +32,12 @@
                         <div id="nav-right">
                         <?php
                             // if the user is logged in
-                            if(App\Session::getUtilisateur()){
+                            if(App\Session::getUser()){
                                 ?>
-                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUtilisateur()?></a>
+                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                 <!-- <a href="index.php?ctrl=forum&action=index">Liste des catégories</a> -->
-                                <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+                                <a class="nav__menu-link nav__menu-link-cta" href="#">Publier une rando</a></li>
+                                <a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-login">Déconnexion</a>
                                 <?php
                             }
                             else{

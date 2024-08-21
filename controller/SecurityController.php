@@ -63,7 +63,7 @@ class SecurityController extends AbstractController{
     }  
 
 
-    //MISE EN PLACE DE LA FONCTION SE CONNECTER
+    //  SETTING UP THE LOG IN FUNCTION
     public function login() {
 
             if(isset($_POST["submitLogin"])) {
@@ -72,9 +72,9 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-                if($email && $password) {//REQUETE PREPARE POUR LUTTER CTRE LES INJECTIONS SQL
+                if($email && $password) {                   // PREPARED QUERY TO FIGHT SQL INJECTIONS
                     // var_dump("ok");die;
-                    //si l'utilisateur existe
+                    //if the user exists
                     $userManager = new UserManager();
                     $utilisateur = $userManager->checkUserExists($email);
 
@@ -82,26 +82,25 @@ class SecurityController extends AbstractController{
                         // var_dump($utilisateur);die;
                         $hash = $utilisateur->getPassword();
 
-                        if(password_verify($password, $hash)){//VERIFICATION DU MDP
-                            $_SESSION["utilisateur"] = $utilisateur; //on stocke dans un tableau SESSION l'intégralité des infos du user
-                            header("Location:index.php?ctrl=home&action=index");//SI CONNEXION REUSSIE: REDIRECTION VERS PAGE D ACCUEIL
+                        if(password_verify($password, $hash)){                      // PASSWORD VERIFICATION 
+                            $_SESSION["utilisateur"] = $utilisateur;                // we store all the user's information in a SESSION table
+                            header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE
                         //Dans Forum, la redirection sera par exemple: header("Location: index.php?ctrl=home&action=index&id=");    
                             exit;  
                         
                             } else {
-                        // Erreur d'adresse mail ou de mot de passe
+                        // in case of Email address or password error
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                             }
                         } else {
-                            // Utilisateur introuvable
+                            // if User not found
                             header("Location: index.php?security&action=login");
                             exit;
                         }
                     }
-
-                // Afficher le formulaire de connexion
             }
+                // displaying login form
             return [
                 "view" => VIEW_DIR . "connection/login.php",
                 "meta_description" => "Formulaire de connexion"
@@ -110,8 +109,8 @@ class SecurityController extends AbstractController{
     
     
     public function logout() {
-        session_unset();// Supprimer toutes les données de la session
-        // Redirection après la déconnexion
+        session_unset();                        // Delete all session data
+        // redirection after logging out
         header("Location: index.php");
         exit;
     }

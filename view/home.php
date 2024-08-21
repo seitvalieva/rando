@@ -4,7 +4,7 @@
                 <div class="main__feature-subscription">
                     <h2 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
                         et rejoignez des randos</h2>
-                    <a href="#" class="main__feature-subscription-btn">Consulter nos randos</a>
+                    <a href="index.php?ctrl=rando&action=index" class="main__feature-subscription-btn">Consulter nos randos</a>
                 </div>
                 <!-- ============= SEARCH form ============= -->
                 <div class="main__feature-search">
@@ -21,7 +21,7 @@
             <section class="main__cards-container">
                 <div class="main__cards-container-heading">
                     <h1 class="main__cards-container-title">Les dernières randonnées</h1>
-                    <p class="main__cards-container-arrow"><a href="#">Voir tous ➔</a></p>
+                    <p class="main__cards-container-arrow"><a href="index.php?ctrl=rando&action=index">Voir tous ➔</a></p>
                 </div>
                 <div class="main__cards">
                     <div class="main__card">
