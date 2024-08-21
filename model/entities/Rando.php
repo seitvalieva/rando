@@ -7,9 +7,9 @@ use App\Entity;
 final class Rando extends Entity {
 
     private $id;
-    private $title;
+    private string $title;
     private $dateRando;
-    private $distance;
+    private float $distance;
     private $description;
     private $postDate;
     private $departure;
