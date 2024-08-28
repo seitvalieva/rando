@@ -45,7 +45,7 @@
                                 <ul class="nav__menu">
                                     <li><a class="nav__menu-link nav__menu-link-cta" href="#">Publier une rando</a></li>
                                     <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=security&action=login">Connexion</a></li>
-                                    <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Inscription</a></li>
+                                    <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Créer un compte</a></li>
                                 </ul>
                                 <!-- ============= BURGER btn ============= -->
                                 <div class="nav__burger-menu" id="navBurgerMenu">
@@ -57,7 +57,7 @@
                                     <nav class="mobile-menu__nav">
                                         <a href="#" class="">Publier une rando</a>
                                         <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
-                                        <a href="index.php?ctrl=security&action=register" class="">Inscription</a>
+                                        <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
                                     </nav>
                                 </div>
                                 

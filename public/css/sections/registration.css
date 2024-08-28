@@ -1,0 +1,32 @@
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    margin: 5px 0;
+    padding: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    width:fit-content;
+    height: 44px;
+    text-align: center;
+    font-weight: var(--btn-font-weight);
+    font-size: var(--btn-font-size);
+    background-color: rgb(var(--white-color));
+    color: rgb(var(--secondary-color));
+    padding: 8px 15px;
+    border: 2px solid rgb(var(--secondary-color));
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(var(--secondary-color));
+    border: 2px solid rgb(var(--secondary-color));
+    color: rgb(var(--white-color));
+}
+
+.tinymce-abs {
+    width: 100% !important;
+}
