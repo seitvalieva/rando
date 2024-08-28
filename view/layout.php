@@ -123,14 +123,14 @@
                     </div>
                 </div>
                 <div class="footer__bottom">
+                    <p><a href="" class="footer__link">Conditions générales d’utilisation</a></p>
+                    <p><a href="" class="footer__link">Mentions légales</a> </p>
+                    <p><a href="" class="footer__link">Politique de confidentialité</a></p>
                     <p>
                         &copy;
                         <?= date_create("now")->format("Y") ?>
                         Rando LLC Tous droits réservés
                     </p>
-                    <p><a href="" class="footer__link">Conditions générales d’utilisation</a></p>
-                    <p><a href="" class="footer__link">Mentions légales</a> </p>
-                    <p><a href="" class="footer__link">Politique de confidentialité</a></p>
                 </div>
             </footer>
         </div>

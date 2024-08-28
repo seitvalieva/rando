@@ -1,16 +1,21 @@
+<?php
+$rando = $result["data"]['rando'];
+
+$idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
 
 
+?>
 <div class="main__container">
             <!-- ================== SEARCH FIELD section ================== -->
             <section class="main__search-form-container">
                 <form class="main__search-form" action="">
                     <input type="text" placeholder=" Rechercher une ville où lieu à visiter" name="search">
-                    <button type="submit"><img src="../public/assets/search.svg" alt=""></button>
+                    <button type="submit"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt=""></button>
                 </form>
             </section>
             <!-- ================== RANDO DETAILS section ================== -->
             <section class="main__rando-info-container">
-                <h1 class="main__rando-title">Le Tour du Ballon d’Alsace</h1>
+                <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
                 <p class="main__rando-subtitle">Pour ceux qui n'ont pas froid aux yeux, une randonnée sportive pour découvrir les secrets du Ballon
                     d'Alsace.</p>
                 <div class="main__rando-info">
@@ -19,14 +24,14 @@
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
                             <div class="mySlides fade">
-                                <img src="../public/assets/coffee_with_the_view_Ballon_d'Alsace.jpg"
+                                <img src="<?= PUBLIC_DIR ?>/assets/coffee_with_the_view_Ballon_d'Alsace.jpg"
                                     alt="Ballon d'Alsace view" style="width:100%">
                             </div>
                             <div class="mySlides fade">
-                                <img src="../public/assets/sky-background.png" alt="Forest" style="width:100%">
+                                <img src="<?= PUBLIC_DIR ?>/assets/sky-background.png" alt="Forest" style="width:100%">
                             </div>
                             <div class="mySlides fade">
-                                <img src="../public/assets/sun-background.png" alt="Forest" style="width:100%;">
+                                <img src="<?= PUBLIC_DIR ?>/assets/sun-background.png" alt="Forest" style="width:100%;">
                             </div>
                             <!-- Next and previous buttons -->
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -45,24 +50,24 @@
                             <h2 class="main__rando-info-card-title">Détails de la randonnée</h2>
                             <div class="main__card-details">
                                 <p class="main__card-detail">
-                                    <img src="../public/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                                    <span><b>Date : </b>13 juin 2024</span>
+                                    <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
+                                    <span><b>Date : </b><?= $rando->getDateRando() ?></span>
                                 </p>
                                 <p class="main__card-detail">
-                                    <img src="../public/assets/duration.svg" alt="Calendrier" title="Calendrier">
-                                    <span><b>Durée estimée : </b> 8h </span>
+                                    <img src="<?= PUBLIC_DIR ?>/assets/duration.svg" alt="Calendrier" title="Calendrier">
+                                    <span><b>Durée estimée : </b> h </span>
                                 </p>
                                 <p class="main__card-detail">
-                                    <img src="../public/assets/distance.svg" alt="Distance" title="Distance">
-                                    <span><b>Distance : </b>17.25 km</span>
+                                    <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
+                                    <span><b>Distance : </b><?= $rando->getDistance() ?> km</span>
                                 </p>
                                 <p class="main__card-detail">
-                                    <img src="../public/assets/map-pin-fill.svg" alt="Départ" title="Départ">
-                                    <span><b>Départ : </b>Sewen</span>
+                                    <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
+                                    <span><b>Départ : </b><?= $rando->getDeparture() ?></span>
                                 </p>
                                 <p class="main__card-detail">
-                                    <img src="../public/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                                    <span><b>Arrivée : </b>Lac Blanc, Ballon d’Alsace</span>
+                                    <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
+                                    <span><b>Arrivée : </b><?= $rando->getDestination() ?></span>
                                 </p>
                             </div>
                         </div>
@@ -70,14 +75,14 @@
                     <!-- ================== RANDO AUTHOR INFO and MAP section ================== -->
                     <div class="main__rando-info-aside">
                         <div class="main__rando-author-info">
-                            <div class="main__rando-author-info-img"><img src="../public/assets/person-hiking.svg" alt=""></div>
-                            <p>user56</p>
+                            <div class="main__rando-author-info-img"><img src="<?= PUBLIC_DIR ?>/assets/person-hiking.svg" alt=""></div>
+                            <p><?= $rando->getUser() ?></p>
                         </div>
                         <div class="main__rando-info-aside-btn"><button>Participer à la rando</button></div>
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">
                             <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
-                            <img src="../public/assets/map_tracking_ballon_d'Alsace.jpg" alt=""
+                            <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt=""
                                 style="width: 456px; height: 270px;">
                         </div>
                     </div>
@@ -86,6 +91,7 @@
                 <article class="main__rando-description">
                     <h2 class="main__rando-description-title">Description de la randonnée</h2>
                     <div class="main__rando-description-text">
+                        <p><?= $rando->getDescription() ?></p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sodales eu turpis ac vulputate.
                             Vivamus quis risus sit amet neque pellentesque tristique. Nulla rhoncus nulla iaculis tortor
                             convallis, ac auctor arcu aliquet. Fusce commodo sapien eget risus euismod, tempus dignissim

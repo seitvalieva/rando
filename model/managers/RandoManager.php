@@ -15,5 +15,16 @@ class RandoManager extends Manager{
         parent::connect();
     }
 
+    public function getRandoById($id) {
+
+        $queryRando = "SELECT *
+        FROM ".$this->tableName."
+        WHERE id_rando = :id";
+
+        return $this->getOneOrNullResult(
+            DAO::select($queryRando, ['id' => $id], false),
+            $this->className
+        );
+    }
 
 }
