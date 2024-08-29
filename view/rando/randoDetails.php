@@ -10,7 +10,7 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
             <section class="main__search-form-container">
                 <form class="main__search-form" action="">
                     <input type="text" placeholder=" Rechercher une ville où lieu à visiter" name="search">
-                    <button type="submit"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt=""></button>
+                    <button type="submit"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt="Recherche"></button>
                 </form>
             </section>
             <!-- ================== RANDO DETAILS section ================== -->
@@ -54,7 +54,7 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
                                 </p>
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/duration.svg" alt="Calendrier" title="Calendrier">
-                                    <span><b>Durée estimée : </b> h </span>
+                                    <span><b>Durée estimée : </b> jours&thinsp;h&nbsp; </span>
                                 </p>
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
@@ -81,7 +81,7 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">
                             <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
-                            <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt=""
+                            <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
                                 style="width: 456px; height: 270px;">
                         </div>
                     </div>
