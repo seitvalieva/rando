@@ -24,11 +24,10 @@
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
                 <header class="header">
                     <nav class="nav">
-                    <!-- <a href="index.php?ctrl=forum&action=index" class="nav__logo"> -->
-                    <a href="index.php?ctrl=home&action=index" class="nav__logo">
-                        <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
-                        <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
-                    </a>
+                        <a href="index.php?ctrl=home&action=index" class="nav__logo">
+                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
+                            <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
+                        </a>
                         <div id="nav-right">
                         <?php
                             // if the user is logged in
@@ -46,6 +45,7 @@
                                     <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=security&action=login">Connexion</a></li>
                                     <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Créer un compte</a></li>
                                 </ul>
+                            <?php } ?>
                                 <!-- ============= BURGER btn ============= -->
                                 <div class="nav__burger-menu" id="navBurgerMenu">
                                     <img src="<?= PUBLIC_DIR ?>/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
@@ -54,14 +54,18 @@
                                 <div class="mobile-menu" id="mobileMenu">
                                     <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
                                     <nav class="mobile-menu__nav">
-                                        <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
-                                        <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
-                                        <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
+                                        <?php
+                                            if(App\Session::getUser()) { ?>
+                                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                                <a href="index.php?ctrl=home&action=newRando" class="" >Publier une rando</a></li>
+                                                <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
+                                            <?php } else { ?>
+                                                <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
+                                                <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
+                                                <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
+                                        <?php } ?>                                       
                                     </nav>
-                                </div>                                
-                            <?php
-                            }
-                        ?>
+                                </div>
                         </div>
                     </nav>
                 </header>
