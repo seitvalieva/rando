@@ -63,13 +63,15 @@
     
 }
 /* ============ CONNEXION btn ============ */
-.nav__menu-link-login {
+.nav__menu-link-login,
+.nav__menu-link-logout {
     background-color: rgb(var(--white-color));
     border: 2px solid rgb(var(--primary-color));
     color: rgb(var(--primary-color));
     font-weight: var(--btn-font-weight);
 }
-.nav__menu-link-login:hover {
+.nav__menu-link-login:hover,
+.nav__menu-link-logout:hover {
     background-color: rgb(var(--primary-color));
     color: rgb(var(--white-color));
 }
