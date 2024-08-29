@@ -35,15 +35,14 @@
                             if(App\Session::getUser()){
                                 ?>
                                 <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <!-- <a href="index.php?ctrl=forum&action=index">Liste des catégories</a> -->
-                                <a class="nav__menu-link nav__menu-link-cta" href="#">Publier une rando</a></li>
+                                <a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=home&action=newRando">Publier une rando</a></li>
                                 <a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-login">Déconnexion</a>
                                 <?php
                             }
                             else{
                                 ?>
                                 <ul class="nav__menu">
-                                    <li><a class="nav__menu-link nav__menu-link-cta" href="#">Publier une rando</a></li>
+                                    <li><a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=security&action=login">Publier une rando</a></li>
                                     <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=security&action=login">Connexion</a></li>
                                     <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Créer un compte</a></li>
                                 </ul>
@@ -55,12 +54,11 @@
                                 <div class="mobile-menu" id="mobileMenu">
                                     <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
                                     <nav class="mobile-menu__nav">
-                                        <a href="#" class="">Publier une rando</a>
+                                        <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
                                         <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
                                         <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
                                     </nav>
-                                </div>
-                                
+                                </div>                                
                             <?php
                             }
                         ?>

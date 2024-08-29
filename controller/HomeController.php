@@ -21,6 +21,15 @@ class HomeController extends AbstractController implements ControllerInterface {
             ]
         ];
     }
+
+    // new Rando
+    public function newRando() {
+
+        return [
+            "view" => VIEW_DIR."rando/newRando.html",
+            "meta_description" => "Nouvelle Rando"
+        ];
+    }
         
     // public function users(){
     //     $this->restrictTo("ROLE_USER");
