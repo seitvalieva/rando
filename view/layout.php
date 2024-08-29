@@ -34,8 +34,8 @@
                             if(App\Session::getUser()){
                                 ?>
                                 <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=home&action=newRando">Publier une rando</a></li>
-                                <a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-login">Déconnexion</a>
+                                <a href="index.php?ctrl=home&action=newRando" class="">Publier une rando</a></li>
+                                <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
                                 <?php
                             }
                             else{
