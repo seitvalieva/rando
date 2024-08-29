@@ -8,6 +8,7 @@ final class Rando extends Entity {
 
     private $id;
     private string $title;
+    private string $subtitle;
     private $dateRando;
     private float $distance;
     private $description;
@@ -42,6 +43,17 @@ final class Rando extends Entity {
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
 
         return $this;
     }

@@ -16,8 +16,7 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
             <!-- ================== RANDO DETAILS section ================== -->
             <section class="main__rando-info-container">
                 <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
-                <p class="main__rando-subtitle">Pour ceux qui n'ont pas froid aux yeux, une randonnée sportive pour découvrir les secrets du Ballon
-                    d'Alsace.</p>
+                <p class="main__rando-subtitle"><?= $rando->getSubtitle() ?></p>
                 <div class="main__rando-info">
                     <div>
                         <!-- SLIDESHOW container -->
