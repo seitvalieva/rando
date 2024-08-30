@@ -10,13 +10,14 @@ final class Rando extends Entity {
     private string $title;
     private string $subtitle;
     private $dateRando;
-    private float $distance;
+    private $timeRando;
     private $durationDays;
     private $durationHours;
-    private $description;
-    private $postDate;
+    private float $distance;
     private $departure;
     private $destination;
+    private $description;
+    private $postDate;
     private $image;
     // private $itinerary;
     private $user;
@@ -68,6 +69,17 @@ final class Rando extends Entity {
     public function setDateRando($dateRando)
     {
         $this->dateRando = $dateRando;
+
+        return $this;
+    }
+    public function getTimeRando()
+    {
+        return $this->timeRando;
+    }
+ 
+    public function setTimeRando($timeRando)
+    {
+        $this->timeRando = $timeRando;
 
         return $this;
     }

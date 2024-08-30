@@ -6,6 +6,7 @@ use App\AbstractController;
 use App\ControllerInterface;
 
 use Model\Managers\RandoManager;
+use Model\Managers\UserManager;
 
 class RandoController extends AbstractController implements ControllerInterface {
 
@@ -45,15 +46,37 @@ class RandoController extends AbstractController implements ControllerInterface 
 
      // create une rando
      public function addNewRando() {
+        
+        $randoManager = new RandoManager();
+        
+        if(isset($_POST['submitRando'])){
 
-        // $this->restrictTo("admin");
+            $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
+            $randoSubtitle = filter_input(INPUT_POST, "randoSubtitle", FILTER_SANITIZE_SPECIAL_CHARS);
+            $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
+            $destination = filter_input(INPUT_POST, "arrival", FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
+            $userId = Session::getUser()->getId();
 
-        if(isset($_POST['submit'])){
-
-            
-        }
-         
+            if($randoTitle){
+                $randoManager->add([
+                    "title" => $randoTitle,
+                    "subtitle" => $randoSubtitle,
+                    "dateRando" => $_POST['dateRando'],
+                    "timeRando" =>  $_POST['timeRando'],
+                    "durationDays" =>  $_POST['durationDays'],
+                    "durationHours" =>  $_POST['durationHours'],
+                    "distance" =>  $_POST['distance'],
+                    "departure" => $departure,
+                    "destination" => $destination,
+                    "description" => $description,
+                    "user_id" => $userId,
+                ]);
+            }
+        }    
+        $this->redirectTo("rando","index");
     }
+    
      //
 }
 
