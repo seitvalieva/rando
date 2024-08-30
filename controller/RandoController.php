@@ -41,11 +41,19 @@ class RandoController extends AbstractController implements ControllerInterface 
                 
             ]
         ];
-
      }
 
      // create une rando
-    
+     public function addNewRando() {
+
+        // $this->restrictTo("admin");
+
+        if(isset($_POST['submit'])){
+
+            
+        }
+         
+    }
      //
 }
 
