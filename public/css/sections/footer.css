@@ -49,6 +49,10 @@
     font-family: var(--logo-font-family);
     color: rgb(var(--white-color));
 }
+.footer__logo-img {
+    width: 50px;
+    height: 50px;
+}
 .footer__socials-container {
     padding: 0px 0px 5px;
 }
@@ -58,21 +62,25 @@
 }
 .footer__top-middle {
     width: 50%;
-
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .footer__top-right{
     width: 25%;
-
     flex-direction: column;
-    align-items: end;
     gap: 8px;
 }
 .footer__top-right-title {
     width: 100%;
-    text-align: center;
+    font-weight: bold;
+    text-align: left;
+}
+.footer__top-contacts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
 }
 .footer__email,
 .footer__telephone,
