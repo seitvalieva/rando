@@ -44,3 +44,29 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+// COOKIES
+const cookieBox = document.querySelector(".cookieBox"),
+  buttons = document.querySelectorAll(".cookie-btn");
+
+const executeCodes = () => {
+  //if cookie contains rando it will be returned and below of this code will not run
+  if (document.cookie.includes("rando")) return;
+  cookieBox.classList.add("show");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      cookieBox.classList.remove("show");
+
+      //if button has acceptBtn id
+      if (button.id == "acceptBtn") {
+        //set cookies for 1 month. 60 = 1 min, 60 = 1 hours, 24 = 1 day, 180 = 180 days
+        document.cookie = "cookieBy= rando; max-age=" + 60 * 60 * 24 * 180;
+      }
+    });
+  });
+};
+//executeCodes function will be called on webpage load
+window.addEventListener("load", executeCodes);
+
+// 

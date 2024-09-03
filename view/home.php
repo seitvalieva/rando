@@ -71,4 +71,20 @@
             <?php } ?>
         </div>
     </section>
+
+    <!-- COOKIE -->
+    <div class="cookieBox">
+        <div class="cookie-header">
+          <i class="bx bx-cookie"></i>
+          <h2>Cookies Consent</h2>
+        </div>
+        <div class="cookie-data">
+          <p>This website use cookies to help you have a superior and more relevant browsing experience on the website. <a href="#"> Read more...</a></p>
+        </div>
+        <div class="cookie-btns">
+          <button class="cookie-btn" id="acceptBtn">Accept</button>
+          <button class="cookie-btn" id="declineBtn">Decline</button>
+        </div>
+      </div>  
+    
 </div>

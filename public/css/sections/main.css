@@ -198,3 +198,75 @@
     align-items: center;
     gap: 8px;
 }
+/* COOKIES */
+.cookieBox {
+    position: fixed;
+    bottom: 50px;
+    right: -370px;
+    max-width: 345px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px 25px 22px;
+    transition: right 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .cookieBox.show {
+    right: 20px;
+  }
+  .cookieBox .cookie-header {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+  }
+  .cookie-header i {
+    color: #4070f4;
+    font-size: 32px;
+  }
+  .cookie-header h2 {
+    color: #4070f4;
+    font-weight: 500;
+  }
+  .cookieBox .cookie-data {
+    margin-top: 16px;
+  }
+  .cookieBox .cookie-data p {
+    color: #333;
+    font-size: 16px;
+  }
+  .cookie-data p a {
+    color: #4070f4;
+    text-decoration: none;
+  }
+  .cookie-data p a:hover {
+    text-decoration: underline;
+  }
+  .cookieBox .cookie-btns {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cookie-btns .cookie-btn {
+    border: none;
+    color: #fff;
+    padding: 8px 0;
+    border-radius: 4px;
+    background: #4070f4;
+    cursor: pointer;
+    width: calc(100% / 2 - 10px);
+    transition: all 0.2s ease;
+  }
+  .cookie-btns #acceptBtn:hover {
+    background-color: #034bf1;
+  }
+  #declineBtn {
+    border: 2px solid #4070f4;
+    background-color: #fff;
+    color: #4070f4;
+  }
+  #declineBtn:hover {
+    background-color: #4070f4;
+    color: #fff;
+  }
