@@ -47,34 +47,38 @@ class RandoController extends AbstractController implements ControllerInterface 
      // create une rando
      public function addNewRando() {
         
-        $randoManager = new RandoManager();
-        
         if(isset($_POST['submitRando'])){
 
             $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
             $randoSubtitle = filter_input(INPUT_POST, "randoSubtitle", FILTER_SANITIZE_SPECIAL_CHARS);
             $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
-            $destination = filter_input(INPUT_POST, "arrival", FILTER_SANITIZE_SPECIAL_CHARS);
+            $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
             $userId = Session::getUser()->getId();
 
             if($randoTitle){
-                $randoManager->add([
-                    "title" => $randoTitle,
-                    "subtitle" => $randoSubtitle,
-                    "dateRando" => $_POST['dateRando'],
-                    "timeRando" =>  $_POST['timeRando'],
-                    "durationDays" =>  $_POST['durationDays'],
-                    "durationHours" =>  $_POST['durationHours'],
-                    "distance" =>  $_POST['distance'],
-                    "departure" => $departure,
-                    "destination" => $destination,
-                    "description" => $description,
-                    "user_id" => $userId,
-                ]);
+                $randoManager = new RandoManager();
+
+                $data = [
+                    'title' =>$randoTitle,
+                    'subtitle'=>$randoSubtitle,
+                    'dateRando'=>$_POST['dateRando'],
+                    'timeRando'=> $_POST['timeRando'],
+                    'durationDays'=>$_POST['durationDays'],
+                    'durationHours'=>$_POST['durationHours'],
+                    'distance'=> $_POST['distance'],
+                    'departure'=>$departure,
+                    'destination'=>$destination,
+                    'description'=>$description,
+                    // 'image' => NULL,
+                    'user_id' => $userId
+                ];
+                // var_dump($data); die();
+
+                $randoManager->add($data);
+                $this->redirectTo("rando","index");
             }
         }    
-        $this->redirectTo("rando","index");
     }
     
      //
