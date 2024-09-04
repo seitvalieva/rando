@@ -13,15 +13,20 @@ abstract class Manager{
      * @param array $order an array with field and order option
      * @return Collection a collection of objects hydrated by DAO, which are results of the request sent
      */
-    public function findAll($order = null){
+    public function findAll($order = null, $limit = null) {
 
-        $orderQuery = ($order) ?                 
+        $orderQuery = ($order) ?                    
             "ORDER BY ".$order[0]. " ".$order[1] :
+            "";
+        
+        $limitQuery = ($limit) ? 
+            "LIMIT ".$limit : 
             "";
 
         $sql = "SELECT *
                 FROM ".$this->tableName." a
-                ".$orderQuery;
+                ".$orderQuery."
+                ".$limitQuery;
 
         return $this->getMultipleResults(
             DAO::select($sql), 

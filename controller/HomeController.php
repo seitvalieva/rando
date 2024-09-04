@@ -11,7 +11,7 @@ class HomeController extends AbstractController implements ControllerInterface {
     public function index(){
 
         $randoManager = new RandoManager();
-        $lastRandos = $randoManager->findAll(["dateRando", "ASC"]);
+        $lastRandos = $randoManager->findAll(["dateRando", "DESC"], 9);
       
         return [
             "view" => VIEW_DIR."home.php",
