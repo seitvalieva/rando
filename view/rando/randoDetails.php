@@ -22,27 +22,21 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
                         <!-- SLIDESHOW container -->
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
-                            <div class="mySlides fade">
+                            <div class="slide fade">
                                 <img src="<?= PUBLIC_DIR ?>/assets/coffee_with_the_view_Ballon_d'Alsace.jpg"
                                     alt="Ballon d'Alsace view" style="width:100%">
                             </div>
-                            <div class="mySlides fade">
+                            <div class="slide fade">
                                 <img src="<?= PUBLIC_DIR ?>/assets/sky-background.png" alt="Forest" style="width:100%">
                             </div>
-                            <div class="mySlides fade">
+                            <div class="slide fade">
                                 <img src="<?= PUBLIC_DIR ?>/assets/sun-background.png" alt="Forest" style="width:100%;">
                             </div>
                             <!-- Next and previous buttons -->
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                            <a class="next" onclick="changeSlide(1)">&#10095;</a>
                         </div>
                         <br>
-                        <!-- The dots/circles -->
-                        <!-- <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                        </div> -->
 
                         <!-- ================== RANDO DETAILS card ================== -->
                         <div class="main__rando-info-card">
