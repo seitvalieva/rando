@@ -71,20 +71,25 @@
             <?php } ?>
         </div>
     </section>
-
+    
     <!-- COOKIE -->
     <div class="cookieBox">
         <div class="cookie-header">
-          <i class="bx bx-cookie"></i>
-          <h2>Cookies Consent</h2>
+            <i class="bx bx-cookie"></i>
+            <h2>Vos paramètres de cookies</h2>
         </div>
         <div class="cookie-data">
-          <p>This website use cookies to help you have a superior and more relevant browsing experience on the website. <a href="#"> Read more...</a></p>
+            <p>Nous utilisons des cookies, y compris des cookies de nos partenaires, afin d’améliorer votre expérience
+                utilisateur, d’analyser le trafic de notre site, vous proposer des publicités personnalisées sur des
+                sites tiers et vous proposer des fonctionnalités disponibles sur les réseaux sociaux. Vous pouvez gérer
+                à tout moment vos préférences dans les paramétrages des cookies. Pour en savoir plus sur la manière dont
+                nos partenaires et nous-mêmes utilisons vos données personnelles consultez notre <a href="#">Politique
+                    de confidentialité</a></p>
         </div>
         <div class="cookie-btns">
-          <button class="cookie-btn" id="acceptBtn">Accept</button>
-          <button class="cookie-btn" id="declineBtn">Decline</button>
+            <button class="cookie-btn" id="acceptBtn">Accept</button>
+            <button class="cookie-btn" id="declineBtn">Decline</button>
         </div>
-      </div>  
-    
+    </div>
+
 </div>

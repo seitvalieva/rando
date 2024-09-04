@@ -137,6 +137,7 @@
                 </div>
             </footer>
         </div>
+        <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -170,7 +171,5 @@
                 });
             })
         </script>
-        <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
-        <!-- <script src="../public/js/script.js"></script> -->
     </body>
 </html>
