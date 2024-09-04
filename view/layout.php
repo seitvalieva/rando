@@ -30,43 +30,37 @@
                             <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                         </a>
                         <div id="nav-right">
-                        <?php
-                            // if the user is logged in
-                            if(App\Session::getUser()){
-                                ?>
-                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a href="index.php?ctrl=home&action=newRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a></li>
+                            <!-- if the user logged in -->
+                            <?php if(App\Session::getUser()){ ?> 
+                                <a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                <a href="index.php?ctrl=home&action=newRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a>
                                 <a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <ul class="nav__menu">
-                                    <li><a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=security&action=login">Publier une rando</a></li>
-                                    <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=security&action=login">Connexion</a></li>
-                                    <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Créer un compte</a></li>
-                                </ul>
+                            <?php } else { ?>
+                                    <ul class="nav__menu">
+                                        <li><a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=security&action=login">Publier une rando</a></li>
+                                        <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=security&action=login">Connexion</a></li>
+                                        <li><a class="nav__menu-link nav__menu-link-registration" href="index.php?ctrl=security&action=register">Créer un compte</a></li>
+                                    </ul>
                             <?php } ?>
-                                <!-- ============= BURGER btn ============= -->
-                                <div class="nav__burger-menu" id="navBurgerMenu">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
-                                </div>
-                                <!-- ============= MOBILE MENU ============= -->
-                                <div class="mobile-menu" id="mobileMenu">
-                                    <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
-                                    <nav class="mobile-menu__nav">
-                                        <?php
-                                            if(App\Session::getUser()) { ?>
-                                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                                <a href="index.php?ctrl=home&action=newRando" class="" >Publier une rando</a></li>
-                                                <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
-                                            <?php } else { ?>
-                                                <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
-                                                <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
-                                                <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
-                                        <?php } ?>                                       
-                                    </nav>
-                                </div>
+                        </div>
+                        <!-- ============= BURGER btn ============= -->
+                        <div class="nav__burger-menu" id="navBurgerMenu">
+                            <img src="<?= PUBLIC_DIR ?>/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
+                        </div>
+                        <!-- ============= MOBILE MENU ============= -->
+                        <div class="mobile-menu" id="mobileMenu">
+                            <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
+                            <nav class="mobile-menu__nav">
+                                <?php if(App\Session::getUser()) { ?>
+                                    <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                    <a href="index.php?ctrl=home&action=newRando" class="" >Publier une rando</a>
+                                    <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
+                                <?php } else { ?>
+                                    <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
+                                    <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
+                                    <a href="index.php?ctrl=security&action=register" class="">Créer un compte</a>
+                                <?php } ?>                                       
+                            </nav>
                         </div>
                     </nav>
                 </header>
@@ -171,5 +165,7 @@
                 });
             })
         </script>
+
+        
     </body>
 </html>
