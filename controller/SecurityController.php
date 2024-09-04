@@ -8,12 +8,9 @@ use Model\Managers\UserManager;
 
 
 class SecurityController extends AbstractController{
-
-     // contiendra les méthodes liées à l'authentification : register, login et logout
-     // Affiche la vue du formulaire register
-          //session_start();
+    // will contain the methods related to authentication: register, login and logout
     
-    //MISE EN PLACE DE LA FONCTION S INSCRIRE
+    //setting up the REGISTER function
     public function register(){
     
            if (isset($_POST["submitRegister"])) {
@@ -23,35 +20,35 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $pass1 = filter_input(INPUT_POST, "pass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $pass2 = filter_input(INPUT_POST, "pass2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        
-                //VERIFIER LA VALIDITE DES FILTRES:
+
+                //check filter validity
                 if($username && $email && $pass1 && $pass2){
 
                     // var_dump("ok");die;
                     $userManager = new UserManager();
-                    $utilisateur = $userManager->checkUserExists($email);//création de la function checkUserExists dans utilisateurManager pour vérifier si l'utilisateur existe
-                //SI L UTILISATEUR EXISTE
-                    if($utilisateur){
+                    //creation of the function checkUserExists in userManager to check if the user exists
+                    $user = $userManager->checkUserExists($email);
+                    //if the user is connected
+                    if($user){
                         header("Location: index.php?ctrl=security&action=register"); 
                         exit; 
                     } else {
-                        //var_dump("utilisateur inexistant");die;
-                        //insertion de l'utilisateur en BDD
-                        if($pass1 == $pass2 && strlen($pass1) >= 5) {//VERIFICATION QUE LES MDP SONT IDENTIQUES
-                            
-                            $userManager->add([//on récupère la function add du fichier Manager
+                        //var_dump("user doesn't exist");die;
+                        //inserting the user into the database
+                        if($pass1 == $pass2 && strlen($pass1) >= 5) {//verification that passwords are identique
+                            //we retrieve the add function from the Manager file
+                            $userManager->add([ 
                                 "username" => $username,
                                 "email" => $email,
                                 "password" => password_hash($pass1, PASSWORD_DEFAULT)
                             ]);
 
-                            //REDIRECTION APRES L INSCRIPTION
+                            //redirection after the registration
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                         } else {
                             header("Location: index.php?ctrl=security&action=register");
                             exit;
-                            // $this->redirectTo("security","register")
                         }
                     }
                 }
@@ -61,7 +58,6 @@ class SecurityController extends AbstractController{
                 "meta_description" => "Formulaire d'inscription"
             ];
     }  
-
 
     //  SETTING UP THE LOG IN FUNCTION
     public function login() {
@@ -76,14 +72,14 @@ class SecurityController extends AbstractController{
                     // var_dump("ok");die;
                     //if the user exists
                     $userManager = new UserManager();
-                    $utilisateur = $userManager->checkUserExists($email);
+                    $user = $userManager->checkUserExists($email);
 
-                    if($utilisateur){
+                    if($user){
                         // var_dump($utilisateur);die;
-                        $hash = $utilisateur->getPassword();
+                        $hash = $user->getPassword();
 
                         if(password_verify($password, $hash)){                      // PASSWORD VERIFICATION 
-                            $_SESSION["utilisateur"] = $utilisateur;                // we store all the user's information in a SESSION table
+                            $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
                             header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE
                         //Dans Forum, la redirection sera par exemple: header("Location: index.php?ctrl=home&action=index&id=");    
                             exit;  
@@ -106,7 +102,6 @@ class SecurityController extends AbstractController{
                 "meta_description" => "Formulaire de connexion"
             ];
     }
-    
     
     public function logout() {
         session_unset();                        // Delete all session data

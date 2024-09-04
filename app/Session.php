@@ -5,16 +5,12 @@ class Session{
 
     private static $categories = ['error', 'success'];
 
-    /**
-    *   ajoute un message en session, dans la catégorie $categ
-    */
+    //   adds a message in session, in category $categ
+    
     public static function addFlash($categ, $msg){
         $_SESSION[$categ] = $msg;
     }
-
-    /**
-    *   renvoie un message de la catégorie $categ, s'il y en a !
-    */
+    // returns a message from the category $categ, if there are any!
     public static function getFlash($categ){
         
         if(isset($_SESSION[$categ])){
@@ -26,24 +22,21 @@ class Session{
         return $msg;
     }
 
-    /**
-    *   met un user dans la session (pour le maintenir connecté)
-    */
-    public static function setUtilisateur($utilisateur){
-        $_SESSION["utilisateur"] = $utilisateur;
+    //    puts a user in the session (to keep them logged in)
+    
+    public static function setUser($user){
+        $_SESSION["user"] = $user;
     }
 
-
-    /**
-     * La méthode suivante permet de vérifier qu'un utilisateur est bien connecté:
-     */
+    //   The following method is used to verify that a user is logged in:
+     
     public static function getUser(){
-        return (isset($_SESSION['utilisateur'])) ? $_SESSION['utilisateur'] : false;
+        return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
     }
 
     public static function isAdmin(){
-        // attention de bien définir la méthode "hasRole" dans l'entité User en fonction de la façon dont sont gérés les rôles en base de données
-        if(self::getUser()) {//&& self::getUtilisateur()->hasRole("ROLE_ADMIN")){
+        // be careful to define the "hasRole" method in the User entity according to the way roles are managed in the database
+        if(self::getUser()) {//&& self::getUser()->hasRole("ROLE_ADMIN")){
             return true;
         }
         return false;

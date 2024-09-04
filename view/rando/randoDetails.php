@@ -4,6 +4,7 @@ $rando = $result["data"]['rando'];
 $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
 
 
+
 ?>
 <div class="main__container">
             <!-- ================== SEARCH FIELD section ================== -->
@@ -111,7 +112,7 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
             <section class="main__cards-container">
                 <div class="main__cards-container-heading">
                     <h1 class="main__cards-container-title">Les dernières randonnées</h1>
-                    <p class="main__cards-container-arrow"><a href="#">Voir tous ➔</a></p>
+                    <p class="main__cards-container-arrow"><a href="index.php?ctrl=rando&action=index">Voir tous ➔</a></p>
                 </div>
                 <div class="main__cards">
                     <div class="main__card">

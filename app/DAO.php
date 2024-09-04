@@ -1,15 +1,15 @@
 <?php
 namespace App;
 
-/**
-* Database data access class, abstract
-*
-* @property static $bdd the PDO instance that the class will store when connect() is called
-*
-* @method static connect() connection to the database
-* @method static insert() insert queries into the database
-* @method static select() select queries
-*/
+// 
+// * Database data access class, abstract
+// *
+// * @property static $bdd the PDO instance that the class will store when connect() is called
+// *
+// * @method static connect() connection to the database
+// * @method static insert() insert queries into the database
+// * @method static select() select queries
+// 
 abstract class DAO{
 
     private static $host   = 'mysql:host=127.0.0.1;port=3306';
@@ -79,14 +79,14 @@ abstract class DAO{
     }
 
         
-    /** This method allows SELECT type queries
-    *
-    * @param string $sql the string containing the query itself
-    * @param mixed $params=null the query parameters
-    * @param bool $multiple=true true if the result is composed of several records (default), false if only one result must be retrieved
-    *
-    * @return array|null the records in FETCH_ASSOC or null if no result
-    */
+    //  This method allows SELECT type queries
+    // *
+    // * @param string $sql the string containing the query itself
+    // * @param mixed $params=null the query parameters
+    // * @param bool $multiple=true true if the result is composed of several records (default), false if only one result must be retrieved
+    // *
+    // * @return array|null the records in FETCH_ASSOC or null if no result
+    // 
     public static function select($sql, $params = null, bool $multiple = true):?array
     {
         try{
