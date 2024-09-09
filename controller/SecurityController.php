@@ -10,7 +10,6 @@ use Model\Managers\UserManager;
 
 class SecurityController extends AbstractController{
     // will contain the methods related to authentication: register, login and logout
-    
     //setting up the REGISTER function
     public function register(){
 
@@ -66,7 +65,6 @@ class SecurityController extends AbstractController{
     public function login() {
 
             if(isset($_POST["submitLogin"])) {
-       
                 //PROTECTION XSS (=FILTRES)
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -107,11 +105,21 @@ class SecurityController extends AbstractController{
             ];
     }
     
+    public function forgottenPassword() {
+
+        return [
+            "view" => VIEW_DIR . "connection/forgottenPassword.php",
+            "meta_description" => "Réinitialisation de votre mot de passe"
+        ];
+    }
+
     public function logout() {
         session_unset();                        // Delete all session data
         // redirection after logging out
         header("Location: index.php");
         exit;
     }
+
+    
 
 }
