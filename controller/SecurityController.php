@@ -71,30 +71,31 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-                if($email && $password) {                   // PREPARED QUERY TO FIGHT SQL INJECTIONS
+                if($email && $password) {                   
                     // var_dump("ok");die;
                     //if the user exists
                     $userManager = new UserManager();
                     $user = $userManager->checkUserExists($email);
 
                     if($user){
-                        // var_dump($utilisateur);die;
+                        // var_dump($user);die;
                         $hash = $user->getPassword();
 
                         if(password_verify($password, $hash)){                      // PASSWORD VERIFICATION 
                             $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
-                            header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE
-                        //Dans Forum, la redirection sera par exemple: header("Location: index.php?ctrl=home&action=index&id=");    
-                            exit;  
-                        
-                            } else {
+                            header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE 
+                            exit; 
+
+                        } else {
                         // in case of Email address or password error
+                            Session::addFlash('error',"Le mail ou pseudo n'est pas correct");
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                             }
                         } else {
                             // if User not found
-                            header("Location: index.php?security&action=login");
+                            Session::addFlash('error',"User not found");
+                            header("Location: index.php?ctrl=security&action=login");
                             exit;
                         }
                     }
