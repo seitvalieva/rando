@@ -3,6 +3,7 @@ namespace Controller;
 
 use App\AbstractController;
 use App\ControllerInterface;
+use App\Session;
 use PDO;
 use Model\Managers\UserManager;
 
@@ -12,10 +13,10 @@ class SecurityController extends AbstractController{
     
     //setting up the REGISTER function
     public function register(){
-    
+
            if (isset($_POST["submitRegister"])) {
             
-                //FILTRER LES CHAMPS DU FORMULAIRE D INSCRIPTION:
+                //filtering registration form fields
                 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $pass1 = filter_input(INPUT_POST, "pass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -28,8 +29,10 @@ class SecurityController extends AbstractController{
                     $userManager = new UserManager();
                     //creation of the function checkUserExists in userManager to check if the user exists
                     $user = $userManager->checkUserExists($email);
+                    $username = $userManager->checkUsernameExists($username);
                     //if the user is connected
-                    if($user){
+                    if($user || $username){
+                        Session::addFlash('error',"Le mail ou pseudo est déjà pris");
                         header("Location: index.php?ctrl=security&action=register"); 
                         exit; 
                     } else {
@@ -42,11 +45,11 @@ class SecurityController extends AbstractController{
                                 "email" => $email,
                                 "password" => password_hash($pass1, PASSWORD_DEFAULT)
                             ]);
-
                             //redirection after the registration
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                         } else {
+                            Session::addFlash('error',"Les mots de passe ne matchent pas");
                             header("Location: index.php?ctrl=security&action=register");
                             exit;
                         }
