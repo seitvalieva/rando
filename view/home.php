@@ -87,8 +87,8 @@
                     de confidentialité</a></p>
         </div>
         <div class="cookie-btns">
-            <button class="cookie-btn" id="acceptBtn">Accept</button>
-            <button class="cookie-btn" id="declineBtn">Decline</button>
+            <button class="cookie-btn" id="acceptBtn">Accepter</button>
+            <button class="cookie-btn" id="declineBtn">Refuser</button>
         </div>
     </div>
 

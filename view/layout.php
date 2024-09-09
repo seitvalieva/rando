@@ -32,9 +32,12 @@
                         <div id="nav-right">
                             <!-- if the user logged in -->
                             <?php if(App\Session::getUser()){ ?> 
-                                <a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a href="index.php?ctrl=home&action=newRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a>
-                                <a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a>
+                                <ul class="nav__menu">
+                                    <li><a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a></li>
+                                    <li><a href="index.php?ctrl=home&action=newRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a></li>
+                                    <li><a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a></li> 
+                                </ul>
+                                
                             <?php } else { ?>
                                     <ul class="nav__menu">
                                         <li><a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=security&action=login">Publier une rando</a></li>
