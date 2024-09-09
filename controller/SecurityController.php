@@ -19,11 +19,11 @@ class SecurityController extends AbstractController{
                 //filtering registration form fields
                 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-                $pass1 = filter_input(INPUT_POST, "pass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $pass2 = filter_input(INPUT_POST, "pass2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                 //check filter validity
-                if($username && $email && $pass1 && $pass2){
+                if($username && $email && $password && $confirmPassword){
 
                     // var_dump("ok");die;
                     $userManager = new UserManager();
@@ -38,7 +38,7 @@ class SecurityController extends AbstractController{
                     } else {
                         //var_dump("user doesn't exist");die;
                         //inserting the user into the database
-                        if($pass1 == $pass2 && strlen($pass1) >= 5) {//verification that passwords are identique
+                        if($password == $confirmPassword && strlen($password) >= 5) {//verification that passwords are identique
                             //we retrieve the add function from the Manager file
                             $userManager->add([ 
                                 "username" => $username,
@@ -49,7 +49,7 @@ class SecurityController extends AbstractController{
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                         } else {
-                            Session::addFlash('error',"Les mots de passe ne matchent pas");
+                            Session::addFlash('error',"Les mots de passe ne sont pas identique");
                             header("Location: index.php?ctrl=security&action=register");
                             exit;
                         }

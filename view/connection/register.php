@@ -7,12 +7,13 @@
             <label for="email">Mail</label>
             <input type="email" name="email" id="email"><br>
     
-            <label for="pass1">Mot de passe</label>
-            <input type="password" name="pass1" id="pass1"><br>
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password"><br>
     
-            <label for="pass2">Confirmation du mot de passe</label>
-            <input type="password" name="pass2" id="pass2"><br>
+            <label for="confirmPassword">Confirmation du mot de passe</label>
+            <input type="password" name="confirmPassword" id="confirmPassword"><br><br>
             
-            <input type="submit" name="submitRegister" value="S'enregistrer">
+            <!-- <input type="submit" name="submitRegister" value="S'enregistrer"> -->
+            <button type="submit" name="submitRegister" style="width: 100%; height: 40px;">S'enregistrer</button><br><br>
         </form>
     </div>
