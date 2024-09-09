@@ -11,7 +11,7 @@
             connecter</button><br><br>
 
         <!-- <a href="index.php?ctrl=security&action=forgottenPassword">Mot de passe oublié?</a> -->
-        <button type="submit" onclick="location.href='index.php?ctrl=security&action=forgottenPassword'"
+        <button type="submit" name="forgottenPassword" onclick="location.href='index.php?ctrl=security&action=forgottenPassword'"
             style="width: 100%; height: 40px;">Mot de passe oublié?</button>
     </form>
 </div>
