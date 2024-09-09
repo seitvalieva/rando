@@ -29,9 +29,9 @@ class SecurityController extends AbstractController{
                     $userManager = new UserManager();
                     //creation of the function checkUserExists in userManager to check if the user exists
                     $user = $userManager->checkUserExists($email);
-                    $username = $userManager->checkUsernameExists($username);
+                    $usernameExists = $userManager->checkUsernameExists($username);
                     //if the user is connected
-                    if($user || $username){
+                    if($user || $usernameExists){
                         Session::addFlash('error',"Le mail ou pseudo est déjà pris");
                         header("Location: index.php?ctrl=security&action=register"); 
                         exit; 
