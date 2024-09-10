@@ -107,6 +107,20 @@ class SecurityController extends AbstractController{
     
     public function forgottenPassword() {
 
+        if(isset($_POST["submitReset"])) {
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+            $token = bin2hex(random_bytes(16));
+            $token_hash = hash("sha256", $token);
+            $expiry = date("Y-m-d H:i:s", time() + 60 * 30); // token is valid for only 30 minutes
+            
+            if($email) {
+                $userManager = new UserManager();
+                
+                $userManager->addToken($email);
+            
+            }
+        }
+
         return [
             "view" => VIEW_DIR . "connection/forgottenPassword.php",
             "meta_description" => "Réinitialisation de votre mot de passe"
