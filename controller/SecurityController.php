@@ -114,10 +114,16 @@ class SecurityController extends AbstractController{
             $expiry = date("Y-m-d H:i:s", time() + 60 * 30); // token is valid for only 30 minutes
             
             if($email) {
+                // var_dump($email);
+                // var_dump($token);die;
                 $userManager = new UserManager();
-                
-                $userManager->addToken($email);
-            
+                $user = $userManager->checkUserExists($email);
+
+                if($user) {
+                    // var_dump($email);
+                    // var_dump($token);die;
+                    $userManager->addToken($email,$token_hash,$expiry);
+                }
             }
         }
 
