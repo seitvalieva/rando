@@ -120,8 +120,6 @@ class SecurityController extends AbstractController{
                 $user = $userManager->checkUserExists($email);
 
                 if($user) {
-                    // var_dump($email);
-                    // var_dump($token);die;
                     $userManager->addToken($email,$token_hash,$expiry);
                 }
             }
