@@ -9,7 +9,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;   //to get detailed explanation in case of an error 
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;   //to get detailed explanation in case of an error 
 
 $mail->isSMTP();
 $mail->SMTPAuth = true;

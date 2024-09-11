@@ -132,9 +132,7 @@ class SecurityController extends AbstractController{
                     $mail->Body = <<<END
 
                     Click <a href="http://localhost/index.php?ctrl=security&action=forgottenPassword&token=$token">here</a> 
-                    to reset your password.
-                                // Click <a href="http://example.com/reset-password.php?token=$token">here</a> 
-                                // to reset your password.
+                    to reset your password. It is valid for 5 minutes only.
 
                     END;
 
