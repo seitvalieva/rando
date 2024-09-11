@@ -107,8 +107,8 @@ class SecurityController extends AbstractController{
                 "meta_description" => "Formulaire de connexion"
             ];
     }
-    
-    public function forgottenPassword() {
+    // function sends a link with unique token to user's email to reset forgotten password when logging in
+    public function sendForgottenPasswordReset() {
 
         if(isset($_POST["submitReset"])) {
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
@@ -131,7 +131,7 @@ class SecurityController extends AbstractController{
                     $mail->Subject = "Password Reset";
                     $mail->Body = <<<END
 
-                    Click <a href="http://localhost/index.php?ctrl=security&action=forgottenPassword&token=$token">here</a> 
+                    Click <a href="http://localhost/index.php?ctrl=security&action=resetPassword&token=$token">here</a> 
                     to reset your password. It is valid for 5 minutes only.
 
                     END;
@@ -147,9 +147,9 @@ class SecurityController extends AbstractController{
                     }               
                 }
             }
-            echo "Message sent, check your inbox";
-                    // header("Location: index.php?ctrl=security&action=sent");
-                    // exit;
+            // echo "Message sent, check your inbox";
+            header("Location: index.php?ctrl=security&action=sentResetLinkSuccess");
+            exit;
         }
 
         return [
@@ -157,10 +157,10 @@ class SecurityController extends AbstractController{
             "meta_description" => "Réinitialisation de votre mot de passe"
         ];
     }
-
-    public function sent() {
+    //display a message that a reset link for forgotten password is sent
+    public function sentResetLinkSuccess() {
         return [
-            "view" => VIEW_DIR."connection/sent.html",
+            "view" => VIEW_DIR."connection/sentResetLink.html",
             "meta_description" => "Réinitialisation de votre mot de passe"
         ];
     }
