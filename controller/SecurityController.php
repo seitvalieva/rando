@@ -6,6 +6,9 @@ use App\ControllerInterface;
 use App\Session;
 use PDO;
 use Model\Managers\UserManager;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\src\SMTP;
+use PHPMailer\PHPMailer\src\Exception;
 
 
 class SecurityController extends AbstractController{
@@ -56,7 +59,7 @@ class SecurityController extends AbstractController{
                 }
             }
              return [
-                "view" => VIEW_DIR . "connection/register.php",
+                "view" => VIEW_DIR."connection/register.php",
                 "meta_description" => "Formulaire d'inscription"
             ];
     }  
@@ -111,7 +114,7 @@ class SecurityController extends AbstractController{
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
             $token_hash = hash("sha256", $token);
-            $expiry = date("Y-m-d H:i:s", time() + 60 * 30); // token is valid for only 30 minutes
+            $expiry = date("Y-m-d H:i:s", time() + 60 * 5); // token is valid for only 5 minutes
             
             if($email) {
                 // var_dump($email);
@@ -121,12 +124,45 @@ class SecurityController extends AbstractController{
 
                 if($user) {
                     $userManager->addToken($email,$token_hash,$expiry);
+
+                    $mail = require  __DIR__ . "/mailer.php";
+                    $mail->setFrom("noreply@gmail.com");
+                    $mail->addAddress($email);
+                    $mail->Subject = "Password Reset";
+                    $mail->Body = <<<END
+
+                    Click <a href="http://localhost/index.php?ctrl=security&action=forgottenPassword&token=$token">here</a> 
+                    to reset your password.
+                                // Click <a href="http://example.com/reset-password.php?token=$token">here</a> 
+                                // to reset your password.
+
+                    END;
+
+                    try {
+
+                        $mail->send();
+                
+                    } catch (Exception $e) {
+                
+                        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+                
+                    }               
                 }
             }
+            echo "Message sent, check your inbox";
+                    // header("Location: index.php?ctrl=security&action=sent");
+                    // exit;
         }
 
         return [
-            "view" => VIEW_DIR . "connection/forgottenPassword.php",
+            "view" => VIEW_DIR."connection/forgottenPassword.html",
+            "meta_description" => "Réinitialisation de votre mot de passe"
+        ];
+    }
+
+    public function sent() {
+        return [
+            "view" => VIEW_DIR."connection/sent.html",
             "meta_description" => "Réinitialisation de votre mot de passe"
         ];
     }
