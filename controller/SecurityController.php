@@ -23,7 +23,6 @@ class SecurityController extends AbstractController{
 
                 //check filter validity
                 if($username && $email && $password && $confirmPassword){
-
                     // var_dump("ok");die;
                     $userManager = new UserManager();
                     //creation of the function checkUserExists in userManager to check if the user exists
@@ -35,14 +34,14 @@ class SecurityController extends AbstractController{
                         header("Location: index.php?ctrl=security&action=register"); 
                         exit; 
                     } else {
-                        //var_dump("user doesn't exist");die;
+                       
                         //inserting the user into the database
                         if($password == $confirmPassword && strlen($password) >= 5) {//verification that passwords are identique
                             //we retrieve the add function from the Manager file
                             $userManager->add([ 
                                 "username" => $username,
                                 "email" => $email,
-                                "password" => password_hash($pass1, PASSWORD_DEFAULT)
+                                "password" => password_hash($password, PASSWORD_DEFAULT)
                             ]);
                             //redirection after the registration
                             header("Location: index.php?ctrl=security&action=login");
@@ -70,16 +69,16 @@ class SecurityController extends AbstractController{
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
                 if($email && $password) {                   
-                    // var_dump("ok");die;
-                    //if the user exists
+                    
                     $userManager = new UserManager();
                     $user = $userManager->checkUserExists($email);
 
                     if($user){
                         // var_dump($user);die;
                         $hash = $user->getPassword();
-
-                        if(password_verify($password, $hash)){                      // PASSWORD VERIFICATION 
+                        // var_dump($password, $hash);die;
+                        if(password_verify($password, $hash)){   
+                            // var_dump($password, $hash);die;                   // PASSWORD VERIFICATION 
                             $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
                             header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE 
                             exit; 
