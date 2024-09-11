@@ -45,7 +45,7 @@ class SecurityController extends AbstractController{
                             $userManager->add([ 
                                 "username" => $username,
                                 "email" => $email,
-                                "password" => password_hash($pass1, PASSWORD_DEFAULT)
+                                "password" => password_hash($password, PASSWORD_DEFAULT)
                             ]);
                             //redirection after the registration
                             header("Location: index.php?ctrl=security&action=login");
