@@ -7,8 +7,8 @@ use App\Session;
 use PDO;
 use Model\Managers\UserManager;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\src\SMTP;
-use PHPMailer\PHPMailer\src\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 class SecurityController extends AbstractController{
@@ -125,7 +125,7 @@ class SecurityController extends AbstractController{
                 if($user) {
                     $userManager->addToken($email,$token_hash,$expiry);
 
-                    $mail = require  __DIR__ . "/mailer.php";
+                    $mail = require  __DIR__ . "/MailController.php";
                     // $mail->setFrom("noreply@gmail.com");
                     $mail->addAddress($email);
                     $mail->Subject = "Password Reset";
@@ -173,17 +173,15 @@ class SecurityController extends AbstractController{
         $userManager = new UserManager();
         $user = $userManager->findUserByToken($token_hash);
 
-        // var_dump($user);die;    //false
+        // var_dump($user);die;    //true
         // sendForgottenPasswordReset() checks if checkUserExists($email)
-
         if (strtotime($user->getTokenExpiresAt()) <= time()) {
             die("token has expired");
         }
         // echo "token is valid";
-
         return [
             "view" => VIEW_DIR."connection/resetPassword.php",
-            "meta_description" => "Réinitialisation de votre mot de passe"
+            "meta_description" => "Création de nouveau mot de passe"
         ];
         
     }
