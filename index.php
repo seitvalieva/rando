@@ -42,6 +42,13 @@ if(isset($_GET['id'])){
 }
 else $id = null;            
 $result = $ctrl->$action($id);             // example: HomeController->users(null)
+// ==============token========================//
+if(isset($_GET['token'])){
+    $token = $_GET['token'];
+}
+else $token = null;            
+$result = $ctrl->$action($token);
+
 
 /*--------LOADING PAGE--------*/
 if($action == "ajax"){                     //if the action was ajax

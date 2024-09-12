@@ -6,10 +6,11 @@ abstract class AbstractController{
 
     public function index() {}
 
-    public function redirectTo($ctrl = null, $action = null, $id = null){
+    public function redirectTo($ctrl = null, $action = null, $id = null, $token = null){
         $url = $ctrl ? "?ctrl=".$ctrl : "";
         $url.= $action ? "&action=".$action : "";
         $url.= $id ? "&id=".$id : "";
+        $url.= $token ? "&token=".$token : "";
 
         header("Location: $url");
         die();

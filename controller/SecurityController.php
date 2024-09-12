@@ -114,7 +114,7 @@ class SecurityController extends AbstractController{
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
             $token_hash = hash("sha256", $token);
-            $expiry = date("Y-m-d H:i:s", time() + 60 * 5); // token is valid for only 5 minutes
+            $expiry = date("Y-m-d H:i:s", time() + 60 * 3); // token is valid for only 30 minutes
             
             if($email) {
                 // var_dump($email);
@@ -126,13 +126,13 @@ class SecurityController extends AbstractController{
                     $userManager->addToken($email,$token_hash,$expiry);
 
                     $mail = require  __DIR__ . "/mailer.php";
-                    $mail->setFrom("noreply@gmail.com");
+                    // $mail->setFrom("noreply@gmail.com");
                     $mail->addAddress($email);
                     $mail->Subject = "Password Reset";
                     $mail->Body = <<<END
 
-                    Click <a href="http://localhost/index.php?ctrl=security&action=resetPassword&token=$token">here</a> 
-                    to reset your password. It is valid for 5 minutes only.
+                    Click <a href="http://localhost/rando/index.php?ctrl=security&action=resetPassword&token=$token">here</a> 
+                    to reset your password. It is valid for 3 minutes only.
 
                     END;
 
@@ -163,6 +163,29 @@ class SecurityController extends AbstractController{
             "view" => VIEW_DIR."connection/sentResetLink.html",
             "meta_description" => "Réinitialisation de votre mot de passe"
         ];
+    }
+
+    public function resetPassword() {
+        // var_dump("ok");die;
+        $token = $_GET["token"];    // var_dump($token);die; 
+        $token_hash = hash("sha256", $token);
+        
+        $userManager = new UserManager();
+        $user = $userManager->findUserByToken($token_hash);
+
+        // var_dump($user);die;    //false
+        // sendForgottenPasswordReset() checks if checkUserExists($email)
+
+        if (strtotime($user->getTokenExpiresAt()) <= time()) {
+            die("token has expired");
+        }
+        // echo "token is valid";
+
+        return [
+            "view" => VIEW_DIR."connection/resetPassword.php",
+            "meta_description" => "Réinitialisation de votre mot de passe"
+        ];
+        
     }
 
     public function logout() {

@@ -50,9 +50,15 @@ class UserManager extends Manager{
                 $this->className
             );
     }
-    // public function findToken(){
-    //     $sql = "SELECT *
-    //             FROM ".$this->tableName. " t
-    //             WHERE resetTokenHash = :resetTokenHash";
-    // }
+
+    public function findUserByToken($token_hash) {
+        $sql = "SELECT *
+                FROM ".$this->tableName. " t
+                WHERE resetTokenHash = :resetTokenHash";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['resetTokenHash' => $token_hash], false),
+            $this->className
+        );
+    }
 }
