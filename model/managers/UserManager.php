@@ -61,4 +61,16 @@ class UserManager extends Manager{
             $this->className
         );
     }
+
+    public function updatePassword($token_hash, $password_hash) {
+        $sql = "UPDATE ".$this->tableName."
+                SET password = :password
+                WHERE resetTokenHash = :resetTokenHash";
+
+        return $this->getSingleScalarResult (
+                DAO::select($sql, ['resetTokenHash' => $token_hash, 'password' => $password_hash]),
+                
+                $this->className
+            );
+    }
 }

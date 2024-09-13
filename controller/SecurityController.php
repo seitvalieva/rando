@@ -164,9 +164,8 @@ class SecurityController extends AbstractController{
             "meta_description" => "Réinitialisation de votre mot de passe"
         ];
     }
-
+    // gets token from the url, finds the user by token, checks if the token is valid, and displays a page to create new password
     public function resetPassword() {
-        // var_dump("ok");die;
         $token = $_GET["token"];    // var_dump($token);die; 
         $token_hash = hash("sha256", $token);
         
@@ -174,7 +173,7 @@ class SecurityController extends AbstractController{
         $user = $userManager->findUserByToken($token_hash);
 
         // var_dump($user);die;    //true
-        // sendForgottenPasswordReset() checks if checkUserExists($email)
+        // sendForgottenPasswordReset() already checks if checkUserExists($email)
         if (strtotime($user->getTokenExpiresAt()) <= time()) {
             die("token has expired");
         }
@@ -184,6 +183,53 @@ class SecurityController extends AbstractController{
             "meta_description" => "Création de nouveau mot de passe"
         ];
         
+    }
+
+    public function setNewPassword() {
+
+        if(isset($_POST["submitNewPassword"])) {
+
+            $token = $_POST["token"];
+            $token_hash = hash("sha256", $token);
+            // $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+            $userManager = new UserManager();
+            $user = $userManager->findUserByToken($token_hash);
+
+            if (strtotime($user->getTokenExpiresAt()) <= time()) {
+                die("token has expired");
+            }
+            if (strlen($_POST["newPassword"]) < 8) {
+                die("Password must be at least 8 characters");
+            }
+            
+            if ( ! preg_match("/[a-z]/i", $_POST["newPassword"])) {
+                die("Password must contain at least one letter");
+            }
+            
+            if ( ! preg_match("/[0-9]/", $_POST["newPassword"])) {
+                die("Password must contain at least one number");
+            }
+            
+            if ($_POST["newPassword"] !== $_POST["confirmNewPassword"]) {
+                die("Passwords must match");
+            }
+            $password_hash = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
+            $user = $userManager->updatePassword($token_hash, $password_hash);
+            
+            header("Location: index.php?ctrl=security&action=setNewPasswordSuccess");
+            exit;
+        }
+        return [
+            "view" => VIEW_DIR."connection/resetPassword.php",
+            "meta_description" => "Création de nouveau mot de passe"
+        ];
+    }
+    public function setNewPasswordSuccess() {
+
+        return [
+            "view" => VIEW_DIR."connection/setNewPasswordSuccess.html",
+            "meta_description" => "Création de votre mot de passe"
+        ];
     }
 
     public function logout() {
