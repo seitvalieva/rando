@@ -12,8 +12,10 @@
     
             <label for="confirmPassword">Confirmation du mot de passe</label>
             <input type="password" name="confirmPassword" id="confirmPassword" required><br><br>
+
+            <input type="checkbox" id="agree" name="agree" value="agree" required>
+            <label for="agree">J'accepte les <a href="" style="color:blue;">Conditions générales d’utilisation</a></label><br><br>
             
-            <!-- <input type="submit" name="submitRegister" value="S'enregistrer"> -->
             <button type="submit" name="submitRegister" style="width: 100%; height: 40px;">S'enregistrer</button><br><br>
         </form>
     </div>

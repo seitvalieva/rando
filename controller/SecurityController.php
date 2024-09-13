@@ -16,7 +16,7 @@ class SecurityController extends AbstractController{
     //setting up the REGISTER function
     public function register(){
 
-           if (isset($_POST["submitRegister"])) {
+           if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
             
                 //filtering registration form fields
                 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
