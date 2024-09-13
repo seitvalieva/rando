@@ -64,7 +64,9 @@ class UserManager extends Manager{
 
     public function updatePassword($token_hash, $password_hash) {
         $sql = "UPDATE ".$this->tableName."
-                SET password = :password
+                SET password = :password,
+                    resetTokenHash = NULL,
+                    tokenExpiresAt = NULL
                 WHERE resetTokenHash = :resetTokenHash";
 
         return $this->getSingleScalarResult (

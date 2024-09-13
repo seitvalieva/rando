@@ -23,9 +23,9 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                
+
                 // checking password requirements
-                $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+                $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
                 if (! preg_match($pattern, $password)) {
                     die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
                 }
@@ -190,7 +190,7 @@ class SecurityController extends AbstractController{
 
             $token = $_POST["token"];
             $token_hash = hash("sha256", $token);
-            $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+            $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
             // $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $userManager = new UserManager();
             $user = $userManager->findUserByToken($token_hash);
