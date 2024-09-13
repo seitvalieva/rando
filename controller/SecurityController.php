@@ -23,7 +23,12 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+                
+                // checking password requirements
+                $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+                if (! preg_match($pattern, $password)) {
+                    die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
+                }
                 //check filter validity
                 if($username && $email && $password && $confirmPassword){
 
@@ -40,7 +45,7 @@ class SecurityController extends AbstractController{
                     } else {
                         //var_dump("user doesn't exist");die;
                         //inserting the user into the database
-                        if($password == $confirmPassword && strlen($password) >= 5) {//verification that passwords are identique
+                        if($password == $confirmPassword && strlen($password) >= 8) {//verification that passwords are identique
                             //we retrieve the add function from the Manager file
                             $userManager->add([ 
                                 "username" => $username,
@@ -114,11 +119,10 @@ class SecurityController extends AbstractController{
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
             $token_hash = hash("sha256", $token);
-            $expiry = date("Y-m-d H:i:s", time() + 60 * 3); // token is valid for only 30 minutes
+            $expiry = date("Y-m-d H:i:s", time() + 60 * 10); // token is valid for only 10 minutes
             
             if($email) {
-                // var_dump($email);
-                // var_dump($token);die;
+                // var_dump($email); var_dump($token);die;              
                 $userManager = new UserManager();
                 $user = $userManager->checkUserExists($email);
 
@@ -132,18 +136,14 @@ class SecurityController extends AbstractController{
                     $mail->Body = <<<END
 
                     Click <a href="http://localhost/rando/index.php?ctrl=security&action=resetPassword&token=$token">here</a> 
-                    to reset your password. It is valid for 3 minutes only.
+                    to reset your password. It is valid for 10 minutes only.
 
                     END;
 
                     try {
-
-                        $mail->send();
-                
-                    } catch (Exception $e) {
-                
-                        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
-                
+                        $mail->send();                
+                    } catch (Exception $e) {               
+                        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";                
                     }               
                 }
             }
@@ -151,7 +151,6 @@ class SecurityController extends AbstractController{
             header("Location: index.php?ctrl=security&action=sentResetLinkSuccess");
             exit;
         }
-
         return [
             "view" => VIEW_DIR."connection/forgottenPassword.html",
             "meta_description" => "Réinitialisation de votre mot de passe"
@@ -191,6 +190,7 @@ class SecurityController extends AbstractController{
 
             $token = $_POST["token"];
             $token_hash = hash("sha256", $token);
+            $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
             // $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $userManager = new UserManager();
             $user = $userManager->findUserByToken($token_hash);
@@ -198,17 +198,20 @@ class SecurityController extends AbstractController{
             if (strtotime($user->getTokenExpiresAt()) <= time()) {
                 die("token has expired");
             }
-            if (strlen($_POST["newPassword"]) < 8) {
-                die("Password must be at least 8 characters");
+            if (! preg_match($pattern, $_POST["newPassword"])) {
+                die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
             }
+            // if (strlen($_POST["newPassword"]) < 8) {
+            //     die("Password must be at least 8 characters");
+            // }
             
-            if ( ! preg_match("/[a-z]/i", $_POST["newPassword"])) {
-                die("Password must contain at least one letter");
-            }
+            // if ( ! preg_match("/[a-z]/i", $_POST["newPassword"])) {
+            //     die("Password must contain at least one letter");
+            // }
             
-            if ( ! preg_match("/[0-9]/", $_POST["newPassword"])) {
-                die("Password must contain at least one number");
-            }
+            // if ( ! preg_match("/[0-9]/", $_POST["newPassword"])) {
+            //     die("Password must contain at least one number");
+            // }
             
             if ($_POST["newPassword"] !== $_POST["confirmNewPassword"]) {
                 die("Passwords must match");
@@ -217,6 +220,7 @@ class SecurityController extends AbstractController{
             $user = $userManager->updatePassword($token_hash, $password_hash);
             
             header("Location: index.php?ctrl=security&action=setNewPasswordSuccess");
+            // header("Location: index.php?ctrl=security&action=login");
             exit;
         }
         return [
