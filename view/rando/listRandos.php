@@ -1,7 +1,7 @@
 <?php
 
-    $randos = $result["data"]['randos']; // * we initialize a variable allowing us to retrieve what the
-                                                // * controller returns to us at the "categories" index of the "data" array
+    $randos = $result["data"]['randos']; //  we initialize a variable allowing us to retrieve what the
+                                                //  controller returns to us at the "categories" index of the "data" array
 ?>
 <div class="main__container">
     <section class="main__cards-container">
