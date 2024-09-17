@@ -16,7 +16,7 @@
             <form action="">
                 <h2 class="main__feature-search-label">Rechercher une rando</h2>
                 <div class="main__feature-search-container">
-                    <input type="search" id="search" name="search" placeholder="  Ville où lieu à visiter">
+                    <input type="search" id="search" name="search" placeholder="Rechercher une ville où lieu à visiter" minlength="3">
                     <input type="submit" value="Search" id="main__feature-search-btn">
                 </div>
             </form>

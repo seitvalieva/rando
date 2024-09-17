@@ -15,4 +15,5 @@
 
         <button type="submit" name="submitNewPassword" style="width: 100%; height: 40px;">Sauvegarder</button><br><br>   
     </form>
+    <div><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
 </div>

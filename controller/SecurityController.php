@@ -27,7 +27,10 @@ class SecurityController extends AbstractController{
                 // checking password requirements
                 $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
                 if (! preg_match($pattern, $password)) {
-                    die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
+                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 caractères");
+                    header("Location: index.php?ctrl=security&action=setNewPassword");
+                    exit;
+                    // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
                 }
                 //check filter validity
                 if($username && $email && $password && $confirmPassword){
@@ -135,6 +138,8 @@ class SecurityController extends AbstractController{
                     $mail->Subject = "Password Reset";
                     $mail->Body = <<<END
 
+                    Cliquez <a href="http://localhost/rando/index.php?ctrl=security&action=resetPassword&token=$token">ici</a>
+                    pour réinitialiser votre mot de passe. Il n'est valable que 10 minutes.
                     Click <a href="http://localhost/rando/index.php?ctrl=security&action=resetPassword&token=$token">here</a> 
                     to reset your password. It is valid for 10 minutes only.
 
@@ -174,7 +179,10 @@ class SecurityController extends AbstractController{
         // var_dump($user);die;    //true
         // sendForgottenPasswordReset() already checks if checkUserExists($email)
         if (strtotime($user->getTokenExpiresAt()) <= time()) {
-            die("token has expired");
+            Session::addFlash('error',"Le token est expiré");
+            header("Location: index.php?ctrl=security&action=login");
+            exit;
+            // die("token has expired");
         }
         // echo "token is valid";
         return [
@@ -196,25 +204,23 @@ class SecurityController extends AbstractController{
             $user = $userManager->findUserByToken($token_hash);
 
             if (strtotime($user->getTokenExpiresAt()) <= time()) {
-                die("token has expired");
+                Session::addFlash('error',"Le token est expiré");
+                header("Location: index.php?ctrl=security&action=login");
+                exit;
+                // die("token has expired");
             }
             if (! preg_match($pattern, $_POST["newPassword"])) {
-                die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
+                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 caractères");
+                    header("Location: index.php?ctrl=security&action=setNewPassword");
+                    exit;
+                // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
             }
-            // if (strlen($_POST["newPassword"]) < 8) {
-            //     die("Password must be at least 8 characters");
-            // }
-            
-            // if ( ! preg_match("/[a-z]/i", $_POST["newPassword"])) {
-            //     die("Password must contain at least one letter");
-            // }
-            
-            // if ( ! preg_match("/[0-9]/", $_POST["newPassword"])) {
-            //     die("Password must contain at least one number");
-            // }
             
             if ($_POST["newPassword"] !== $_POST["confirmNewPassword"]) {
-                die("Passwords must match");
+                Session::addFlash('error',"Le mots de passe ne sont pas identique");
+                header("Location: index.php?ctrl=security&action=setNewPassword");
+                exit;
+                // die("Passwords must match");
             }
             $password_hash = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
             $user = $userManager->updatePassword($token_hash, $password_hash);

@@ -16,5 +16,5 @@
     <!-- <a href="index.php?ctrl=security&action=sendForgottenPasswordReset">Mot de passe oublié?</a> -->
     <button type="submit" name="forgottenPassword" onclick="location.href='index.php?ctrl=security&action=sendForgottenPasswordReset'"
             style="width: 25%; height: 40px;">Mot de passe oublié?</button>
-    <div class="popup"><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
+    <div><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
 </div>
