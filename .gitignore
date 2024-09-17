@@ -1,1 +1,2 @@
 controller/MailController.php
+model/managers/UserManager.php
