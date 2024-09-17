@@ -25,7 +25,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                 "randos" => $randos
             ]
             ];
-     }
+    }
     
      // display details of a rando
      public function randoDetails() {
@@ -42,7 +42,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                 
             ]
         ];
-     }
+    }
 
      // create une rando
      public function addNewRando() {

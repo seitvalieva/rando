@@ -11,6 +11,8 @@ final class User extends Entity {
     private $email;
     private $password;
     private $registrationDate;
+    private $resetTokenHash;
+    private $tokenExpiresAt;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -78,5 +80,45 @@ final class User extends Entity {
 
     public function __toString() {
         return $this->username;
+    }
+
+    /**
+     * Get the value of resetTokenHash
+     */ 
+    public function getResetTokenHash()
+    {
+        return $this->resetTokenHash;
+    }
+
+    /**
+     * Set the value of resetTokenHash
+     *
+     * @return  self
+     */ 
+    public function setResetTokenHash($resetTokenHash)
+    {
+        $this->resetTokenHash = $resetTokenHash;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tokenExpiresAt
+     */ 
+    public function getTokenExpiresAt()
+    {
+        return $this->tokenExpiresAt;
+    }
+
+    /**
+     * Set the value of tokenExpiresAt
+     *
+     * @return  self
+     */ 
+    public function setTokenExpiresAt($tokenExpiresAt)
+    {
+        $this->tokenExpiresAt = $tokenExpiresAt;
+
+        return $this;
     }
 }

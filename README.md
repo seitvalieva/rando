@@ -1,4 +1,4 @@
 # rando
 
-http://localhost/rando/view/home.php
+http://localhost/rando/index.php?
 

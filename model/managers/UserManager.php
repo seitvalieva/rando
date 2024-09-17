@@ -38,4 +38,41 @@ class UserManager extends Manager{
 
     }
 
+    public function addToken($email,$token_hash, $expiry) {
+        $sql = "UPDATE ".$this->tableName."
+                SET resetTokenHash = :resetTokenHash,
+                    tokenExpiresAt = :tokenExpiresAt
+                    WHERE email = :email";
+
+        return $this->getSingleScalarResult (
+                DAO::select($sql, ['email' => $email, 'resetTokenHash' => $token_hash, 'tokenExpiresAt' => $expiry]),
+                
+                $this->className
+            );
+    }
+
+    public function findUserByToken($token_hash) {
+        $sql = "SELECT *
+                FROM ".$this->tableName. " t
+                WHERE resetTokenHash = :resetTokenHash";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['resetTokenHash' => $token_hash], false),
+            $this->className
+        );
+    }
+
+    public function updatePassword($token_hash, $password_hash) {
+        $sql = "UPDATE ".$this->tableName."
+                SET password = :password,
+                    resetTokenHash = NULL,
+                    tokenExpiresAt = NULL
+                WHERE resetTokenHash = :resetTokenHash";
+
+        return $this->getSingleScalarResult (
+                DAO::select($sql, ['resetTokenHash' => $token_hash, 'password' => $password_hash]),
+                
+                $this->className
+            );
+    }
 }
