@@ -2,7 +2,7 @@
         <h1>Créer un compte</h1>
         <form action="index.php?ctrl=security&action=register" method="POST" autocomplete="off">
             <label for="username">Pseudo <span class="required">*</span></label>
-            <input type="text" name="username" id="username" required><br>
+            <input type="text" name="username" id="username" minlength="3" maxlength="20" required><br>
     
             <label for="email">Mail <span class="required">*</span></label>
             <input type="email" name="email" id="email" required><br>

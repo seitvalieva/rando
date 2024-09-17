@@ -16,7 +16,7 @@
             <form action="index.php?ctrl=security&action=search" method="GET">
                 <h2 class="main__feature-search-label">Rechercher une rando</h2>
                 <div class="main__feature-search-container">
-                    <input type="search" id="search" name="search" placeholder="Rechercher une ville où lieu à visiter" minlength="3">
+                    <input type="search" id="search" name="search" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
                     <input type="submitSearch" value="Search" id="main__feature-search-btn">
                 </div>
             </form>

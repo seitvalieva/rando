@@ -4,11 +4,11 @@
     <form action="index.php?ctrl=rando&action=addNewRando" method="POST" enctype="multipart/form-data">
 
         <label for="randoTitle">Titre :</label>
-        <input type="text" name="randoTitle" id="randoTitle" required><br>
+        <input type="text" name="randoTitle" id="randoTitle" minlength="10" maxlength="255" required><br>
 
         <label for="randoSubtitle">Introduction :</label><br>
-        <textarea id="randoSubtitle" name="randoSubtitle" rows="2" cols="70" placeholder="Écrivez un paragraphe accrocheur.."
-            required></textarea><br><br>
+        <textarea id="randoSubtitle" name="randoSubtitle" rows="2" cols="70" placeholder="Écrivez un paragraphe accrocheur.." minlength="10"
+            maxlength="255" required></textarea><br><br>
 
         <label for="dateRando">Date et heure de la Rando :</label><br>
         <input type="date" id="dateRando" name="dateRando" required>
@@ -23,13 +23,13 @@
         <input type="number" id="distance" name="distance" min="0" step="0.1"><br>
 
         <label for="departure">Point de départ:</label><br>
-        <input type="text" id="departure" name="departure" placeholder="Gare de Strasbourg.." required><br><br>
+        <input type="text" id="departure" name="departure" placeholder="Gare de Strasbourg.."  minlength="5" maxlength="255" required><br><br>
 
         <label for="destination">Point(s) d'arrivée :</label><br>
-        <input type="text" id="destination" name="destination" placeholder="Lac Blanc, Col de la Schlucht, .." required><br><br>
+        <input type="text" id="destination" name="destination" placeholder="Lac Blanc, Col de la Schlucht, .." minlength="3" maxlength="255" required><br><br>
 
         <label for="description">Description :</label><br>
-        <textarea id="description" name="description" rows="15" cols="70" placeholder="Desription détaillée..."
+        <textarea id="description" name="description" rows="15" cols="70" placeholder="Desription détaillée..." minlength="20" maxlength="1500"
             required></textarea><br><br>
 
         <label for="randoImages">Ajouter des images:</label><br><br>
