@@ -94,17 +94,17 @@ class SecurityController extends AbstractController{
 
                         } else {
                         // in case of Email address or password error
-                            Session::addFlash('error',"Le mail ou pseudo n'est pas correct");
+                            Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
                             }
-                        } else {
-                            // if User not found
-                            Session::addFlash('error',"User not found");
-                            header("Location: index.php?ctrl=security&action=login");
-                            exit;
-                        }
+                    } else {
+                        // if User not found
+                        Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
+                        header("Location: index.php?ctrl=security&action=login");
+                        exit;
                     }
+                }
             }
                 // displaying login form
             return [

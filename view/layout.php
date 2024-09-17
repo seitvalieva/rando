@@ -16,7 +16,7 @@
         <div id="wrapper"> 
             <div id="mainpage">
                 <!-- this is where messages (error or success) are displayed-->
-                <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
+                <!-- <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3> -->
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <!-- ============= FOOTER ============= -->
                 <header class="header">
