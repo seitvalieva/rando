@@ -13,11 +13,11 @@
         </div>
         <!-- ============= SEARCH form ============= -->
         <div class="main__feature-search">
-            <form action="index.php?ctrl=security&action=search" method="GET">
+            <form action="index.php?ctrl=rando&action=searchRando" method="POST">
                 <h2 class="main__feature-search-label">Rechercher une rando</h2>
                 <div class="main__feature-search-container">
-                    <input type="search" id="search" name="search" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
-                    <input type="submitSearch" value="Search" id="main__feature-search-btn">
+                    <input type="search" id="search" name="keyword" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
+                    <input type="submit" name="submitSearch" value="Search" id="main__feature-search-btn">
                 </div>
             </form>
         </div>

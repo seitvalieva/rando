@@ -27,4 +27,17 @@ class RandoManager extends Manager{
         );
     }
 
+    public function searchByKeyword($keyword) {
+        
+        $sql = "SELECT *
+                FROM ".$this->tableName." 
+                WHERE LOWER(title) LIKE :keyword";
+                
+        return $this->getMultipleResults(
+            DAO::select($sql, ['keyword' => '%' . $keyword . '%']),
+            $this->className
+        );
+        
+    }
+
 }

@@ -30,7 +30,8 @@ class HomeController extends AbstractController implements ControllerInterface {
             "meta_description" => "Nouvelle Rando"
         ];
     }
-        
+    
+    
     // public function users(){
     //     $this->restrictTo("ROLE_USER");
 

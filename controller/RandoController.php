@@ -10,7 +10,7 @@ use Model\Managers\UserManager;
 
 class RandoController extends AbstractController implements ControllerInterface {
 
-    // liste des randos 
+    // list all randos 
     public function index() {
         
         $randoManager = new RandoManager();                 // new instance of RandoManager
@@ -81,7 +81,37 @@ class RandoController extends AbstractController implements ControllerInterface 
         }    
     }
     
-     //
+     // search randos by keyword
+     public function searchRando() {
+
+        if (isset($_POST['keyword'])) {
+            
+            $keyword = htmlspecialchars($_POST['keyword']);
+            $keyword = trim(strip_tags($keyword));
+            // var_dump($keyword);die;
+            $randoManager = new RandoManager();
+
+            $results = $randoManager->searchByKeyword($keyword);
+            // var_dump($searchResults);die;
+            
+            if(!empty($results)) {
+
+                return [
+                    "view" => VIEW_DIR."rando/searchResults.php",
+                    "meta_description" => "Search results",
+                    "data" => [
+                        "results" => $results,
+        
+                    ]
+                ];
+
+            } else {
+
+                die("No results");
+            }
+        } 
+         
+    }
 }
 
  
