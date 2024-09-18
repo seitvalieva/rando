@@ -48,8 +48,7 @@
                             </span>
                         </p>
                     </div>
-                </div>
-            
+                </div>           
             <?php } ?>
         </div>
     </section>

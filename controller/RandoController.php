@@ -91,16 +91,15 @@ class RandoController extends AbstractController implements ControllerInterface 
             // var_dump($keyword);die;
             $randoManager = new RandoManager();
 
-            $results = $randoManager->searchByKeyword($keyword);
-            // var_dump($searchResults);die;
+            $randos = $randoManager->searchByKeyword($keyword);
             
-            if(!empty($results)) {
+            if(!empty($randos)) {
 
                 return [
                     "view" => VIEW_DIR."rando/searchResults.php",
                     "meta_description" => "Search results",
                     "data" => [
-                        "results" => $results,
+                        "randos" => $randos,
                         "keyword" => $keyword
                     ]
                 ];
