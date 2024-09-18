@@ -101,7 +101,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                     "meta_description" => "Search results",
                     "data" => [
                         "results" => $results,
-        
+                        "keyword" => $keyword
                     ]
                 ];
 
