@@ -16,7 +16,7 @@ class ImageManager extends Manager{
     }
 
     public function getImagesByRandoId($id) {
-        $sql = "SELECT * 
+        $sql = "SELECT filename 
         FROM ".$this->tableName."
         WHERE rando_id = :id";
 

@@ -25,7 +25,7 @@ $images = $result["data"]['imagesNames']
                             <!--3 Images with next/previous buttons -->
                             <?php foreach ($images as $image): ?>
                             <div class="slide fade">
-                                <img src="<?= 'uploads/'. $image ?>"
+                                <img src="uploads/<?= '. $image' ?>"
                                     alt="Ballon d'Alsace view" style="width:100%">
                             </div>
                             <?php endforeach; ?>
