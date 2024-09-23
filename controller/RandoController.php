@@ -111,6 +111,43 @@ class RandoController extends AbstractController implements ControllerInterface 
         } 
          
     }
+
+    // image upload
+    public function imagesUploadForm() {
+
+        return [
+            "view" => VIEW_DIR . "rando/imagesUploadForm.html",
+            "meta_description" => "Images upload",
+            
+        ];
+    }
+    public function imagesUpload() {
+
+        if(isset($_POST['submitImages'])) {
+
+            $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');
+
+            foreach($_FILES['image']['tmp_name'] as $key => $value)  {
+                $filename = $_FILES['image']['name'][$key];
+                $filename_tmp = $_FILES['image']['tmp_name'][$key];
+                echo '<br>';
+
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+                if(in_array($extension, $extensionAllowed)) {
+                    move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+                } else {
+                    //display error
+                }
+            }
+
+        }
+        return [
+            "view" => VIEW_DIR . "rando/imagesUploadForm.html",
+            "meta_description" => "Images upload",
+            
+        ];
+    }
 }
 
  

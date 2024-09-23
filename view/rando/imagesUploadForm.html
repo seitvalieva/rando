@@ -1,0 +1,16 @@
+<div class="main__container">
+    <h1>Multiple images upload</h1>
+    <form action="index.php?ctrl=rando&action=imagesUpload" method="post" enctype="multipart/form-data">
+
+        <label for="">Image 1</label>
+        <input type="file" name="image[]">
+
+        <label for="">Image 2</label>
+        <input type="file" name="image[]">
+
+        <label for="">Image 3</label>
+        <input type="file" name="image[]">
+
+        <input type="submit" name="submitImages" value="Upload images">
+    </form>
+</div>

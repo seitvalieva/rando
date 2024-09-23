@@ -32,6 +32,7 @@
                                 <ul class="nav__menu">
                                     <li><a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a></li>
                                     <li><a href="index.php?ctrl=home&action=newRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a></li>
+                                    <li><a href="index.php?ctrl=rando&action=imagesUploadForm" class="nav__menu-link nav__menu-link-cta">Images upload</a></li>
                                     <li><a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a></li> 
                                 </ul>
                                 
