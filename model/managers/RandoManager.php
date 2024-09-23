@@ -7,7 +7,7 @@ use App\DAO;
 
 class RandoManager extends Manager{
 
-    // on indique la classe POO et la table correspondante en BDD pour le manager concerné
+    // we indicate the OOP class and the corresponding table in the BDD for the manager concerned
     protected $className = "Model\Entities\Rando";
     protected $tableName = "rando";
 

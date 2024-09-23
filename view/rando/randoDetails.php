@@ -3,7 +3,7 @@ $rando = $result["data"]['rando'];
 
 $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
 
-
+$images = $result["data"]['imagesNames']
 
 ?>
 <div class="main__container">
@@ -23,16 +23,13 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
                         <!-- SLIDESHOW container -->
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
+                            <?php foreach ($images as $image): ?>
                             <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/coffee_with_the_view_Ballon_d'Alsace.jpg"
+                                <img src="<?= 'uploads/'. $image ?>"
                                     alt="Ballon d'Alsace view" style="width:100%">
                             </div>
-                            <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/sky-background.png" alt="Forest" style="width:100%">
-                            </div>
-                            <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/sun-background.png" alt="Forest" style="width:100%;">
-                            </div>
+                            <?php endforeach; ?>
+                            
                             <!-- Next and previous buttons -->
                             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
                             <a class="next" onclick="changeSlide(1)">&#10095;</a>

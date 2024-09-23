@@ -14,4 +14,15 @@ class ImageManager extends Manager{
     public function __construct(){
         parent::connect();
     }
+
+    public function getImagesByRandoId($id) {
+        $sql = "SELECT * 
+        FROM ".$this->tableName."
+        WHERE rando_id = :id";
+
+        return $this->getMultipleResults(
+            DAO::select($sql, ['id' => $id]),
+            $this->className
+        );
+    }
 }
