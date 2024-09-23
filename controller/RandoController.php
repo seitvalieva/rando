@@ -130,7 +130,7 @@ class RandoController extends AbstractController implements ControllerInterface 
 
             foreach($_FILES['image']['tmp_name'] as $key => $value)  {
                 $fileSize = $_FILES['image']['size'][$key];
-                
+
                 if ($fileSize > 1048576) {
                     exit('Error: File too large (max 1MB)');
                 }
@@ -158,11 +158,13 @@ class RandoController extends AbstractController implements ControllerInterface 
                         'fileName' =>$fileName
                     ];
                     $imageManager->add($data);
-                    $this->redirectTo("rando","index");
+                    
                 } else {
                     //display error
                 } 
             }
+            $this->redirectTo("rando","index");
+
         }
         return [
             "view" => VIEW_DIR . "rando/imagesUploadForm.html",
