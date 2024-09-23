@@ -129,8 +129,14 @@ class RandoController extends AbstractController implements ControllerInterface 
             $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');     // array of allowed extensions for images
 
             foreach($_FILES['image']['tmp_name'] as $key => $value)  {
+                $fileSize = $_FILES['image']['size'][$key];
+                
+                if ($fileSize > 1048576) {
+                    exit('Error: File too large (max 1MB)');
+                }
                 $filename = $_FILES['image']['name'][$key];
                 $filename_tmp = $_FILES['image']['tmp_name'][$key];
+                
                 echo '<br>';
 
                 $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
