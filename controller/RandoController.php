@@ -7,6 +7,7 @@ use App\ControllerInterface;
 
 use Model\Managers\RandoManager;
 use Model\Managers\UserManager;
+use Model\Managers\ImageManager;
 
 class RandoController extends AbstractController implements ControllerInterface {
 
@@ -125,22 +126,37 @@ class RandoController extends AbstractController implements ControllerInterface 
 
         if(isset($_POST['submitImages'])) {
 
-            $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');
+            $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');     // array of allowed extensions for images
 
             foreach($_FILES['image']['tmp_name'] as $key => $value)  {
                 $filename = $_FILES['image']['name'][$key];
                 $filename_tmp = $_FILES['image']['tmp_name'][$key];
                 echo '<br>';
 
-                $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
+                $fileName = '';
                 if(in_array($extension, $extensionAllowed)) {
-                    move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+
+                    if(!file_exists('uploads/'.$filename)) {
+                        move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+                        $fileName = $filename;
+                    } else {                                            // if a file with the same name is already exists in the uploads folder
+                        $filename = str_replace('.','-', basename($filename, $extension));
+                        $newFilename = $filename.time().".".$extension;
+                        move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
+                        $fileName = $newFilename;
+                    }
+
+                    $imageManager = new ImageManager();
+                    $data = [
+                        'fileName' =>$fileName
+                    ];
+                    $imageManager->add($data);
+                    $this->redirectTo("rando","index");
                 } else {
                     //display error
-                }
+                } 
             }
-
         }
         return [
             "view" => VIEW_DIR . "rando/imagesUploadForm.html",
