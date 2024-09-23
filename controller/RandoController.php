@@ -75,11 +75,50 @@ class RandoController extends AbstractController implements ControllerInterface 
                     'user_id' => $userId
                 ];
                 // var_dump($data); die();
+                $lastInsertRandoId = $randoManager->add($data);
+                if ($lastInsertRandoId) {
+                    // echo "Last Inserted ID: " . $lastInsertRandoId; die();  // For debugging or logging
+                    $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');     // array of allowed extensions for images
 
-                $randoManager->add($data);
+                    foreach($_FILES['image']['tmp_name'] as $key => $value)  {
+                        $fileSize = $_FILES['image']['size'][$key];
+
+                        if ($fileSize > 1048576) {
+                            exit('Error: File too large (max 1MB)');
+                        }
+                        $filename = $_FILES['image']['name'][$key];
+                        $filename_tmp = $_FILES['image']['tmp_name'][$key];
+
+                        $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
+                        $fileName = '';
+                        if(in_array($extension, $extensionAllowed)) {
+
+                            if(!file_exists('uploads/'.$filename)) {
+                                move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+                                $fileName = $filename;
+                            } else {                                            // if a file with the same name is already exists in the uploads folder
+                                $filename = str_replace('.','-', basename($filename, $extension));
+                                $newFilename = $filename.time().".".$extension;
+                                move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
+                                $fileName = $newFilename;
+                            }
+
+                            $imageManager = new ImageManager();
+                            $data = [
+                                'fileName' =>$fileName,
+                                'rando_id' => $lastInsertRandoId
+                            ];
+                            $imageManager->add($data);
+                            
+                        } else {
+                            //display error
+                        } 
+                    }
+                }
                 $this->redirectTo("rando","index");
             }
-        }    
+        }  
+        //   
     }
     
      // search randos by keyword
@@ -122,56 +161,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             
         ];
     }
-    public function imagesUpload() {
-
-        if(isset($_POST['submitImages'])) {
-
-            $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');     // array of allowed extensions for images
-
-            foreach($_FILES['image']['tmp_name'] as $key => $value)  {
-                $fileSize = $_FILES['image']['size'][$key];
-
-                if ($fileSize > 1048576) {
-                    exit('Error: File too large (max 1MB)');
-                }
-                $filename = $_FILES['image']['name'][$key];
-                $filename_tmp = $_FILES['image']['tmp_name'][$key];
-                
-                echo '<br>';
-
-                $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
-                $fileName = '';
-                if(in_array($extension, $extensionAllowed)) {
-
-                    if(!file_exists('uploads/'.$filename)) {
-                        move_uploaded_file($filename_tmp, 'uploads/'.$filename);
-                        $fileName = $filename;
-                    } else {                                            // if a file with the same name is already exists in the uploads folder
-                        $filename = str_replace('.','-', basename($filename, $extension));
-                        $newFilename = $filename.time().".".$extension;
-                        move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
-                        $fileName = $newFilename;
-                    }
-
-                    $imageManager = new ImageManager();
-                    $data = [
-                        'fileName' =>$fileName
-                    ];
-                    $imageManager->add($data);
-                    
-                } else {
-                    //display error
-                } 
-            }
-            $this->redirectTo("rando","index");
-
-        }
-        return [
-            "view" => VIEW_DIR . "rando/imagesUploadForm.html",
-            "meta_description" => "Images upload",
-            
-        ];
-    }
+    
 }
 
  
