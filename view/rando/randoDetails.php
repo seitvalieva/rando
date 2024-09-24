@@ -3,7 +3,7 @@ $rando = $result["data"]['rando'];
 
 $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
 
-$images = $result["data"]['imagesNames']
+$imagesNames = $result["data"]['imagesNames']
 
 ?>
 <div class="main__container">
@@ -18,18 +18,19 @@ $images = $result["data"]['imagesNames']
             <section class="main__rando-info-container">
                 <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
                 <p class="main__rando-subtitle"><?= $rando->getSubtitle() ?></p>
+                
                 <div class="main__rando-info">
                     <div>
                         <!-- SLIDESHOW container -->
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
-                            <?php foreach ($images as $image): ?>
-                            <div class="slide fade">
-                                <img src="uploads/<?= '. $image' ?>"
-                                    alt="Ballon d'Alsace view" style="width:100%">
-                            </div>
-                            <?php endforeach; ?>
-                            
+                            <?php foreach ($imagesNames as $key=> $imageName): ?>
+
+                                <div class="slide fade">
+                                    <img src="uploads/<?= $imageName->getFileName() ?>" alt="">
+                                </div>
+
+                            <?php endforeach ?>                    
                             <!-- Next and previous buttons -->
                             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
                             <a class="next" onclick="changeSlide(1)">&#10095;</a>
@@ -103,6 +104,8 @@ $images = $result["data"]['imagesNames']
                             Duis et eleifend velit, efficitur hendrerit nisi. Maecenas ut molestie metus.</p>
                     </div>
                 </article>
+                <!-- <img src="uploads/logo-compass.jpg" alt="">  -->
+                
             </section>
 
             <!-- ================== LES DERNIERES RANDOS section ================== -->

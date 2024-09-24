@@ -32,18 +32,18 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function randoDetails() {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
-
+        // var_dump($id); die();
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
-        $imagesNames = $imageManager->getImagesByRandoId($id);
-        
+
+        // $images = $imageManager->getImagesByRandoId($id);
 
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",
             "meta_description" => "Rando Details",
             "data" => [
                 "rando" => $randoManager->getRandoById($id),
-                "imagesNames" => $imagesNames
+                "imagesNames" => $imageManager->getImagesByRandoId($id)
             ]
         ];
     }
@@ -148,7 +148,6 @@ class RandoController extends AbstractController implements ControllerInterface 
                 ];
 
             } else {
-
                 die("No results");
             }
         } 
