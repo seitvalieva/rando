@@ -12,8 +12,12 @@ $randos = $result["data"]['randos'];
             <?php foreach ($randos as $rando): ?>
                 <div class="main__card">
                     <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
-                        <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Les deux Donons"
+                        <?php if(!empty($rando->getImage())) {?>
+                        <img class="main__card-img" src="uploads/<?= $rando->getImage() ?>" alt="Les deux Donons"
                             title="Les deux Donons">
+                        <?php } else {?>
+                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="">
+                        <?php } ?>
                     </a>
                     <div class="main__card-details">
                         <h3 class="main__card-title">
