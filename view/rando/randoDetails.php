@@ -3,7 +3,7 @@ $rando = $result["data"]['rando'];
 
 $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
 
-
+$imagesNames = $result["data"]['imagesNames']
 
 ?>
 <div class="main__container">
@@ -18,21 +18,25 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
             <section class="main__rando-info-container">
                 <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
                 <p class="main__rando-subtitle"><?= $rando->getSubtitle() ?></p>
+                
                 <div class="main__rando-info">
                     <div>
                         <!-- SLIDESHOW container -->
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
-                            <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/coffee_with_the_view_Ballon_d'Alsace.jpg"
-                                    alt="Ballon d'Alsace view" style="width:100%">
-                            </div>
-                            <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/sky-background.png" alt="Forest" style="width:100%">
-                            </div>
-                            <div class="slide fade">
-                                <img src="<?= PUBLIC_DIR ?>/assets/sun-background.png" alt="Forest" style="width:100%;">
-                            </div>
+                            <?php if(!empty($imagesNames)) {
+                             foreach ($imagesNames as $key=> $imageName): ?>
+
+                                <div class="slide fade">
+                                    <img src="uploads/<?= $imageName->getFileName() ?>" alt="">
+                                </div>
+
+                            <?php endforeach ?>   
+                            <?php } else {?>
+                                <div class="slide fade">
+                                    <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="" style="width: 100%;">
+                                </div>
+                            <?php } ?>              
                             <!-- Next and previous buttons -->
                             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
                             <a class="next" onclick="changeSlide(1)">&#10095;</a>
@@ -106,6 +110,8 @@ $idRando = (isset($_GET["id"])) ? $_GET["id"] : null;
                             Duis et eleifend velit, efficitur hendrerit nisi. Maecenas ut molestie metus.</p>
                     </div>
                 </article>
+                <!-- <img src="uploads/logo-compass.jpg" alt="">  -->
+                
             </section>
 
             <!-- ================== LES DERNIERES RANDOS section ================== -->
