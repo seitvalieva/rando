@@ -32,7 +32,7 @@
             <?php
                 foreach($randos as $rando ){?>
             <div class="main__card">
-                <a href="" target="_blank">
+                <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
                     <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Les deux Donons"
                         title="Les deux Donons">
                 </a>

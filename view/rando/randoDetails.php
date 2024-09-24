@@ -24,13 +24,19 @@ $imagesNames = $result["data"]['imagesNames']
                         <!-- SLIDESHOW container -->
                         <div class="slideshow-container">
                             <!--3 Images with next/previous buttons -->
-                            <?php foreach ($imagesNames as $key=> $imageName): ?>
+                            <?php if(!empty($imagesNames)) {
+                             foreach ($imagesNames as $key=> $imageName): ?>
 
                                 <div class="slide fade">
                                     <img src="uploads/<?= $imageName->getFileName() ?>" alt="">
                                 </div>
 
-                            <?php endforeach ?>                    
+                            <?php endforeach ?>   
+                            <?php } else {?>
+                                <div class="slide fade">
+                                    <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="" style="width: 100%;">
+                                </div>
+                            <?php } ?>              
                             <!-- Next and previous buttons -->
                             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
                             <a class="next" onclick="changeSlide(1)">&#10095;</a>
