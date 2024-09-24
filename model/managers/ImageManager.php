@@ -25,4 +25,5 @@ class ImageManager extends Manager{
             $this->className
         );
     }
+    
 }

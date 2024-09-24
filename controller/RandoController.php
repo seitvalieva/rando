@@ -16,7 +16,7 @@ class RandoController extends AbstractController implements ControllerInterface 
         
         $randoManager = new RandoManager();                 // new instance of RandoManager
                             // retrieves the list of all rando using the findAll method of Manager.php (sorted by name)
-        $randos = $randoManager->findAll(["title", "ASC"]);
+        $randos = $randoManager->findAll(["dateRando", "DESC"]);
 
         // the controller communicates with the "list randos" view  to send it the list of randos (data)
         return [
@@ -112,11 +112,12 @@ class RandoController extends AbstractController implements ControllerInterface 
                                 'rando_id' => $lastInsertRandoId
                             ];
                             $imageManager->add($data);
-                            
+                            $randoManager->addImage($fileName, $lastInsertRandoId);
                         } else {
                             //display error
                         } 
-                    }
+                    } // end foreach
+
                 }
                 $this->redirectTo("rando","index");
             }

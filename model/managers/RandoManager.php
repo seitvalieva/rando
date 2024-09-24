@@ -39,5 +39,15 @@ class RandoManager extends Manager{
         );
         
     }
+    public function addImage($fileName, $lastInsertRandoId) {
+        $sql = "UPDATE ".$this->tableName."
+        SET image = :image
+        WHERE id_rando = :id";
+
+        return $this->getSingleScalarResult (
+            DAO::select($sql, ['image' => $fileName, 'id' => $lastInsertRandoId]),            
+            $this->className
+        );
+    }
 
 }
