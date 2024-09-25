@@ -54,19 +54,19 @@
                     </p>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
-                        <span>
-                            <?= $rando->getDistance() ?>
+                        <span><b>Distance : </b>
+                            <?= $rando->getDistance() ?> km
                         </span>
                     </p>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
-                        <span>
+                        <span><b>Départ : </b>
                             <?= $rando->getDeparture() ?>
                         </span>
                     </p>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                        <span>
+                        <span><b>Arrivée : </b>
                             <?= $rando->getDestination() ?>
                         </span>
                     </p>

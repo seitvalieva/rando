@@ -31,7 +31,11 @@ class RandoManager extends Manager{
         
         $sql = "SELECT *
                 FROM ".$this->tableName." 
-                WHERE LOWER(title) LIKE :keyword";
+                WHERE LOWER(title) LIKE :keyword
+                OR LOWER(subtitle) LIKE :keyword
+                OR LOWER(departure) LIKE :keyword
+                OR LOWER(destination) LIKE :keyword
+                OR LOWER(description) LIKE :keyword";
                 
         return $this->getMultipleResults(
             DAO::select($sql, ['keyword' => '%' . $keyword . '%']),

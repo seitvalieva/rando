@@ -81,7 +81,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                 $lastInsertRandoId = $randoManager->add($data);
                 if ($lastInsertRandoId) {
                     // echo "Last Inserted ID: " . $lastInsertRandoId; die();  // For debugging or logging
-                    $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif');     // array of allowed extensions for images
+                    $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif', 'webp');     // array of allowed extensions for images
 
                     foreach($_FILES['image']['tmp_name'] as $key => $value)  {
                         $fileSize = $_FILES['image']['size'][$key];
@@ -99,19 +99,21 @@ class RandoController extends AbstractController implements ControllerInterface 
                             if(!file_exists('uploads/'.$filename)) {
                                 move_uploaded_file($filename_tmp, 'uploads/'.$filename);
                                 $fileName = $filename;
-                            } else {                                            // if a file with the same name is already exists in the uploads folder
+                            } else {                                      // if a file with the same name is already exists in the uploads folder
                                 $filename = str_replace('.','-', basename($filename, $extension));
+                                //add current date and time to make the file name unique and protect personal info
                                 $newFilename = $filename.time().".".$extension;
                                 move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
                                 $fileName = $newFilename;
                             }
-
+                            // add images info to the database 
                             $imageManager = new ImageManager();
                             $data = [
                                 'fileName' =>$fileName,
                                 'rando_id' => $lastInsertRandoId
                             ];
                             $imageManager->add($data);
+                            //update image name in the rando table
                             $randoManager->addImage($fileName, $lastInsertRandoId);
                         } else {
                             //display error
