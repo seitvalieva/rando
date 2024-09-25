@@ -9,9 +9,9 @@ $imagesNames = $result["data"]['imagesNames']
 <div class="main__container">
             <!-- ================== SEARCH FIELD section ================== -->
             <section class="main__search-form-container">
-                <form class="main__search-form" action="">
-                    <input type="text" placeholder=" Rechercher une ville où lieu à visiter" name="search">
-                    <button type="submit"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt="Recherche"></button>
+                <form class="main__search-form" action="index.php?ctrl=rando&action=searchRando" method="POST">
+                    <input type="search"  name="keyword" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
+                    <button type="submit" name="submitSearch"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt="Recherche"></button>
                 </form>
             </section>
             <!-- ================== RANDO DETAILS section ================== -->

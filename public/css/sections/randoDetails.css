@@ -12,7 +12,7 @@ form.main__search-form {
   align-items: center;
   justify-content: center;
 }
-form.main__search-form input[type="text"] {
+form.main__search-form input[type="search"] {
   padding: 10px;
   font-size: 17px;
   border: 1px solid grey;
