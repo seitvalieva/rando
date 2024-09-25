@@ -32,7 +32,8 @@
             <?php
                 foreach($randos as $rando ){?>
             <div class="main__card">
-                <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
+                <!-- target="_blank" -->
+                <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" >
                     <?php if(!empty($rando->getImage())) {?>
                     <img class="main__card-img" src="uploads/<?= $rando->getImage() ?>" alt="Les deux Donons"
                         title="Les deux Donons">
@@ -42,7 +43,7 @@
                 </a>
                 <div class="main__card-details">
                     <h3 class="main__card-title">
-                        <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
+                        <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>">
                             <?= $rando->getTitle() ?>
                         </a>
                     </h3>

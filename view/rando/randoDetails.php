@@ -77,7 +77,7 @@ $imagesNames = $result["data"]['imagesNames']
                             <a ><?= $rando->getUser() ?></a>
                         </div>
                         <div class="main__rando-info-aside-btn">
-                            <a href="index.php?ctrl=subscription&action=participate" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                            <a href="index.php?ctrl=subscription&action=participateForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
                         </div>
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">

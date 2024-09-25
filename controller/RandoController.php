@@ -8,6 +8,7 @@ use App\ControllerInterface;
 use Model\Managers\RandoManager;
 use Model\Managers\UserManager;
 use Model\Managers\ImageManager;
+use Model\Managers\SubscriptionManager;
 
 class RandoController extends AbstractController implements ControllerInterface {
 
@@ -79,6 +80,14 @@ class RandoController extends AbstractController implements ControllerInterface 
                 ];
                 // var_dump($data); die();
                 $lastInsertRandoId = $randoManager->add($data);
+
+                $subscriptionManager = new SubscriptionManager();
+                $data = [
+                    'user_id' => $userId,
+                    'rando_id' => $lastInsertRandoId
+                ];
+                $subscriptionManager->add($data);
+
                 if ($lastInsertRandoId) {
                     // echo "Last Inserted ID: " . $lastInsertRandoId; die();  // For debugging or logging
                     $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif', 'webp');     // array of allowed extensions for images
@@ -106,6 +115,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                                 move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
                                 $fileName = $newFilename;
                             }
+
                             // add images info to the database 
                             $imageManager = new ImageManager();
                             $data = [

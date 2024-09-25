@@ -1,9 +1,10 @@
+
 <div class="main__container">
     <h1>Participer a une rando</h1>
-    <form action="index.php?ctrl=subscription&action=participate" method="POST" autocomplete="off">
+    <form action="index.php?ctrl=subscription&action=participate&id=<?= $_GET["id"] ?>" method="POST" autocomplete="off">
 
         <label for="username">Nom et prénom <span class="required">*</span></label>
-        <input type="text" name="username" id="username" minlength="3" maxlength="20" required><br><br>
+        <input type="text" name="username" id="username" minlength="3" maxlength="64" required><br><br>
 
         <label for="email">Mail <span class="required">*</span></label>
         <input type="email" name="email" id="email" required><br><br>
