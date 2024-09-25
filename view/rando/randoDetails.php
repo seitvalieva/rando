@@ -71,19 +71,21 @@ $imagesNames = $result["data"]['imagesNames']
                         </div>
                     </div>
                     <!-- ================== RANDO AUTHOR INFO and MAP section ================== -->
-                    <div class="main__rando-info-aside">
+                    <aside class="main__rando-info-aside">
                         <div class="main__rando-author-info">
                             <div class="main__rando-author-info-img"><img src="<?= PUBLIC_DIR ?>/assets/person-hiking.svg" alt=""></div>
-                            <p><?= $rando->getUser() ?></p>
+                            <a ><?= $rando->getUser() ?></a>
                         </div>
-                        <div class="main__rando-info-aside-btn"><button>Participer à la rando</button></div>
+                        <div class="main__rando-info-aside-btn">
+                            <a href="index.php?ctrl=subscription&action=participate" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                        </div>
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">
                             <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
                             <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
                                 style="width: 456px; height: 270px;">
                         </div>
-                    </div>
+                    </aside>
                 </div>
                 <!-- ================== RANDO DESCRIPTION section ================== -->
                 <article class="main__rando-description">

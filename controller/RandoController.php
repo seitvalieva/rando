@@ -49,7 +49,7 @@ class RandoController extends AbstractController implements ControllerInterface 
     }
 
      // create une rando
-     public function addNewRando() {
+    public function addNewRando() {
         
         if(isset($_POST['submitRando'])){
 
@@ -128,7 +128,7 @@ class RandoController extends AbstractController implements ControllerInterface 
     }
     
      // search randos by keyword
-     public function searchRando() {
+    public function searchRando() {
 
         if (isset($_POST['keyword'])) {
             
@@ -156,6 +156,7 @@ class RandoController extends AbstractController implements ControllerInterface 
         } 
          
     }
+
     
 }
 

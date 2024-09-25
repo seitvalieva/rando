@@ -15,7 +15,7 @@ class SecurityController extends AbstractController{
     // will contain the methods related to authentication: register, login and logout
     //setting up the REGISTER function
     public function register(){
-
+            // check if POST method is submitted and the checkbox is checked
            if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
             
                 //filtering registration form fields
