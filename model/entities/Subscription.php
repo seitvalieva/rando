@@ -7,7 +7,6 @@ use App\Entity;
 final class Subscription extends Entity {
 
     private $id;
-    private $numberPeople;
     private $user;
     private $rando;
 
@@ -23,18 +22,6 @@ final class Subscription extends Entity {
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
- 
-    public function getNumberPeople()
-    {
-        return $this->numberPeople;
-    }
-
-    public function setNumberPeople($numberPeople)
-    {
-        $this->numberPeople = $numberPeople;
 
         return $this;
     }
