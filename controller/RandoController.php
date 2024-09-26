@@ -37,8 +37,6 @@ class RandoController extends AbstractController implements ControllerInterface 
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
 
-        // $images = $imageManager->getImagesByRandoId($id);
-
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",
             "meta_description" => "Rando Details",
@@ -165,6 +163,17 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
         } 
          
+    }
+    // delete rando
+    public function deleteRando() {
+
+        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+        
+        $randoManager = new RandoManager();
+        $randoManager->delete($id);
+
+        $this->redirectTo("rando","index");
+
     }
 
     
