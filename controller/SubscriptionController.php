@@ -39,7 +39,9 @@ public function participate() {
             ];
             $subscriptionManager->add($data);
         }
+        $this->redirectTo("rando","index");
     }
+    
 }
 }
 
