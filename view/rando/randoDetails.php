@@ -77,7 +77,12 @@ $imagesNames = $result["data"]['imagesNames']
                             <a ><?= $rando->getUser() ?></a>
                         </div>
                         <div class="main__rando-info-aside-btn">
+                        <?php if(App\Session::getUser() != $rando->getUser()){ ?>
                             <a href="index.php?ctrl=subscription&action=participateForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                        <?php } else {?>
+                            <a href="index.php?ctrl=subscription&action=modify&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
+                            <a href="index.php?ctrl=subscription&action=delete&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                            <?php } ?>
                         </div>
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">

@@ -20,8 +20,8 @@ public function participateForm() {
         "meta_description" => "Participer à la rando"
     ];
 }
-public function participate() {
-    $randoId = $_GET["id"];
+public function participate($id) {
+    // $randoId = $_GET["id"];
     // echo $randoId; die();
     if(isset($_POST['submitParticipation']) && isset($_POST["agreeToRules"])) {
 
@@ -35,7 +35,7 @@ public function participate() {
 
             $data = [
                 'user_id' => $userId,
-                'rando_id' => $randoId
+                'rando_id' => $id
             ];
             $subscriptionManager->add($data);
         }
