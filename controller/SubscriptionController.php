@@ -25,7 +25,7 @@ public function participate($id) {
     if(isset($_POST['submitParticipation']) && isset($_POST["agreeToRules"])) {
 
         $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+        $email = Session::getUser()->getEmail();
         $userId = Session::getUser()->getId();
 
         $subscriptionManager = new SubscriptionManager();
