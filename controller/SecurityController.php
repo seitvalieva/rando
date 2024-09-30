@@ -6,6 +6,8 @@ use App\ControllerInterface;
 use App\Session;
 use PDO;
 use Model\Managers\UserManager;
+use Model\Managers\RandoManager;
+use Model\Managers\ImageManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -239,6 +241,36 @@ class SecurityController extends AbstractController{
             "view" => VIEW_DIR."connection/setNewPasswordSuccess.html",
             "meta_description" => "Création de votre mot de passe"
         ];
+    }
+
+    // delete rando
+    public function deleteRando() {
+
+        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+        // echo $id; die();
+
+        $randoManager = new RandoManager();
+        $imageManager = new ImageManager();
+
+        $images = $imageManager->getImagesByRandoId($id);
+        
+        foreach($images as $image){
+            // var_dump($image); die();
+            $imageId = $image->getId();
+            $filename = $image->getFileName();
+            // echo $filename;die();
+            $filepath = 'uploads/'.$filename;
+            // echo $filepath;die();
+            if (file_exists($filepath)) {
+                unlink($filepath);
+            }
+            $imageManager->delete($imageId);
+        }
+         
+        $randoManager->delete($id);
+
+        $this->redirectTo("rando","index");
+
     }
 
     public function logout() {

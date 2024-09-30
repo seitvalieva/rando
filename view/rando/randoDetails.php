@@ -81,7 +81,7 @@ $imagesNames = $result["data"]['imagesNames']
                             <a href="index.php?ctrl=subscription&action=participateForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
                         <?php } else {?>
                             <a href="index.php?ctrl=subscription&action=modifyRando&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
-                            <a href="index.php?ctrl=subscription&action=deleteRando&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                            <a href="index.php?ctrl=security&action=deleteRando&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
                             <?php } ?>
                         </div>
                         <!-- ================== RANDO MAP ================== -->

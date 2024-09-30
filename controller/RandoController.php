@@ -164,17 +164,8 @@ class RandoController extends AbstractController implements ControllerInterface 
         } 
          
     }
-    // delete rando
-    public function deleteRando() {
 
-        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
-        
-        $randoManager = new RandoManager();
-        $randoManager->delete($id);
-
-        $this->redirectTo("rando","index");
-
-    }
+    
 
     
 }
