@@ -30,7 +30,7 @@ class RandoController extends AbstractController implements ControllerInterface 
     }
     
      // display details of a rando
-    public function randoDetails() {
+    public function randoDetails($id) {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
         // var_dump($id); die();

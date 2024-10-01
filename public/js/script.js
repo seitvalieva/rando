@@ -64,4 +64,12 @@ const executeCodes = () => {
 //executeCodes function will be called on webpage load
 window.addEventListener("load", executeCodes);
 
-// 
+// to CLOSE DELETE RANDO CONFIRMATION MODAL
+var modal = document.getElementById('deleteRando');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

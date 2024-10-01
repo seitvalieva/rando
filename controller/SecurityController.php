@@ -244,33 +244,47 @@ class SecurityController extends AbstractController{
     }
 
     // delete rando
+    public function deleteModal() {
+
+        return [
+            "view" => VIEW_DIR."connection/deleteModal.php",
+            "meta_description" => "Supprimer une rando"
+        ];
+    }
     public function deleteRando() {
+        $id = $_GET["id"];
+        if (isset($_POST['deleteConfirmation'])) {
+            
+            // echo $id; die();            
+            $randoManager = new RandoManager();
+            $imageManager = new ImageManager();
+    
+            $images = $imageManager->getImagesByRandoId($id);
+            if($images) {
 
-        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
-        // echo $id; die();
-
-        $randoManager = new RandoManager();
-        $imageManager = new ImageManager();
-
-        $images = $imageManager->getImagesByRandoId($id);
-        
-        foreach($images as $image){
-            // var_dump($image); die();
-            $imageId = $image->getId();
-            $filename = $image->getFileName();
-            // echo $filename;die();
-            $filepath = 'uploads/'.$filename;
-            // echo $filepath;die();
-            if (file_exists($filepath)) {
-                unlink($filepath);
+                foreach($images as $image){
+                    // var_dump($image); die();
+                    $imageId = $image->getId();
+                    $filename = $image->getFileName();
+                    // echo $filename;die();
+                    $filepath = 'uploads/'.$filename;
+                    // echo $filepath;die();
+                    if (file_exists($filepath)) {
+                        unlink($filepath);
+                    }
+                    $imageManager->delete($imageId);
+                }
+                 
+                $randoManager->delete($id);
             }
-            $imageManager->delete($imageId);
+            header("Location: index.php");
+            exit;
+            // $this->redirectTo("rando","index");
+    
+        } else {
+            header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
         }
-         
-        $randoManager->delete($id);
-
-        $this->redirectTo("rando","index");
-
+        
     }
 
     public function logout() {

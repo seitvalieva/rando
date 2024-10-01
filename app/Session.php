@@ -36,7 +36,7 @@ class Session{
 
     public static function isAdmin(){
         // be careful to define the "hasRole" method in the User entity according to the way roles are managed in the database
-        if(self::getUser()) {//&& self::getUser()->hasRole("ROLE_ADMIN")){
+        if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
             return true;
         }
         return false;
