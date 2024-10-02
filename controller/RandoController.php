@@ -166,11 +166,26 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
         } 
          
+    } 
+
+    public function modifyRando($id) {
+
+        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+        
+        if(isset($_GET['id'])) {
+
+        $randoManager = new RandoManager();
+        
+        return [
+            "view" => VIEW_DIR . "connection/modifyRandoForm.php",
+            "meta_description" => "Modifier la rando",
+            "data" => [
+                "rando" => $randoManager->getRandoById($id)
+            ]
+        ];
+        }
     }
-
-    
-
-    
+ 
 }
 
  

@@ -252,7 +252,9 @@ class SecurityController extends AbstractController{
         ];
     }
     public function deleteRando() {
-        $id = $_GET["id"];
+
+        $id = intval($_GET["id"]);
+
         if (isset($_POST['deleteConfirmation'])) {
             
             // echo $id; die();            
@@ -286,7 +288,7 @@ class SecurityController extends AbstractController{
         }
         
     }
-
+        
     public function logout() {
         session_unset();                        // Delete all session data
         // redirection after logging out
