@@ -65,19 +65,10 @@ class SubscriptionController extends AbstractController implements ControllerInt
 
     public function cancelParticipationModal($id) {
         
-        $userId = Session::getUser()->getId();
-
-        $subscriptionManager = new SubscriptionManager();
-        $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
-
-        if($isSubscribed) {
-            header("Location: index.php?ctrl=subscription&action=cancelParticipation&id=".$id); 
-            exit; 
-        } else {
-            Session::addFlash('error',"S'enregistrez pour participer");
-            header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id);
-            exit;
-        }
+        return [
+            "view" => VIEW_DIR."rando/cancelParticipation.php",
+            "meta_description" => "Annuler mon participation à la rando"
+        ];
     }
 
     public function cancelParticipation($id) {
