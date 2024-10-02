@@ -11,7 +11,20 @@ use Model\Managers\SubscriptionManager;
 
 class SubscriptionController extends AbstractController implements ControllerInterface {
 
+    public function participationCheck($id) {
 
+        $userId = Session::getUser()->getId();
+
+        $subscriptionManager = new SubscriptionManager();
+        $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
+
+        if($isSubscribed) {
+            die("Already subscribed!");
+        } else {
+            header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id); 
+            exit;
+        }
+    }
 
     public function participateForm() {
         
@@ -30,10 +43,10 @@ class SubscriptionController extends AbstractController implements ControllerInt
 
             $subscriptionManager = new SubscriptionManager();
             
-            $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+            $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
             // var_dump($user); die();
 
-            if($user) {
+            if($isSubscribed) {
                 die("Already subscribed!");
             }
 
@@ -48,6 +61,41 @@ class SubscriptionController extends AbstractController implements ControllerInt
             $this->redirectTo("rando","index");
         }
         
+    }
+
+    public function cancelParticipationModal($id) {
+        
+        $userId = Session::getUser()->getId();
+
+        $subscriptionManager = new SubscriptionManager();
+        $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
+
+        if($isSubscribed) {
+            header("Location: index.php?ctrl=subscription&action=cancelParticipation&id=".$id); 
+            exit; 
+        } else {
+            Session::addFlash('error',"S'enregistrez pour participer");
+            header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id);
+            exit;
+        }
+    }
+
+    public function cancelParticipation($id) {
+
+        if(isset($_POST['cancelParticipation'])) {
+            
+            $userId = Session::getUser()->getId();
+
+            $subscriptionManager = new SubscriptionManager();
+            $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
+            // var_dump($user);die();
+            if($isSubscribed) {
+                $subscriptionManager->deleteParticipation($userId, $id);
+
+                header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
+                exit;
+            }
+        }
     }
 
 }

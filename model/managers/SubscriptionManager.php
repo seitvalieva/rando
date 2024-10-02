@@ -27,4 +27,16 @@ class SubscriptionManager extends Manager{
             $this->className
         );
     }
+
+    public function deleteParticipation($userId, $id) {
+        $sql =  "DELETE  
+                FROM ".$this->tableName. "
+                WHERE user_id = :userId
+                AND rando_id =:id";
+
+            return $this->getSingleScalarResult(
+                DAO::select($sql, ['userId' => $userId, 'id' => $id]),
+                $this->className
+            );
+    }
 }

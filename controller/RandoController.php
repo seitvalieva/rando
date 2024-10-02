@@ -33,16 +33,19 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function randoDetails($id) {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+        $userId = Session::getUser()->getId();
         // var_dump($id); die();
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
+        $subscriptionManager = new SubscriptionManager();
 
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",
             "meta_description" => "Rando Details",
             "data" => [
                 "rando" => $randoManager->getRandoById($id),
-                "imagesNames" => $imageManager->getImagesByRandoId($id)
+                "imagesNames" => $imageManager->getImagesByRandoId($id),
+                "subscription" => $subscriptionManager->checkUserSubscribed($userId, $id)
             ]
         ];
     }

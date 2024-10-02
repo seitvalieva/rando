@@ -13,6 +13,6 @@
         <label for="agreeToRules">J'accepte de respecter les <a href="" style="color:blue;">consignes de rando <span class="required">*</span></a></label><br><br>
         
         <button type="submit" name="submitParticipation" style="width: 100%; height: 40px;">S'enregistrer</button><br><br>
-        <a href="http://www.url.com/yourpage.php">Annuler</a>
+        <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $_GET["id"] ?>">Annuler</a>
     </form>
 </div>
