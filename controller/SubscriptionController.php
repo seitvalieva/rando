@@ -11,7 +11,20 @@ use Model\Managers\SubscriptionManager;
 
 class SubscriptionController extends AbstractController implements ControllerInterface {
 
+    public function participationCheck($id) {
 
+        $userId = Session::getUser()->getId();
+
+        $subscriptionManager = new SubscriptionManager();
+        $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+
+        if($user) {
+            die("Already subscribed!");
+        } else {
+            header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id); 
+            exit;
+        }
+    }
 
     public function participateForm() {
         
@@ -48,6 +61,32 @@ class SubscriptionController extends AbstractController implements ControllerInt
             $this->redirectTo("rando","index");
         }
         
+    }
+
+    public function cancelParticipationModal() {
+        
+        return [
+            "view" => VIEW_DIR."rando/cancelParticipation.php",
+            "meta_description" => "Annuler ma participation à la rando"
+        ];
+    }
+
+    public function cancelParticipation($id) {
+
+        if(isset($_POST['cancelParticipation'])) {
+            
+            $userId = Session::getUser()->getId();
+
+            $subscriptionManager = new SubscriptionManager();
+            $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+            // var_dump($user);die();
+            if($user) {
+                $subscriptionManager->deleteParticipation($userId, $id);
+
+                header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
+                exit;
+            }
+        }
     }
 
 }
