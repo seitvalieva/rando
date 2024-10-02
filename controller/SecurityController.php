@@ -38,7 +38,7 @@ class SecurityController extends AbstractController{
                 if($username && $email && $password && $confirmPassword){
                     // var_dump("ok");die;
                     $userManager = new UserManager();
-                    //creation of the function checkUserExists in userManager to check if the user exists
+                    //function to check if the user with the same email exists
                     $user = $userManager->checkUserExists($email);
                     $usernameExists = $userManager->checkUsernameExists($username);
                     //if the user is connected
@@ -49,7 +49,7 @@ class SecurityController extends AbstractController{
                     } else {
                        
                         //inserting the user into the database
-                        if($password == $confirmPassword && strlen($password) >= 8) {//verification that passwords are identique
+                        if($password == $confirmPassword && strlen($password) >= 12) {//verification that passwords are identical
                             //we retrieve the add function from the Manager file
                             $userManager->add([ 
                                 "username" => $username,
