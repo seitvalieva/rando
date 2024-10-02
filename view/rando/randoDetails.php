@@ -16,9 +16,7 @@ $isSubscribed = $result["data"]['subscription'];
             </section>
             <!-- ================== RANDO DETAILS section ================== -->
             <section class="main__rando-info-container">
-           
                 <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
-            
                 <p class="main__rando-subtitle"><?= $rando->getSubtitle() ?></p>
                 
                 <div class="main__rando-info">
@@ -88,7 +86,7 @@ $isSubscribed = $result["data"]['subscription'];
                         <?php } else {?>
                             <a href="index.php?ctrl=subscription&action=modifyRando&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                             <a href="index.php?ctrl=security&action=deleteModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
-                            <?php } ?>
+                        <?php } ?>
                         </div>
                         <!-- ================== RANDO MAP ================== -->
                         <div class="main_rando-map-card">
