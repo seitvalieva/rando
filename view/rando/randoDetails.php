@@ -1,7 +1,9 @@
 <?php
 $rando = $result["data"]['rando'];
 
-$imagesNames = $result["data"]['imagesNames']
+$imagesNames = $result["data"]['imagesNames'];
+
+$isSubscribed = $result["data"]['subscription'];
 
 ?>
 <div class="main__container">
@@ -14,7 +16,9 @@ $imagesNames = $result["data"]['imagesNames']
             </section>
             <!-- ================== RANDO DETAILS section ================== -->
             <section class="main__rando-info-container">
+           
                 <h1 class="main__rando-title"><?= $rando->getTitle() ?></h1>
+            
                 <p class="main__rando-subtitle"><?= $rando->getSubtitle() ?></p>
                 
                 <div class="main__rando-info">
@@ -76,8 +80,11 @@ $imagesNames = $result["data"]['imagesNames']
                         </div>
                         <div class="main__rando-info-aside-btn">
                         <?php if(App\Session::getUser() != $rando->getUser()){ ?>
-                            <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
-                            <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
+                            <?php if(!$isSubscribed){ ?>
+                                <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                            <?php } else {?>
+                                <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
+                            <?php } ?>
                         <?php } else {?>
                             <a href="index.php?ctrl=subscription&action=modifyRando&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                             <a href="index.php?ctrl=security&action=deleteModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>

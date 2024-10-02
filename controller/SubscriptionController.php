@@ -16,9 +16,9 @@ class SubscriptionController extends AbstractController implements ControllerInt
         $userId = Session::getUser()->getId();
 
         $subscriptionManager = new SubscriptionManager();
-        $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+        $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
 
-        if($user) {
+        if($isSubscribed) {
             die("Already subscribed!");
         } else {
             header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id); 
@@ -43,10 +43,10 @@ class SubscriptionController extends AbstractController implements ControllerInt
 
             $subscriptionManager = new SubscriptionManager();
             
-            $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+            $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
             // var_dump($user); die();
 
-            if($user) {
+            if($isSubscribed) {
                 die("Already subscribed!");
             }
 
@@ -63,12 +63,21 @@ class SubscriptionController extends AbstractController implements ControllerInt
         
     }
 
-    public function cancelParticipationModal() {
+    public function cancelParticipationModal($id) {
         
-        return [
-            "view" => VIEW_DIR."rando/cancelParticipation.php",
-            "meta_description" => "Annuler ma participation à la rando"
-        ];
+        $userId = Session::getUser()->getId();
+
+        $subscriptionManager = new SubscriptionManager();
+        $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
+
+        if($isSubscribed) {
+            header("Location: index.php?ctrl=subscription&action=cancelParticipation&id=".$id); 
+            exit; 
+        } else {
+            Session::addFlash('error',"S'enregistrez pour participer");
+            header("Location: index.php?ctrl=subscription&action=participateForm&id=".$id);
+            exit;
+        }
     }
 
     public function cancelParticipation($id) {
@@ -78,9 +87,9 @@ class SubscriptionController extends AbstractController implements ControllerInt
             $userId = Session::getUser()->getId();
 
             $subscriptionManager = new SubscriptionManager();
-            $user = $subscriptionManager->checkUserSubscribed($userId, $id);
+            $isSubscribed = $subscriptionManager->checkUserSubscribed($userId, $id);
             // var_dump($user);die();
-            if($user) {
+            if($isSubscribed) {
                 $subscriptionManager->deleteParticipation($userId, $id);
 
                 header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
