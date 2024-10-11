@@ -5,7 +5,7 @@ $rando = $result["data"]['rando'];
 <div class="main__container">
     <h1>Modifier la rando</h1>
 
-    <form action="index.php?ctrl=connection&action=modifyRando&id=<?= $_GET["id"] ?></form>" method="POST" enctype="multipart/form-data">
+    <form action="index.php?ctrl=rando&action=modifyRando&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
 
         <label for="randoTitle">Titre:<span class="required">*</span></label>
         <input type="text" name="randoTitle" id="randoTitle" value="<?= $rando->getTitle() ?>" minlength="10" maxlength="255" required><br>
@@ -39,6 +39,7 @@ $rando = $result["data"]['rando'];
         <label for="randoImages">Ajouter des images:</label><br><br>
         <input type="file" id="randoImages" name="image[]" multiple accept="image/*"><br><br>
 
-        <input type="submit" name="submitRando" value="Publier la rando">
+        <input type="submit" name="updateRando" value="Publier la rando">
     </form>
+    <div><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
 </div>

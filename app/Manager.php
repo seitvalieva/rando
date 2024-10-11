@@ -67,6 +67,34 @@ abstract class Manager{
             die();
         }
     }
+    // UPDATE
+    public function update($data, $id) {
+        // Extract the keys (column names) from the data array
+        $keys = array_keys($data);
+    
+        // Build the SET part of the query with named placeholders
+        $updateFields = [];
+        foreach ($keys as $key) {
+            $updateFields[] = "$key = :$key"; // Named placeholder
+        }
+    
+        // Prepare the SQL query for updating
+        $sql = "UPDATE " . $this->tableName . " 
+                SET " . implode(', ', $updateFields) . " 
+                WHERE id_" . $this->tableName . " = :id";
+    
+        // Add the id to the data array for the WHERE condition
+        $data['id'] = $id;
+    
+        try {
+            // Execute the update query with named placeholders
+            return DAO::update($sql, $data);  // $data contains all named parameters including 'id'
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+    // end UPDATE
     
     public function delete($id){
         $sql = "DELETE FROM ".$this->tableName."
