@@ -11,8 +11,8 @@ $rando = $result["data"]['rando'];
         <input type="text" name="randoTitle" id="randoTitle" value="<?= $rando->getTitle() ?>" minlength="10" maxlength="255" required><br>
 
         <label for="randoSubtitle">Introduction <span class="required">*</span></label><br>
-        <textarea id="randoSubtitle" name="randoSubtitle" value="<?= $rando->getSubtitle() ?>" rows="2" cols="70" minlength="10"
-            maxlength="255" required></textarea><br><br>
+        <textarea id="randoSubtitle" name="randoSubtitle" rows="2" cols="70" minlength="10"
+            maxlength="255" required><?= $rando->getSubtitle() ?></textarea><br><br>
 
         <label for="dateRando">Date et heure de la Rando <span class="required">*</span></label><br>
         <input type="date" id="dateRando" name="dateRando" value="<?= $rando->getDateRando() ?>" required>
@@ -20,8 +20,8 @@ $rando = $result["data"]['rando'];
         <input type="time" id="timeRando" name="timeRando" value="<?= $rando->getTimeRando() ?>"><br><br>
 
         <label for="durationDays">Durée :</label><br>
-        <input type="number" id="durationDays" name="durationDays" min="0" placeholder="jours" style="width: 70px;">
-        <input type="number" id="durationHours" name="durationHours" min="0" max="24" placeholder="heures" style="width: 70px;"><br><br>
+        <input type="number" id="durationDays" name="durationDays" min="0" value="<?= $rando->getDurationDays() ?>" style="width: 70px;">
+        <input type="number" id="durationHours" name="durationHours" min="0" max="24" value="<?= $rando->getDurationHours() ?>" style="width: 70px;"><br><br>
 
         <label for="distance">Distance (km) <span class="required">*</span></label><br>
         <input type="number" id="distance" name="distance" value="<?= $rando->getDistance() ?>" min="0" step="0.1" required><br>
@@ -33,8 +33,8 @@ $rando = $result["data"]['rando'];
         <input type="text" id="destination" name="destination" value="<?= $rando->getDestination() ?>" minlength="3" maxlength="255" required><br><br>
 
         <label for="description">Description <span class="required">*</span></label><br>
-        <textarea id="description" name="description" value="<?= $rando->getDescription() ?>" rows="15" cols="70"  minlength="20" maxlength="1500"
-            required></textarea><br><br>
+        <textarea id="description" name="description" rows="15" cols="70"  minlength="20" maxlength="1500"
+            required><?= $rando->getDescription() ?></textarea><br><br>
 
         <label for="randoImages">Ajouter des images:</label><br><br>
         <input type="file" id="randoImages" name="image[]" multiple accept="image/*"><br><br>

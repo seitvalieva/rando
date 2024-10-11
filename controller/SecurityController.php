@@ -19,7 +19,20 @@ class SecurityController extends AbstractController{
     public function register(){
             // check if POST method is submitted and the checkbox is checked
            if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
-            
+                // reCAPTCHA validation
+                $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // Replace with your secret key from reCAPTCHA
+                $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
+
+                // Verify the reCAPTCHA response with Google
+                $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
+                $response_keys = json_decode($response, true);
+        
+                // If the reCAPTCHA validation fails
+                if(intval($response_keys["success"]) !== 1) {
+                    Session::addFlash('error', "reCAPTCHA verification failed. Please try again.");
+                    header("Location: index.php?ctrl=security&action=register");
+                    exit;
+        }
                 //filtering registration form fields
                 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
@@ -131,6 +144,7 @@ class SecurityController extends AbstractController{
                 $user = $userManager->checkUserExists($email);
 
                 if($user) {
+                    
                     $userManager->addToken($email,$token_hash,$expiry);
 
                     $mail = require  __DIR__ . "/MailController.php";

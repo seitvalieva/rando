@@ -33,7 +33,7 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function randoDetails($id) {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
-        $userId = Session::getUser()->getId();
+        $userId = Session::getUser()->getId();          // to fix 
         // var_dump($id); die();
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
@@ -168,7 +168,7 @@ class RandoController extends AbstractController implements ControllerInterface 
          
     } 
 
-    public function modifyRando($id) {
+    public function modifyRandoForm($id) {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
         

@@ -16,6 +16,8 @@
             <input type="checkbox" id="agree" name="agree" value="agree" required>
             <label for="agree">J'accepte les <a href="" style="color:blue;">Conditions générales d’utilisation <span class="required">*</span></a></label><br><br>
             
+            <div class="g-recaptcha" data-sitekey="6Leyol0qAAAAAOeoQjkiHhvIolDmVTWJsdDZndyY"></div>
+            
             <button type="submit" name="submitRegister" style="width: 100%; height: 40px;">S'enregistrer</button><br><br>
             <div class="popup"><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
         </form>
