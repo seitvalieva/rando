@@ -33,7 +33,7 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function randoDetails($id) {
 
         $id = (isset($_GET["id"])) ? $_GET["id"] : null;
-        $userId = Session::getUser()->getId();
+        $userId = Session::getUser()->getId();          // to fix 
         // var_dump($id); die();
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
@@ -166,11 +166,105 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
         } 
          
+    } 
+
+    public function modifyRandoForm() {
+
+        $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+        
+        if(isset($_GET['id'])) {
+
+        $randoManager = new RandoManager();
+        
+        return [
+            "view" => VIEW_DIR . "connection/modifyRandoForm.php",
+            "meta_description" => "Modifier la rando",
+            "data" => [
+                "rando" => $randoManager->getRandoById($id)
+            ]
+        ];
+        }
     }
 
-    
+    public function modifyRando() {
 
-    
+        if(isset($_POST['updateRando'])) {
+
+            $id = intval($_GET['id']);
+            // echo $id; die();
+            $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
+            $randoSubtitle = filter_input(INPUT_POST, "randoSubtitle", FILTER_SANITIZE_SPECIAL_CHARS);
+            $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
+            $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
+            $userId = Session::getUser()->getId();
+
+            if($randoTitle) {
+                $randoManager = new RandoManager();
+
+                $data = [
+                    'title' =>$randoTitle,
+                    'subtitle'=>$randoSubtitle,
+                    'dateRando'=>$_POST['dateRando'],
+                    'timeRando'=> $_POST['timeRando'],
+                    'durationDays'=>$_POST['durationDays'],
+                    'durationHours'=>$_POST['durationHours'],
+                    'distance'=> $_POST['distance'],
+                    'departure'=>$departure,
+                    'destination'=>$destination,
+                    'description'=>$description,
+                    'user_id' => $userId
+                ];
+
+                $updatedRando = $randoManager->update($data, $id);
+                if ($updatedRando) {
+                    
+                    $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif', 'webp');     // array of allowed extensions for images
+
+                    foreach($_FILES['image']['tmp_name'] as $key => $value)  {
+                        $fileSize = $_FILES['image']['size'][$key];
+
+                        if ($fileSize > 1048576) {
+                            exit('Error: File too large (max 1MB)');
+                        }
+                        $filename = $_FILES['image']['name'][$key];
+                        $filename_tmp = $_FILES['image']['tmp_name'][$key];
+
+                        $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
+                        $fileName = '';
+                        if(in_array($extension, $extensionAllowed)) {
+
+                            if(!file_exists('uploads/'.$filename)) {
+                                move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+                                $fileName = $filename;
+                            } else {                                      // if a file with the same name is already exists in the uploads folder
+                                $filename = str_replace('.','-', basename($filename, $extension));
+                                //add current date and time to make the file name unique and protect personal info
+                                $newFilename = $filename.time().".".$extension;
+                                move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
+                                $fileName = $newFilename;
+                            }
+
+                            // add images info to the database 
+                            $imageManager = new ImageManager();
+                            $data = [
+                                'fileName' =>$fileName,
+                                'rando_id' => $id
+                            ];
+                            $imageManager->add($data);
+                            //update image name in the rando table
+                            $randoManager->addImage($fileName, $id);
+                        } else {
+                            //display error
+                        } 
+                    } // end foreach
+
+                }
+                $this->redirectTo("rando","index");
+            }
+        }
+    }
+ 
 }
 
  

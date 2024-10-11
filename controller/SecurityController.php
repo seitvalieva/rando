@@ -19,18 +19,36 @@ class SecurityController extends AbstractController{
     public function register(){
             // check if POST method is submitted and the checkbox is checked
            if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
-            
+                // reCAPTCHA validation
+                $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // Replace with your secret key from reCAPTCHA
+                $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
+
+                // Verify the reCAPTCHA response with Google
+                $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
+                $response_keys = json_decode($response, true);
+        
+                // If the reCAPTCHA validation fails
+                if(intval($response_keys["success"]) !== 1) {
+                    Session::addFlash('error', "reCAPTCHA verification failed. Please try again.");
+                    header("Location: index.php?ctrl=security&action=register");
+                    exit;
+                }
                 //filtering registration form fields
                 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+                if(!preg_match('/^[a-z]\w{2,23}[^_]$/i', $userName)) {
+                    Session::addFlash('error',"Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas");
+                    header("Location: index.php?ctrl=security&action=register");
+                    exit;
+                }
                 // checking password requirements
                 $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
                 if (! preg_match($pattern, $password)) {
                     Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 caractères");
-                    header("Location: index.php?ctrl=security&action=setNewPassword");
+                    header("Location: index.php?ctrl=security&action=register");
                     exit;
                     // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
                 }
@@ -131,6 +149,7 @@ class SecurityController extends AbstractController{
                 $user = $userManager->checkUserExists($email);
 
                 if($user) {
+                    
                     $userManager->addToken($email,$token_hash,$expiry);
 
                     $mail = require  __DIR__ . "/MailController.php";
@@ -252,7 +271,9 @@ class SecurityController extends AbstractController{
         ];
     }
     public function deleteRando() {
-        $id = $_GET["id"];
+
+        $id = intval($_GET["id"]);
+
         if (isset($_POST['deleteConfirmation'])) {
             
             // echo $id; die();            
@@ -286,7 +307,7 @@ class SecurityController extends AbstractController{
         }
         
     }
-
+        
     public function logout() {
         session_unset();                        // Delete all session data
         // redirection after logging out
