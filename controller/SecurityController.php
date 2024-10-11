@@ -47,7 +47,7 @@ class SecurityController extends AbstractController{
                 // checking password requirements
                 $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
                 if (! preg_match($pattern, $password)) {
-                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 caractères");
+                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 charactères");
                     header("Location: index.php?ctrl=security&action=register");
                     exit;
                     // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");

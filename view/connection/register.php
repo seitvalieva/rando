@@ -4,19 +4,26 @@
         <form action="index.php?ctrl=security&action=register" method="POST" autocomplete="off">
             <label for="username">Pseudo</label>
             <span class="tooltip-container"> *
-                <span class="tooltip-text">Enter a unique username, 6-12 characters long.</span>
+                <span class="tooltip-text">Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas.</span>
             </span>
-            <input type="text" name="username" id="username" minlength="3" maxlength="20" required><br>
-            <label for="username">Pseudo <span class="required">*</span></label>
-            <input type="text" name="username" id="username" minlength="4" maxlength="25" required><br>
+            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Pseudo" required><br>
     
-            <label for="email">Mail <span class="required">*</span></label>
-            <input type="email" name="email" id="email" required><br>
+            <label for="email">Email</label>
+            <span class="tooltip-container"> *
+                <span class="tooltip-text"></span>
+            </span>
+            <input type="email" name="email" placeholder="pseudo@gmail.com" id="email" required><br>
     
-            <label for="password">Mot de passe <span class="required">*</span></label>
+            <label for="password">Mot de passe</label>
+            <span class="tooltip-container"> *
+                <span class="tooltip-text">Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 charactères</span>
+            </span>
             <input type="password" name="password" id="password" required><br>
     
-            <label for="confirmPassword">Confirmation du mot de passe <span class="required">*</span></label>
+            <label for="confirmPassword">Confirmation du mot de passe </label>
+            <span class="tooltip-container"> *
+                <span class="tooltip-text">Les mots de passe doivent être identiques.</span>
+            </span>
             <input type="password" name="confirmPassword" id="confirmPassword" required><br><br>
 
             <input type="checkbox" id="agree" name="agree" value="agree" required>
