@@ -30,3 +30,41 @@ input[type="submit"]:hover {
 .tinymce-abs {
     width: 100% !important;
 }
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: red;
+}
+.tooltip-container .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the label */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+ /* Show tooltip text when hovering over tooltip container */
+ .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+/* Tooltip arrow */
+.tooltip-container .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}

@@ -1,7 +1,10 @@
     <div class="main__container">
         <h1>Créer un compte</h1>
         <form action="index.php?ctrl=security&action=register" method="POST" autocomplete="off">
-            <label for="username">Pseudo <span class="required">*</span></label>
+            <label for="username">Pseudo</label>
+            <span class="tooltip-container"> *
+                <span class="tooltip-text">Enter a unique username, 6-12 characters long.</span>
+            </span>
             <input type="text" name="username" id="username" minlength="3" maxlength="20" required><br>
     
             <label for="email">Mail <span class="required">*</span></label>
