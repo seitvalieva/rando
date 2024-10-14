@@ -38,16 +38,17 @@ class SecurityController extends AbstractController{
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+                //checks that username starts with letter, can contain only letters, numbers and underscore min 4 max 25 characters, doesn't end with underscore
                 if(!preg_match('/^[a-z]\w{2,23}[^_]$/i', $userName)) {
-                    Session::addFlash('error',"Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas");
+                    Session::addFlash('error',"Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas (min 4 max 25 charactères). 
+                                    Il doit commencer par une lettre et ne peut pas se terminer par un tiret du bas.");
                     header("Location: index.php?ctrl=security&action=register");
                     exit;
                 }
                 // checking password requirements
                 $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
                 if (! preg_match($pattern, $password)) {
-                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 charactères");
+                    Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un caractère spécial et comporter au moins 8 caractères");
                     header("Location: index.php?ctrl=security&action=register");
                     exit;
                     // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
@@ -237,7 +238,7 @@ class SecurityController extends AbstractController{
             }
             
             if ($_POST["newPassword"] !== $_POST["confirmNewPassword"]) {
-                Session::addFlash('error',"Le mots de passe ne sont pas identique");
+                Session::addFlash('error',"Les mots de passe ne sont pas identiques");
                 header("Location: index.php?ctrl=security&action=setNewPassword");
                 exit;
                 // die("Passwords must match");

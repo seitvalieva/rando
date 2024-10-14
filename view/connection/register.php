@@ -10,13 +10,13 @@
     
             <label for="email">Email</label>
             <span class="tooltip-container"> *
-                <span class="tooltip-text"></span>
+                <span class="tooltip-text">Les champs obligatoires</span>
             </span>
-            <input type="email" name="email" placeholder="pseudo@gmail.com" id="email" required><br>
+            <input type="email" name="email" placeholder="utilisateur@gmail.com" id="email" required><br>
     
             <label for="password">Mot de passe</label>
             <span class="tooltip-container"> *
-                <span class="tooltip-text">Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 charactères</span>
+                <span class="tooltip-text">Le mot de passe doit contenir au moins une lettre, un chiffre, un caractère spécial et comporter au moins 8 caractères</span>
             </span>
             <input type="password" name="password" id="password" required><br>
     
@@ -27,9 +27,12 @@
             <input type="password" name="confirmPassword" id="confirmPassword" required><br><br>
 
             <input type="checkbox" id="agree" name="agree" value="agree" required>
-            <label for="agree">J'accepte les <a href="" style="color:blue;">Conditions générales d’utilisation <span class="required">*</span></a></label><br><br>
+            <label for="agree">J'accepte les <a href="" style="color:blue;">Conditions générales d’utilisation</a></label>
+            <span class="tooltip-container"> *
+                <span class="tooltip-text">Les champs obligatoires.</span>
+            </span><br><br>
             
-            <div class="g-recaptcha" data-sitekey="6Leyol0qAAAAAOeoQjkiHhvIolDmVTWJsdDZndyY"></div>
+            <div class="g-recaptcha" data-sitekey="6Leyol0qAAAAAOeoQjkiHhvIolDmVTWJsdDZndyY"></div><br>
             
             <button type="submit" name="submitRegister" style="width: 100%; height: 40px;">S'enregistrer</button><br><br>
         </form>
