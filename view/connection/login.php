@@ -1,5 +1,5 @@
 <?php
-require "controller/GoogleSigninController.php";
+require "app/GoogleSignin.php";
 
 ?>
 <div class="main__container">
