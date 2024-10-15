@@ -26,7 +26,7 @@ class HomeController extends AbstractController implements ControllerInterface {
     public function newRando() {
 
         return [
-            "view" => VIEW_DIR."rando/newRando.html",
+            "view" => VIEW_DIR."rando/newRando.php",
             "meta_description" => "Nouvelle Rando"
         ];
     }
