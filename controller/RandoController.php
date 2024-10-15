@@ -26,7 +26,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             "data" => [
                 "randos" => $randos
             ]
-            ];
+        ];
     }
     
      // display details of a rando
@@ -41,8 +41,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             $subscription =  $subscriptionManager->checkUserSubscribed($userId, $id);
         } else {
             $subscription = null;
-        }
-        // var_dump($id); die();        
+        }       
 
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",

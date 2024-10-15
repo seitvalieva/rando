@@ -82,7 +82,6 @@ if(App\Session::getUser()) {
                         <div class="main__rando-info-aside-btn">
 
                         <?php if(App\Session::getUser()) {
-
                             if(App\Session::getUser() != $rando->getUser()){ ?>
                                 <?php if(!$isSubscribed){ ?>
                                     <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
@@ -93,6 +92,8 @@ if(App\Session::getUser()) {
                                 <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                                 <a href="index.php?ctrl=security&action=deleteModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
                             <?php } ?>
+                        <?php } else {?> 
+                            <a href="index.php?ctrl=security&action=login" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
                         <?php } ?>
                         </div>
                         <!-- ================== RANDO MAP ================== -->
