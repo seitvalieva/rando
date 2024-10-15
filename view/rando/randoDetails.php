@@ -13,7 +13,7 @@ $lastRandos = $result["data"]['lastRandos'];
             <!-- ================== SEARCH FIELD section ================== -->
             <section class="main__search-form-container">
                 <form class="main__search-form" action="index.php?ctrl=rando&action=searchRando" method="POST">
-                    <input type="search"  name="keyword" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
+                    <input type="search"  name="keyword" placeholder="Recherchez par une ville où un lieu à visiter" minlength="3" maxlength="20">
                     <button type="submit" name="submitSearch"><img src="<?= PUBLIC_DIR ?>/assets/search.svg" alt="Recherche"></button>
                 </form>
             </section>
@@ -37,7 +37,7 @@ $lastRandos = $result["data"]['lastRandos'];
                             <?php endforeach ?>   
                             <?php } else {?>
                                 <div class="slide fade">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="" style="width: 100%;">
+                                    <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt" style="width: 100%;">
                                 </div>
                             <?php } ?>              
                             <!-- Next and previous buttons -->

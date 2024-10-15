@@ -16,7 +16,7 @@ $randos = $result["data"]['randos'];
                         <img class="main__card-img" src="uploads/<?= $rando->getImage() ?>" alt="Les deux Donons"
                             title="Les deux Donons">
                         <?php } else {?>
-                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="">
+                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt">
                         <?php } ?>
                     </a>
                     <div class="main__card-details">
