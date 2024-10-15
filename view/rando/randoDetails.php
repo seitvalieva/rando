@@ -6,7 +6,7 @@ $imagesNames = $result["data"]['imagesNames'];
 if(App\Session::getUser()) {
     $isSubscribed = $result["data"]['subscription'];
 }
-
+$lastRandos = $result["data"]['lastRandos'];
 
 ?>
 <div class="main__container">
@@ -128,9 +128,7 @@ if(App\Session::getUser()) {
                             cursus, tempor magna eu, pharetra ligula. Curabitur ullamcorper mauris a nulla tincidunt congue.
                             Duis et eleifend velit, efficitur hendrerit nisi. Maecenas ut molestie metus.</p>
                     </div>
-                </article>
-                <!-- <img src="uploads/logo-compass.jpg" alt="">  -->
-                
+                </article>                
             </section>
 
             <!-- ================== LES DERNIERES RANDOS section ================== -->
@@ -140,31 +138,41 @@ if(App\Session::getUser()) {
                     <p class="main__cards-container-arrow"><a href="index.php?ctrl=rando&action=index">Voir tous ➔</a></p>
                 </div>
                 <div class="main__cards">
+                <?php foreach($lastRandos as $lastRando ){?>
                     <div class="main__card">
-                        <a href="" target="_blank">
-                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Les deux Donons"
+                        <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
+                        <?php if(!empty($lastRando->getImage())) {?>
+                            <img class="main__card-img" src="uploads/<?= $lastRando->getImage() ?>" alt="Les deux Donons"
                                 title="Les deux Donons">
+                        <?php } else {?>
+                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt">
+                        <?php } ?>
                         </a>
                         <div class="main__card-details">
-                            <h3 class="main__card-title"><a href="" target="_blank">Les deux Donons</a></h3>
+                            <h3 class="main__card-title">
+                                <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $lastRando->getId() ?>" target="_blank">
+                                    <?= $lastRando->getTitle() ?>
+                                </a>
+                            </h3>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                                <span>13 juin 2024</span>
+                                <span><?= $lastRando->getDateRando() ?></span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
-                                <span>11.25 km</span>
+                                <span><?= $lastRando->getDistance() ?> km</span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
-                                <span>Schirmek</span>
+                                <span><?= $lastRando->getDeparture() ?></span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                                <span>Temple Donon</span>
+                                <span><?= $lastRando->getDestination() ?></span>
                             </p>
                         </div>
                     </div>
+                <?php } ?>
                 </div>
             </section>
         </div>

@@ -36,6 +36,9 @@ class RandoController extends AbstractController implements ControllerInterface 
         $randoManager = new RandoManager();
         $imageManager = new ImageManager();
         $subscriptionManager = new SubscriptionManager();
+
+        $lastRandos = $randoManager->findAll(["dateRando", "DESC"], 3);
+
         if(Session::getUser()) {
             $userId = Session::getUser()->getId(); 
             $subscription =  $subscriptionManager->checkUserSubscribed($userId, $id);
@@ -49,7 +52,8 @@ class RandoController extends AbstractController implements ControllerInterface 
             "data" => [
                 "rando" => $randoManager->getRandoById($id),
                 "imagesNames" => $imageManager->getImagesByRandoId($id),
-                "subscription" => $subscription
+                "subscription" => $subscription,
+                "lastRandos" => $lastRandos
             ]
         ];
     }

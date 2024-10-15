@@ -29,8 +29,7 @@
             <p class="main__cards-container-arrow"><a href="index.php?ctrl=rando&action=index">Voir tous ➔</a></p>
         </div>
         <div class="main__cards">
-            <?php
-                foreach($randos as $rando ){?>
+            <?php foreach($randos as $rando ){?>
             <div class="main__card">
                 <!-- target="_blank" -->
                 <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" >
