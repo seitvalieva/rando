@@ -152,7 +152,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                 Session::addFlash('error',"La distance est obligatoire.");
                 header("Location: index.php?ctrl=home&action=newRando");
                 exit;
-            } elseif(!is_numeric($_POST['distance']) || $_POST['distance'] < 0) {
+            } elseif(!is_numeric($_POST['distance']) || $_POST['distance'] < 1) {
                 Session::addFlash('error',"La distance est invalide.");
                 header("Location: index.php?ctrl=home&action=newRando");
                 exit;
@@ -179,6 +179,11 @@ class RandoController extends AbstractController implements ControllerInterface 
                 exit;
             } else {
                 $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
+                if($destination === $departure) {
+                    Session::addFlash('error',"Le point d'arrivée et le point de départ ne peuvent pas être identiques.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
                 if (strlen($destination) < 3 || strlen($destination) > 255) {
                     Session::addFlash('error',"Le point d'arrivée doit comporter entre 3 et 255 caractères.");
                     header("Location: index.php?ctrl=home&action=newRando");
@@ -200,7 +205,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
             $userId = Session::getUser()->getId();
 
-            if($randoTitle){
+            if($randoTitle && $randoSubtitle && $dateRando && $timeRando && $distance && $departure && $destination && $description){
                 $randoManager = new RandoManager();
 
                 $data = [
@@ -227,7 +232,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                 ];
                 $subscriptionManager->add($data);
 
-                if ($lastInsertRandoId) {
+                if (!empty($_FILES['image']['name'][0])) {
                     // echo "Last Inserted ID: " . $lastInsertRandoId; die();  // For debugging or logging
                     $extensionAllowed = array('jpeg', 'jpg', 'png', 'gif', 'webp');     // array of allowed extensions for images
 
@@ -250,7 +255,9 @@ class RandoController extends AbstractController implements ControllerInterface 
                             } else {                                      // if a file with the same name is already exists in the uploads folder
                                 $filename = str_replace('.','-', basename($filename, $extension));
                                 //add current date and time to make the file name unique and protect personal info
-                                $newFilename = $filename.time().".".$extension;
+                                // $newFilename = $filename.time().".".$extension;
+                                $token = bin2hex(random_bytes(8));
+                                $newFilename = $filename.$token.".".$extension;
                                 move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
                                 $fileName = $newFilename;
                             }

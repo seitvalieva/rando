@@ -38,7 +38,7 @@
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>
-        <input type="number" id="distance" name="distance" min="0" step="0.1" required><br>
+        <input type="number" id="distance" name="distance" min="1" step="0.5" required><br>
 
         <label for="departure">Point de départ</label>
         <span class="tooltip-container"> *
