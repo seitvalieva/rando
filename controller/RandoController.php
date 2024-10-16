@@ -62,9 +62,82 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function addNewRando() {
         
         if(isset($_POST['submitRando'])){
+            // Validate Title
+            if (empty($_POST['randoTitle'])) {
+                Session::addFlash('error',"Le titre est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
+                if(strlen($randoTitle) < 10 || strlen($randoTitle) > 255) {
+                    Session::addFlash('error',"Le titre doit comporter entre 10 et 255 caractères.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
+            } 
+            // Validate subtitle
+            if (empty($_POST['randoSubtitle'])) {
+                Session::addFlash('error',"L'introduction est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $randoSubtitle = filter_input(INPUT_POST, "randoSubtitle", FILTER_SANITIZE_SPECIAL_CHARS);
+                if (strlen($randoSubtitle) < 10 || strlen($randoSubtitle) > 255) {
+                    Session::addFlash('error',"L'introduction doit comporter entre 10 et 255 caractères.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                } 
+            }
+            // Validate Date
+            if (empty($_POST['dateRando'])) {
+                Session::addFlash('error',"La date est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $dateRando = $_POST['dateRando'];
+                $dateValid = \DateTime::createFromFormat('Y-m-d', $dateRando);
+                if (!$dateValid || $dateValid->format('Y-m-d') !== $dateRando) {
+                    Session::addFlash('error',"La date est invalide.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                } 
+            }
+            // Validate Time
+            if (empty($_POST['timeRando'])) {
+                Session::addFlash('error',"L'heure est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $timeRando = $_POST['timeRando'];
+                if (!preg_match("/^(2[0-3]|[01][0-9]):([0-5][0-9])$/", $timeRando)) {
+                    Session::addFlash('error',"L'heure est invalide.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
+            }
+            // Validate Duration (Days and Hours)
+            if (empty($_POST['durationDays']) && empty($_POST['durationHours'])) {
+                Session::addFlash('error',"La durée en jours ou en heures est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            }
+            if (!empty($_POST['durationDays']) && (!is_numeric($_POST['durationDays']) || $_POST['durationDays'] < 1)) {
+                Session::addFlash('error',"La durée en jours est invalide.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $durationDays = $_POST['durationDays'];
+            }
+            if (!empty($_POST['durationHours']) && (!is_numeric($_POST['durationHours']) || $_POST['durationHours'] < 0 )) {
+                Session::addFlash('error',"La durée en heures est invalide.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            }else {
+                $durationHours = $_POST['durationHours'];
+            }
+            
+            
 
-            $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
-            $randoSubtitle = filter_input(INPUT_POST, "randoSubtitle", FILTER_SANITIZE_SPECIAL_CHARS);
             $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
             $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);

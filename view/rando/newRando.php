@@ -1,6 +1,9 @@
 <div class="main__container">
     <h1>Proposer une rando</h1>
-
+    <div><span style="color: red">
+        <?= App\Session::getFlash("error") ?></span>
+    </div>
+        
     <form action="index.php?ctrl=rando&action=addNewRando" method="POST" enctype="multipart/form-data">
 
         <label for="randoTitle">Titre</label>
@@ -57,7 +60,7 @@
         </span><br>
         <textarea id="description" name="description" rows="15" cols="70"
             placeholder="Desription détaillée...(max 1500 charactères)" minlength="20" maxlength="1500"
-            required><?= $_POST['randoSubtitle'] ?? '' ?></textarea><br><br>
+            required><?= $_POST['description'] ?? '' ?></textarea><br><br>
 
         <label for="randoImages">Ajouter des images</label><br><br>
         <input type="file" id="randoImages" name="image[]" multiple accept="image/*"><br><br>
