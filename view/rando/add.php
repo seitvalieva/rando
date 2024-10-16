@@ -1,5 +1,7 @@
-<?= $_POST['randoSubtitle'] ?? '' ?>
-<?= $_POST['description'] ?? '' ?>
+
+    <!-- <?= $_POST['randoSubtitle'] ?? '' ?> -->
+<!-- <?= $_POST['description'] ?? '' ?> -->
+<?php
 public function addNewRando() {
         // $errors = [];
         if(isset($_POST['submitRando'])){

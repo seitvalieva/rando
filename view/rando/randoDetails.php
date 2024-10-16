@@ -56,7 +56,8 @@ $lastRandos = $result["data"]['lastRandos'];
                                 </p>
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/duration.svg" alt="Calendrier" title="Calendrier">
-                                    <span><b>Durée estimée : </b> jours&thinsp;h&nbsp; </span>
+                                    <span><b>Durée estimée :</b> <?= $rando->getDurationDays() ?>jours</span>
+                                    <span><?= $rando->getDurationHours() ?>h</span>
                                 </p>
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">

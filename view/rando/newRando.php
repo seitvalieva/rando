@@ -15,19 +15,21 @@
         </span><br>
         <textarea id="randoSubtitle" name="randoSubtitle" rows="2" cols="70"
             placeholder="Écrivez un paragraphe accrocheur..(max 255 charactères)" minlength="10" maxlength="255"
-            required></textarea><br><br>
+            required><?= $_POST['randoSubtitle'] ?? '' ?></textarea><br><br>
 
         <label for="dateRando">Date et heure de la Rando</label>
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>
         <input type="date" id="dateRando" name="dateRando" required>
-        <input type="time" id="timeRando" name="timeRando"><br><br>
+        <input type="time" id="timeRando" name="timeRando" required><br><br>
 
         <label for="durationDays">Durée</label><br>
-        <input type="number" id="durationDays" name="durationDays" min="0" placeholder="jours" style="width: 70px;">
-        <input type="number" id="durationHours" name="durationHours" min="0" max="24" placeholder="heures"
-            style="width: 70px;"><br><br>
+        <input type="number" id="durationDays" name="durationDays" min="1" placeholder="1" style="width: 70px;">
+        <span>jours</span>
+        <input type="number" id="durationHours" name="durationHours" min="1" step="0.5" placeholder="1"
+            style="width: 70px;">
+            <span>heures</span><br><br>
 
         <label for="distance">Distance (km)</label>
         <span class="tooltip-container"> *
@@ -55,7 +57,7 @@
         </span><br>
         <textarea id="description" name="description" rows="15" cols="70"
             placeholder="Desription détaillée...(max 1500 charactères)" minlength="20" maxlength="1500"
-            required></textarea><br><br>
+            required><?= $_POST['randoSubtitle'] ?? '' ?></textarea><br><br>
 
         <label for="randoImages">Ajouter des images</label><br><br>
         <input type="file" id="randoImages" name="image[]" multiple accept="image/*"><br><br>

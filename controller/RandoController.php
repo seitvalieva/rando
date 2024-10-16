@@ -78,7 +78,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                     'subtitle'=>$randoSubtitle,
                     'dateRando'=>$_POST['dateRando'],
                     'timeRando'=> $_POST['timeRando'],
-                    'durationDays'=>$_POST['durationDays'],
+                    // 'durationDays'=>$_POST['durationDays'],
                     'durationHours'=>$_POST['durationHours'],
                     'distance'=> $_POST['distance'],
                     'departure'=>$departure,
