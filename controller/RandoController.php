@@ -120,27 +120,84 @@ class RandoController extends AbstractController implements ControllerInterface 
                 Session::addFlash('error',"La durée en jours ou en heures est obligatoire.");
                 header("Location: index.php?ctrl=home&action=newRando");
                 exit;
+            } 
+            if (!empty($_POST['durationDays'])) {
+                // $durationDays = $_POST['durationDays'];
+                
+                if(!is_numeric($_POST['durationDays']) || $_POST['durationDays'] < 1) {
+                    Session::addFlash('error',"La durée en jours est invalide.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }  else {
+                    $durationDays = $_POST['durationDays'];
+                }
+            } else {
+                $durationDays = null;
             }
-            if (!empty($_POST['durationDays']) && (!is_numeric($_POST['durationDays']) || $_POST['durationDays'] < 1)) {
-                Session::addFlash('error',"La durée en jours est invalide.");
+            if(!empty($_POST['durationHours'])) {
+                // $durationHours = $_POST['durationHours'];
+                
+                if(!is_numeric($_POST['durationHours']) || $_POST['durationHours'] < 0 ) {
+                    Session::addFlash('error',"La durée en heures est invalide.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                } else {
+                    $durationHours = $_POST['durationHours'];
+                }
+            } else {
+                $durationHours = null;
+            }
+            // Validate Distance
+            if (empty($_POST['distance'])) {
+                Session::addFlash('error',"La distance est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } elseif(!is_numeric($_POST['distance']) || $_POST['distance'] < 0) {
+                Session::addFlash('error',"La distance est invalide.");
                 header("Location: index.php?ctrl=home&action=newRando");
                 exit;
             } else {
-                $durationDays = $_POST['durationDays'];
+                $distance = $_POST['distance'];
             }
-            if (!empty($_POST['durationHours']) && (!is_numeric($_POST['durationHours']) || $_POST['durationHours'] < 0 )) {
-                Session::addFlash('error',"La durée en heures est invalide.");
+            // Validate Departure
+            if (empty($_POST['departure'])) {
+                Session::addFlash('error',"Le point de départ est obligatoire.");
                 header("Location: index.php?ctrl=home&action=newRando");
                 exit;
-            }else {
-                $durationHours = $_POST['durationHours'];
+            } else {
+                $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
+                if (strlen($departure) < 5 || strlen($departure) > 255) {
+                    Session::addFlash('error',"Le point de départ doit comporter entre 5 et 255 caractères.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
             }
-            
-            
-
-            $departure = filter_input(INPUT_POST, "departure", FILTER_SANITIZE_SPECIAL_CHARS);
-            $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
-            $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
+            // Validate Destination
+            if (empty($_POST['destination'])) {
+                Session::addFlash('error',"Le point d'arrivée est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $destination = filter_input(INPUT_POST, "destination", FILTER_SANITIZE_SPECIAL_CHARS);
+                if (strlen($destination) < 3 || strlen($destination) > 255) {
+                    Session::addFlash('error',"Le point d'arrivée doit comporter entre 3 et 255 caractères.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
+            }
+            // Validate Description
+            if (empty($_POST['description'])){
+                Session::addFlash('error',"La description est obligatoire.");
+                header("Location: index.php?ctrl=home&action=newRando");
+                exit;
+            } else {
+                $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
+                if (strlen($description) < 20 || strlen($description) > 1500) {
+                    Session::addFlash('error',"La description doit comporter entre 20 et 1500 caractères.");
+                    header("Location: index.php?ctrl=home&action=newRando");
+                    exit;
+                }
+            }
             $userId = Session::getUser()->getId();
 
             if($randoTitle){
@@ -149,11 +206,11 @@ class RandoController extends AbstractController implements ControllerInterface 
                 $data = [
                     'title' =>$randoTitle,
                     'subtitle'=>$randoSubtitle,
-                    'dateRando'=>$_POST['dateRando'],
-                    'timeRando'=> $_POST['timeRando'],
-                    // 'durationDays'=>$_POST['durationDays'],
-                    'durationHours'=>$_POST['durationHours'],
-                    'distance'=> $_POST['distance'],
+                    'dateRando'=>$dateRando,
+                    'timeRando'=> $timeRando,
+                    'durationDays'=>$durationDays,
+                    'durationHours'=>$durationHours,
+                    'distance'=> $distance,
                     'departure'=>$departure,
                     'destination'=>$destination,
                     'description'=>$description,

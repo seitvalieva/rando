@@ -120,7 +120,7 @@ class SecurityController extends AbstractController{
                             Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
                             header("Location: index.php?ctrl=security&action=login");
                             exit;
-                            }
+                        }
                     } else {
                         // if User not found
                         Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");

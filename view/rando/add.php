@@ -64,11 +64,12 @@ public function addNewRando() {
             }
             if (!empty($_POST['durationHours']) && (!is_numeric($_POST['durationHours']) || $_POST['durationHours'] < 0 )) {
                 Session::addFlash('error',"La durée en heures est invalide.");
-                header("Location: index.php?ctrl=rando&action=addNewRando");
+                header("Location: index.php?ctrl=home&action=newRando");
                 exit;
             }else {
                 $durationHours = $_POST['durationHours'];
             }
+
             // Validate Distance
             if (empty($_POST['distance'])) {
                 Session::addFlash('error',"La distance est obligatoire.");

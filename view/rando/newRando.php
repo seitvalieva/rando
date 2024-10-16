@@ -28,9 +28,9 @@
         <input type="time" id="timeRando" name="timeRando" required><br><br>
 
         <label for="durationDays">Durée</label><br>
-        <input type="number" id="durationDays" name="durationDays" min="1" placeholder="1" style="width: 70px;">
+        <input type="number" id="durationDays" name="durationDays" step="1" placeholder="1" style="width: 70px;">
         <span>jours</span>
-        <input type="number" id="durationHours" name="durationHours" min="1" step="0.5" placeholder="1"
+        <input type="number" id="durationHours" name="durationHours" step="0.5" placeholder="1"
             style="width: 70px;">
             <span>heures</span><br><br>
 
