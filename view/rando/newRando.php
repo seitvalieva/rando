@@ -1,7 +1,9 @@
 <div class="main__container">
     <h1>Proposer une rando</h1>
     <div><span style="color: red">
-        <?= App\Session::getFlash("error") ?></span>
+        
+        <?= App\Session::getFlash("error") ?>
+        </span>
     </div>
         
     <form action="index.php?ctrl=rando&action=addNewRando" method="POST" enctype="multipart/form-data">
@@ -10,7 +12,8 @@
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span>
-        <input type="text" name="randoTitle" id="randoTitle" minlength="10" maxlength="255" required><br>
+        <?php $title = isset($_POST['randoTitle']) ? $_POST['randoTitle']: ''?>
+        <input type="text" name="randoTitle" id="randoTitle" value="<?php htmlspecialchars($title); ?>" minlength="10" maxlength="255" required><br>
 
         <label for="randoSubtitle">Introduction</label>
         <span class="tooltip-container"> *
@@ -44,7 +47,8 @@
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>
-        <input type="text" id="departure" name="departure" placeholder="Gare de Strasbourg.." minlength="5"
+        <?php $departure = isset($_POST['departure']) ? $_POST['departure']: ''?>
+        <input type="text" id="departure" name="departure" value="<?php htmlspecialchars($departure); ?>" placeholder="Gare de Strasbourg.." minlength="5"
             maxlength="255" required><br><br>
 
         <label for="destination">Point(s) d'arrivée</label>

@@ -60,13 +60,14 @@ class RandoController extends AbstractController implements ControllerInterface 
 
      // create une rando
     public function addNewRando() {
-        
+        $errors = [];
         if(isset($_POST['submitRando'])){
             // Validate Title
             if (empty($_POST['randoTitle'])) {
+                $errors['randoTitle'] = "Le titre est obligatoire." ;
                 Session::addFlash('error',"Le titre est obligatoire.");
-                header("Location: index.php?ctrl=home&action=newRando");
-                exit;
+                // header("Location: index.php?ctrl=home&action=newRando");
+                // exit;
             } else {
                 $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
                 if(strlen($randoTitle) < 10 || strlen($randoTitle) > 255) {
@@ -205,7 +206,8 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
             $userId = Session::getUser()->getId();
 
-            if($randoTitle && $randoSubtitle && $dateRando && $timeRando && $distance && $departure && $destination && $description){
+            // if($randoTitle && $randoSubtitle && $dateRando && $timeRando && $distance && $departure && $destination && $description)
+            if(empty($errors)) {
                 $randoManager = new RandoManager();
 
                 $data = [
@@ -274,10 +276,21 @@ class RandoController extends AbstractController implements ControllerInterface 
                         } else {
                             //display error
                         } 
-                    } // end foreach
+                    } // end foreach [image]
 
-                }
+                } 
+                
+                // return [
+                //     "view" => VIEW_DIR."/rando/success.html",
+                        // "meta_description" => "add new rando success"
+                // ];
                 $this->redirectTo("rando","index");
+            } else {
+
+                return [
+                        "view" => VIEW_DIR."/rando/newRando.php",
+                        "meta_description" => "Nouvelle Rando"
+                    ];
             }
         }  
         //   
