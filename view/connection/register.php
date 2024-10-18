@@ -2,6 +2,8 @@
         <h1>Créer un compte</h1>
         <div class="msg"><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
         <form action="index.php?ctrl=security&action=register" method="POST" autocomplete="off">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
             <label for="username">Pseudo</label>
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas.</span>

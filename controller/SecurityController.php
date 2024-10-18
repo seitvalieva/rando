@@ -95,7 +95,15 @@ class SecurityController extends AbstractController{
     //  SETTING UP THE LOG IN FUNCTION
     public function login() {
 
-            if(isset($_POST["submitLogin"])) {
+            // if(isset($_POST["submitLogin"])) 
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // $tokenCSRF = $_POST['csrf_token'];
+                if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                    if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                         // If the CSRF token is invalid, stop the request
+                        die("Invalid CSRF token.");
+                    }
+                }
                 //PROTECTION XSS (=FILTRES)
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
