@@ -43,7 +43,8 @@ class SubscriptionManager extends Manager{
     public function findParticipationsByUser($userId) {
         $sql ="SELECT * 
                 FROM ".$this->tableName. " t
-                WHERE user_id = :userId";
+                INNER JOIN rando ON t.rando_id = rando.id_rando                
+                WHERE t.user_id = :userId"; 
 
         return $this->getMultipleResults(
         DAO::select($sql, ['userId' => $userId]),
