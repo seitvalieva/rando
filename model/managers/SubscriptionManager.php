@@ -39,4 +39,15 @@ class SubscriptionManager extends Manager{
                 $this->className
             );
     }
+
+    public function findParticipationsByUser($userId) {
+        $sql ="SELECT * 
+                FROM ".$this->tableName. " t
+                WHERE user_id = :userId";
+
+        return $this->getMultipleResults(
+        DAO::select($sql, ['userId' => $userId]),
+        $this->className
+        );
+    }
 }

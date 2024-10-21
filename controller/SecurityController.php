@@ -366,14 +366,16 @@ class SecurityController extends AbstractController{
         }
 
         $randoManager = new RandoManager();
-        $imageManager = new ImageManager();
+        $created_randos = $randoManager->findRandosByUser($userId);
         $subscriptionManager = new SubscriptionManager();
+        $participations = $subscriptionManager->findParticipationsByUser($userId);
 
         return [
             "view" => VIEW_DIR."connection/profile.php",
             "meta_description" => "Mon compte",
             "data" => [
                 "user" => $user,
+                "created_randos" => $created_randos, 
             ]
         ];
     }

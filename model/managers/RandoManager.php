@@ -17,12 +17,12 @@ class RandoManager extends Manager{
 
     public function getRandoById($id) {
 
-        $queryRando = "SELECT *
+        $sql = "SELECT *
         FROM ".$this->tableName."
         WHERE id_rando = :id";
 
         return $this->getOneOrNullResult(
-            DAO::select($queryRando, ['id' => $id], false),
+            DAO::select($sql, ['id' => $id], false),
             $this->className
         );
     }
@@ -51,6 +51,17 @@ class RandoManager extends Manager{
         return $this->getSingleScalarResult (
             DAO::select($sql, ['image' => $fileName, 'id' => $id]),            
             $this->className
+        );
+    }
+
+    public function findRandosByUser($userId) {
+        $sql ="SELECT * 
+                FROM ".$this->tableName. " t
+                WHERE user_id = :userId";
+
+        return $this->getMultipleResults(
+        DAO::select($sql, ['userId' => $userId]),
+        $this->className
         );
     }
 
