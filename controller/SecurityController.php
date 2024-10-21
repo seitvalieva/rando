@@ -17,16 +17,23 @@ class SecurityController extends AbstractController{
     // will contain the methods related to authentication: register, login and logout
     //setting up the REGISTER function
     public function register(){
-            // check if POST method is submitted and the checkbox is checked
-           if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
+            if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
                 // reCAPTCHA validation
                 $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // Replace with your secret key from reCAPTCHA
                 $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
-
+    
                 // Verify the reCAPTCHA response with Google
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
                 $response_keys = json_decode($response, true);
-        
+         
                 // If the reCAPTCHA validation fails
                 if(intval($response_keys["success"]) !== 1) {
                     Session::addFlash('error', "reCAPTCHA verification failed. Please try again.");
@@ -40,8 +47,7 @@ class SecurityController extends AbstractController{
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 //checks that username starts with letter, can contain only letters, numbers and underscore min 4 max 25 characters, doesn't end with underscore
                 if(!preg_match('/^[a-z]\w{2,23}[^_]$/i', $userName)) {
-                    Session::addFlash('error',"Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas (min 4 max 25 charactères). 
-                                    Il doit commencer par une lettre et ne peut pas se terminer par un tiret du bas.");
+                    Session::addFlash('error',"Le nom d'utilisateur n'est pas valid.");
                     header("Location: index.php?ctrl=security&action=register");
                     exit;
                 }
@@ -66,7 +72,7 @@ class SecurityController extends AbstractController{
                         header("Location: index.php?ctrl=security&action=register"); 
                         exit; 
                     } else {
-                       
+                        
                         //inserting the user into the database
                         if($password == $confirmPassword && strlen($password) >= 12) {//verification that passwords are identical
                             //we retrieve the add function from the Manager file
@@ -86,10 +92,12 @@ class SecurityController extends AbstractController{
                     }
                 }
             }
-             return [
-                "view" => VIEW_DIR."connection/register.php",
-                "meta_description" => "Formulaire d'inscription"
-            ];
+        }
+            // check if POST method is submitted and the checkbox is checked
+        return [
+            "view" => VIEW_DIR."connection/register.php",
+            "meta_description" => "Formulaire d'inscription"
+        ];
     }  
 
     //  SETTING UP THE LOG IN FUNCTION
@@ -146,7 +154,15 @@ class SecurityController extends AbstractController{
     // function sends a link with unique token to user's email to reset forgotten password when logging in
     public function sendForgottenPasswordReset() {
 
-        if(isset($_POST["submitReset"])) {
+        // if(isset($_POST["submitReset"])) 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
             $token_hash = hash("sha256", $token);
@@ -223,8 +239,16 @@ class SecurityController extends AbstractController{
 
     public function setNewPassword() {
 
-        if(isset($_POST["submitNewPassword"])) {
+        // if(isset($_POST["submitNewPassword"])) 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
             $token = $_POST["token"];
             $token_hash = hash("sha256", $token);
             $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
@@ -282,9 +306,15 @@ class SecurityController extends AbstractController{
     public function deleteRando() {
 
         $id = intval($_GET["id"]);
-
-        if (isset($_POST['deleteConfirmation'])) {
-            
+        // if (isset($_POST['deleteConfirmation'])) 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
             // echo $id; die();            
             $randoManager = new RandoManager();
             $imageManager = new ImageManager();

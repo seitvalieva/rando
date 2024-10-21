@@ -8,7 +8,7 @@
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas.</span>
             </span>
-            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Pseudo" required><br>
+            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Pseudo" ><br>
     
             <label for="email">Email</label>
             <span class="tooltip-container"> *

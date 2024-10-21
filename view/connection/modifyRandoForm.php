@@ -6,7 +6,8 @@ $rando = $result["data"]['rando'];
     <h1>Modifier la rando</h1>
 
     <form action="index.php?ctrl=rando&action=modifyRando&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+        <input type="hidden" name="csrf_token" value=<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
         <label for="randoTitle">Titre:<span class="required">*</span></label>
         <input type="text" name="randoTitle" id="randoTitle" value="<?= $rando->getTitle() ?>" minlength="10" maxlength="255" required><br>
 
