@@ -280,6 +280,47 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
         }
     }
+
+    public function myRandosList() {
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $userManager = new UserManager();
+            $user = $userManager->findOneById($userId);
+        } else {
+            header("Location: index.php?ctrl=security&action=login");
+        }
+        $randoManager = new RandoManager();
+        $created_randos = $randoManager->findRandosByUser($userId);
+
+        return [
+            "view" => VIEW_DIR."rando/myRandosList.php",
+            "meta_description" => "Mon compte",
+            "data" => [
+                "user" => $user,
+                "created_randos" => $created_randos, 
+            ]
+        ];
+    }
+    public function myParticipationsList() {
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $userManager = new UserManager();
+            $user = $userManager->findOneById($userId);
+        } else {
+            header("Location: index.php?ctrl=security&action=login");
+        }
+        $subscriptionManager = new SubscriptionManager();
+        $participations = $subscriptionManager->findParticipationsByUser($userId);
+   
+        return [
+            "view" => VIEW_DIR."rando/myParticipationsList.php",
+            "meta_description" => "Mon compte",
+            "data" => [
+
+                "participations" => $participations
+            ]
+        ];
+    }
  
 }
 
