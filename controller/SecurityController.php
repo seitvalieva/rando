@@ -8,6 +8,7 @@ use PDO;
 use Model\Managers\UserManager;
 use Model\Managers\RandoManager;
 use Model\Managers\ImageManager;
+use Model\Managers\SubscriptionManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -354,7 +355,28 @@ class SecurityController extends AbstractController{
         exit;
     }
 
+    public function profile() {
+        
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $userManager = new UserManager();
+            $user = $userManager->findOneById($userId);
+        } else {
+            header("Location: index.php?ctrl=security&action=login");
+        }
 
+        $randoManager = new RandoManager();
+        $imageManager = new ImageManager();
+        $subscriptionManager = new SubscriptionManager();
+
+        return [
+            "view" => VIEW_DIR."connection/profile.php",
+            "meta_description" => "Mon compte",
+            "data" => [
+                "user" => $user,
+            ]
+        ];
+    }
     
 
 }
