@@ -196,7 +196,15 @@ class RandoController extends AbstractController implements ControllerInterface 
 
     public function modifyRando() {
 
-        if(isset($_POST['updateRando'])) {
+        // if(isset($_POST['updateRando'])) 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
 
             $id = intval($_GET['id']);
             // echo $id; die();

@@ -2,7 +2,8 @@
 <div class="main__container">
     <h1>Participer a une rando</h1>
     <form action="index.php?ctrl=subscription&action=participate&id=<?= $_GET["id"] ?>" method="POST">
-
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+        
         <label for="username">Nom et prénom <span class="required">*</span></label>
         <input type="text" name="username" id="username" minlength="3" maxlength="64" required><br><br>
 

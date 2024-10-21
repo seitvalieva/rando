@@ -1,11 +1,9 @@
 <div class="main__container">
     <h1>Créer votre nouveau mot de passe</h1>
     <form action="index.php?ctrl=security&action=setNewPassword" method="POST" autocomplete="off">
+        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
 
-        <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-
-        <!-- <label for="email">Email</label>
-        <input type="email" name="email" id="email" required><br><br> -->
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 
         <label for="newPassword">Nouveau mot de passe <span class="required">*</span></label>
         <input type="password" name="newPassword" id="newPassword" required><br>

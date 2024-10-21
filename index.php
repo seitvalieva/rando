@@ -16,6 +16,12 @@ Autoloader::register();
 session_start();                        // starts a session or retrieves the current session
 use App\Session as Session;             // we integrate the Session class which takes control of the messages in session
 
+//--------- CSRF TOKEN GENERATION ----------//
+if (empty($_SESSION['csrf_token'])) {
+    // Generate a random token if one does not exist in session
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 //---------HTTP REQUEST INTERCEPTED
 $ctrlname = DEFAULT_CTRL;               // we take the default controller example: index.php?ctrl=home
 if(isset($_GET['ctrl'])){

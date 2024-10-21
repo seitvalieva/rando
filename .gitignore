@@ -1,2 +1,3 @@
 controller/MailController.php
-model/managers/UserManager.php
+app/GoogleSignin.php
+redirect.php
