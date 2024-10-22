@@ -23,7 +23,8 @@ require "app/GoogleSignin.php";
                 <span class="tooltip-container"> *
                         <span class="tooltip-text">Les champs obligatoires</span>
                 </span>
-                <input type="email" name="email" id="email" placeholder="Entrez votre email" required><br>
+                <?php $email = isset($_POST['email']) ? $_POST['email']: ''?>
+                <input type="email" name="email" id="email" placeholder="Entrez votre email" value="<?= htmlspecialchars($email); ?>" required><br>
 
                 <label for="password">Mot de passe</label>
                 <span class="tooltip-container"> *

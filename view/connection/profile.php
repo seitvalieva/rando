@@ -1,9 +1,6 @@
 <?php
     $user = $result["data"]['user']; 
 
-    $created_randos = $result["data"]['created_randos'];
-
-    $participations = $result["data"]['participations'];
 ?>
 <div class="main__container">
     <h1>Mon compte</h1>

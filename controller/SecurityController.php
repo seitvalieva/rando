@@ -26,7 +26,7 @@ class SecurityController extends AbstractController{
                     die("Invalid CSRF token.");
                 }
             }
-            if (isset($_POST["submitRegister"]) && isset($_POST["agree"])) {
+            if (isset($_POST["agree"])) {
                 // reCAPTCHA validation
                 $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // Replace with your secret key from reCAPTCHA
                 $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
@@ -47,7 +47,7 @@ class SecurityController extends AbstractController{
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 //checks that username starts with letter, can contain only letters, numbers and underscore min 4 max 25 characters, doesn't end with underscore
-                if(!preg_match('/^[a-z]\w{2,23}[^_]$/i', $userName)) {
+                if(!preg_match('/^[a-z]\w{2,23}[^_]$/i', $username)) {
                     Session::addFlash('error',"Le nom d'utilisateur n'est pas valid.");
                     header("Location: index.php?ctrl=security&action=register");
                     exit;
@@ -135,14 +135,14 @@ class SecurityController extends AbstractController{
                         } else {
                         // in case of Email address or password error
                             Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
-                            header("Location: index.php?ctrl=security&action=login");
-                            exit;
+                            // header("Location: index.php?ctrl=security&action=login");
+                            // exit;
                             }
                     } else {
                         // if User not found
                         Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
-                        header("Location: index.php?ctrl=security&action=login");
-                        exit;
+                        // header("Location: index.php?ctrl=security&action=login");
+                        // exit;
                     }
                 }
             }
@@ -364,20 +364,12 @@ class SecurityController extends AbstractController{
         } else {
             header("Location: index.php?ctrl=security&action=login");
         }
-
-        $randoManager = new RandoManager();
-        $created_randos = $randoManager->findRandosByUser($userId);
-
-        $subscriptionManager = new SubscriptionManager();
-        $participations = $subscriptionManager->findParticipationsByUser($userId);
    
         return [
             "view" => VIEW_DIR."connection/profile.php",
             "meta_description" => "Mon compte",
             "data" => [
-                "user" => $user,
-                "created_randos" => $created_randos, 
-                "participations" => $participations, 
+                "user" => $user,  
             ]
         ];
     }
