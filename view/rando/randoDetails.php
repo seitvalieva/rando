@@ -89,17 +89,26 @@ $participants = $result["data"]['participants'];
 
                         <?php if(App\Session::getUser()) {
                             if(App\Session::getUser() != $rando->getUser()){ ?>
-                                <?php if(!$isSubscribed){ ?>
-                                    <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                                <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
+                                    <?php if(!$isSubscribed){ ?>
+                                        <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                                    <?php } else {?>
+                                        <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
+                                    <?php } ?>
                                 <?php } else {?>
-                                    <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
-                                <?php } ?>
+                                <p>Rando est déjà passée</p>
+                            <?php } ?>
                             <?php } else {?>
                                 <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                                 <a href="index.php?ctrl=security&action=deleteModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
                             <?php } ?>
                         <?php } else {?> 
-                            <a href="index.php?ctrl=security&action=login" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                            <!-- if user is not logged in -->
+                            <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?> 
+                                <a href="index.php?ctrl=security&action=login" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                            <?php } else {?>
+                                <p>Rando est déjà passée</p>
+                            <?php } ?>
                         <?php } ?>
                         </div>
                         <!-- ================== RANDO MAP ================== -->
