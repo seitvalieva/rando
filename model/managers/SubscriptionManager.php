@@ -51,4 +51,16 @@ class SubscriptionManager extends Manager{
         $this->className
         );
     }
+
+    public function findUsersSubscribed($id) {
+
+        $sql = "SELECT * 
+                FROM ".$this->tableName. "
+                WHERE rando_id = :id";
+
+        return $this->getMultipleResults(
+        DAO::select($sql, ['id' => $id]),
+        $this->className
+        );
+    }
 }

@@ -8,6 +8,8 @@ if(App\Session::getUser()) {
 }
 $lastRandos = $result["data"]['lastRandos'];
 
+$participants = $result["data"]['participants'];
+
 ?>
 <div class="main__container">
             <!-- ================== SEARCH FIELD section ================== -->
@@ -106,6 +108,18 @@ $lastRandos = $result["data"]['lastRandos'];
                             <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
                                 style="width: 456px; height: 270px;">
                         </div>
+                        <?php if(App\Session::getUser() == $rando->getUser()) { ?>
+                            <div>
+                                <h2>Liste des participants</h2>
+                                <?php if($participants) { ?>
+                                    <ul>
+                                    <?php foreach($participants as $participant) ?>
+                                        <li><?= $participant->getUser()->getUsername() ?></li>
+                                    </ul>
+
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
                     </aside>
                 </div>
                 <!-- ================== RANDO DESCRIPTION section ================== -->

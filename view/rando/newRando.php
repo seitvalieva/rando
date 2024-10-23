@@ -26,8 +26,8 @@
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>
-        <input type="date" id="dateRando" name="dateRando" required>
-        <input type="time" id="timeRando" name="timeRando" required><br><br>
+        <input type="date" id="dateRando" name="dateRando" min="<?= date('Y-m-d'); ?>" required>
+        <input type="time" id="timeRando" name="timeRando" min="<?= date('H:i'); ?>" required><br><br>
 
         <label for="durationDays">Durée :</label><br>
         <input type="number" id="durationDays" name="durationDays" min="1" step="1" placeholder="1" style="width: 70px;">
@@ -39,7 +39,7 @@
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>
-        <input type="number" id="distance" name="distance" min="0" step="0.1" required><br>
+        <input type="number" id="distance" name="distance" min="1" step="0.5" required><br>
 
         <label for="departure">Point de départ</label>
         <span class="tooltip-container"> *

@@ -44,7 +44,8 @@ class RandoController extends AbstractController implements ControllerInterface 
             $subscription =  $subscriptionManager->checkUserSubscribed($userId, $id);
         } else {
             $subscription = null;
-        }       
+        }   
+        $participants = $subscriptionManager->findUsersSubscribed($id); 
 
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",
@@ -53,7 +54,8 @@ class RandoController extends AbstractController implements ControllerInterface 
                 "rando" => $randoManager->getRandoById($id),
                 "imagesNames" => $imageManager->getImagesByRandoId($id),
                 "subscription" => $subscription,
-                "lastRandos" => $lastRandos
+                "lastRandos" => $lastRandos,
+                "participants" => $participants
             ]
         ];
     }
@@ -80,7 +82,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                     'timeRando'=> $_POST['timeRando'],
                     'durationDays'=>$_POST['durationDays'],
                     'durationHours'=>$_POST['durationHours'],
-                    'distance'=> $_POST['distance'],
+                    'distance'=> $_POST['distance'],        //min 1 step 0.5
                     'departure'=>$departure,
                     'destination'=>$destination,
                     'description'=>$description,
@@ -321,6 +323,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             ]
         ];
     }
+
  
 }
 
