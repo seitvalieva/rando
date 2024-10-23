@@ -373,14 +373,6 @@ class SecurityController extends AbstractController{
             ]
         ];
     }
-    public function deleteProfileConfirmation() {
-
-        return [
-            "view" => VIEW_DIR."connection/deleteProfileConfirmation.php",
-            "meta_description" => "Confirmation de la suppresion du compte",
-            
-        ];
-    }
 
     public function deleteProfile() {
 
@@ -408,7 +400,12 @@ class SecurityController extends AbstractController{
                     exit;
                 }
             }
-        }
+        } 
+        return [
+            "view" => VIEW_DIR."connection/deleteProfileConfirmation.php",
+            "meta_description" => "Confirmation de la suppresion du compte",
+            
+        ];
         
     }
     public function deleteProfileSuccess() {

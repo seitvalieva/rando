@@ -9,7 +9,7 @@
             <h1 class="main__cards-container-title">Les dernières randonnées</h1>
         </div>
         <div class="main__cards">
-            <?php
+            <?php if($randos) {
             foreach($randos as $rando ){
                 // var_dump($rando); ?>
                 <div class="main__card">
@@ -30,7 +30,7 @@
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
                             <span>
-                                <?= $rando->getDateRando() ?>
+                                <?= date('d-m-Y', strtotime($rando->getDateRando())) ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
@@ -53,6 +53,7 @@
                         </p>
                     </div>
                 </div>           
+            <?php } ?>
             <?php } ?>
         </div>
     </section>

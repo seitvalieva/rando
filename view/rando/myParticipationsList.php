@@ -6,7 +6,8 @@
 
         <h2>Mes participations aux randos</h2>
         <div class="main__cards">
-            <?php foreach($participations as $participation ){ ?>
+            <?php if($participations) {
+            foreach($participations as $participation ){ ?>
                 <div class="main__card">
                     <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $participation->getRando()->getId() ?>" target="_blank">
                         <?php if(!empty($participation->getRando()->getImage())) {?>
@@ -25,7 +26,7 @@
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
                             <span>
-                                <?= $participation->getRando()->getDateRando() ?>
+                                <?= date('d-m-Y', strtotime($participation->getRando()->getDateRando())) ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
@@ -48,6 +49,9 @@
                         </p>
                     </div>
                 </div>           
+            <?php } ?>
+            <?php } else {?>
+                <p>Vous ne vous êtes pas encore inscrit.e aux randos</p>
             <?php } ?>
         </div>
     

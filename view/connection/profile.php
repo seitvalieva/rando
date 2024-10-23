@@ -19,7 +19,7 @@
             <a href="index.php?ctrl=security&action=sendForgottenPasswordReset">Changer mot de passe</a><br><br>
         </div>
         <div>
-            <a href="index.php?ctrl=security&action=deleteProfileConfirmation" style="color: red">Supprimer mon compte</a><br><br>
+            <a href="index.php?ctrl=security&action=deleteProfile" style="color: red">Supprimer mon compte</a><br><br>
         </div>
         <div>
             <a href="index.php?ctrl=rando&action=myRandosList">Mes randos publiées</a><br><br>

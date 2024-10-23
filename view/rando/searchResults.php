@@ -28,7 +28,7 @@ $randos = $result["data"]['randos'];
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
                             <span>
-                                <?= $rando->getDateRando() ?>
+                                <?= date('d-m-Y', strtotime($rando->getDateRando())) ?>
                             </span>
                         </p>
                         <p class="main__card-detail">

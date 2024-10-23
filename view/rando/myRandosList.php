@@ -4,7 +4,8 @@
 <div class="main__container">
 <h2><a href="">Mes randos publiées</a></h2>
         <div class="main__cards">
-            <?php foreach($created_randos as $created_rando ){ ?>
+            <?php if($created_randos) {
+            foreach($created_randos as $created_rando ){ ?>
                 <div class="main__card">
                     <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $created_rando->getId() ?>" target="_blank">
                         <?php if(!empty($created_rando->getImage())) {?>
@@ -23,7 +24,7 @@
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
                             <span>
-                                <?= $created_rando->getDateRando() ?>
+                                <?= date('d-m-Y', strtotime($created_rando->getDateRando())) ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
@@ -46,6 +47,9 @@
                         </p>
                     </div>
                 </div>           
+            <?php } ?>
+            <?php } else {?>
+                <p>Vous n'avez aucune randonée publiée</p>
             <?php } ?>
         </div>
 </div>

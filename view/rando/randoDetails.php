@@ -52,7 +52,7 @@ $lastRandos = $result["data"]['lastRandos'];
                             <div class="main__card-details">
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                                    <span><b>Date : </b><?= $rando->getDateRando() ?></span>
+                                    <span><b>Date : </b><?= date('d-m-Y', strtotime($rando->getDateRando())) ?></span>
                                 </p>
                                 <p class="main__card-detail">
                                     <img src="<?= PUBLIC_DIR ?>/assets/duration.svg" alt="Calendrier" title="Calendrier">
@@ -142,7 +142,7 @@ $lastRandos = $result["data"]['lastRandos'];
                             </h3>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                                <span><?= $lastRando->getDateRando() ?></span>
+                                <span><?= date('d-m-Y', strtotime($lastRando->getDateRando())) ?></span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
