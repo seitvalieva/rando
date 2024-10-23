@@ -77,7 +77,11 @@ $lastRandos = $result["data"]['lastRandos'];
                     <aside class="main__rando-info-aside">
                         <div class="main__rando-author-info">
                             <div class="main__rando-author-info-img"><img src="<?= PUBLIC_DIR ?>/assets/person-hiking.svg" alt=""></div>
-                            <a ><?= $rando->getUser() ?></a>
+                            <?php if($rando->getUser()) { ?>
+                                <a ><?= $rando->getUser() ?></a>
+                            <?php } else {?>
+                                <p>utilisateur supprimé</p>
+                            <?php } ?>
                         </div>
                         <div class="main__rando-info-aside-btn">
 
@@ -109,24 +113,6 @@ $lastRandos = $result["data"]['lastRandos'];
                     <h2 class="main__rando-description-title">Description de la randonnée</h2>
                     <div class="main__rando-description-text">
                         <p><?= $rando->getDescription() ?></p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sodales eu turpis ac vulputate.
-                            Vivamus quis risus sit amet neque pellentesque tristique. Nulla rhoncus nulla iaculis tortor
-                            convallis, ac auctor arcu aliquet. Fusce commodo sapien eget risus euismod, tempus dignissim
-                            risus hendrerit. </p><br>
-                        <p>Sed vehicula enim est, eu tristique ligula malesuada non. Sed tempus, lorem ut tempor bibendum,
-                            lacus velit dictum dui, et sodales ipsum tortor ut lectus. Morbi vitae purus risus. Nulla
-                            dignissim faucibus egestas. Aliquam sagittis efficitur lorem. Integer lectus urna, ultrices sed
-                            eros sit amet, vestibulum mollis est.</p><br>
-                        <p>Vestibulum eget turpis dolor. Sed rhoncus tristique risus eget egestas. Quisque nec orci arcu.
-                            Pellentesque condimentum eleifend urna accumsan rutrum. Sed fermentum placerat diam, at porta
-                            lorem pulvinar quis. Nulla ullamcorper imperdiet tristique. </p><br>
-                        <p>Pellentesque dignissim urna a eleifend porttitor. Donec consequat orci eget semper malesuada. In
-                            eget leo nisl. Quisque id nulla vel dui viverra congue. Donec nisi magna, semper vel mattis sed,
-                            accumsan vel metus. Praesent velit ex, aliquet nec nulla eu, convallis blandit turpis. </p><br>
-                        <p>
-                            Duis sit amet nulla non libero pellentesque mattis hendrerit id velit. Morbi sit amet nisi
-                            cursus, tempor magna eu, pharetra ligula. Curabitur ullamcorper mauris a nulla tincidunt congue.
-                            Duis et eleifend velit, efficitur hendrerit nisi. Maecenas ut molestie metus.</p>
                     </div>
                 </article>                
             </section>

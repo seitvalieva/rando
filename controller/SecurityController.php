@@ -373,6 +373,51 @@ class SecurityController extends AbstractController{
             ]
         ];
     }
+    public function deleteProfileConfirmation() {
+
+        return [
+            "view" => VIEW_DIR."connection/deleteProfileConfirmation.php",
+            "meta_description" => "Confirmation de la suppresion du compte",
+            
+        ];
+    }
+
+    public function deleteProfile() {
+
+        if(isset($_POST['deleteConfirmation'])) {
+
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
+            if(Session::getUser()) {
+
+                $uid = Session::getUser()->getId();
+                // echo $uid; die();
+                $userManager = new UserManager();
+
+                if($userManager->delete($uid)) {
+                    Session::setUser(null);
+                    header("Location:index.php?ctrl=security&action=deleteProfileSuccess");
+                    exit;
+                } else {
+                    Session::addFlash('error', 'Erreur lors de la suppression de votre compte.');
+                    header('Location: index.php?ctrl=security&action=profile');
+                    exit;
+                }
+            }
+        }
+        
+    }
+    public function deleteProfileSuccess() {
+        return [
+            "view" => VIEW_DIR."connection/deleteProfileSuccess.php",
+            "meta_description" => "Compte supprimé avec succès",
+            
+        ];
+    }
     
 
 }
