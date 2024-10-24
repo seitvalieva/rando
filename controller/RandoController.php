@@ -147,7 +147,12 @@ class RandoController extends AbstractController implements ControllerInterface 
                 $this->redirectTo("rando","index");
             }
         }  
-        //   
+        return [
+            "view" => VIEW_DIR."rando/newRando.php",
+            "meta_description" => "Créer une randonnée",
+            "title" => "Formulaire de création d'une randonnée",
+        ];
+          
     }
     
      // search randos by keyword
@@ -286,7 +291,37 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
         }
     }
+    // delete rando
+    public function deleteRandoConfirmation() {
 
+        return [
+            "view" => VIEW_DIR."rando/deleteRandoConfirmation.php",
+            "meta_description" => "Confirmation de suppression de la rando",
+            "title" => "Confirmation de suppression de la rando"
+        ];
+    }
+    public function deleteRando() {
+
+        $id = intval($_GET["id"]);
+        // if (isset($_POST['deleteConfirmation'])) 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // $tokenCSRF = $_POST['csrf_token'];
+            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
+                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                     // If the CSRF token is invalid, stop the request
+                    die("Invalid CSRF token.");
+                }
+            }
+            // echo $id; die();            
+            $randoManager = new RandoManager();
+            $randoManager->delete($id);
+
+            header("Location: index.php");
+            exit;
+        } else {
+            header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
+        }   
+    }
     public function myRandosList() {
         if(Session::getUser()) {
             $userId = Session::getUser()->getId();

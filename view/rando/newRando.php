@@ -1,5 +1,5 @@
 <div class="main__container">
-    <h1>Proposer une rando</h1>
+    <h1>Créer une rando</h1>
     <div>
         <span style="color: red"><?= App\Session::getFlash("error") ?></span>
     </div>

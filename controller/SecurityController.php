@@ -302,41 +302,6 @@ class SecurityController extends AbstractController{
             "title" => "Création du mot de passe avec succès"
         ];
     }
-
-    // delete rando
-    public function deleteModal() {
-
-        return [
-            "view" => VIEW_DIR."connection/deleteModal.php",
-            "meta_description" => "Confirmation de suppression de la rando",
-            "title" => "Confirmation de suppression de la rando"
-        ];
-    }
-    public function deleteRando() {
-
-        $id = intval($_GET["id"]);
-        // if (isset($_POST['deleteConfirmation'])) 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // $tokenCSRF = $_POST['csrf_token'];
-            if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
-                if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-                     // If the CSRF token is invalid, stop the request
-                    die("Invalid CSRF token.");
-                }
-            }
-            // echo $id; die();            
-            $randoManager = new RandoManager();
-            
-            $randoManager->delete($id);
-            
-            header("Location: index.php");
-            exit;
-    
-        } else {
-            header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
-        }
-        
-    }
         
     public function logout() {
         session_unset();                        // Delete all session data

@@ -22,16 +22,6 @@ class HomeController extends AbstractController implements ControllerInterface {
             ]
         ];
     }
-
-    // new Rando
-    public function newRando() {
-
-        return [
-            "view" => VIEW_DIR."rando/newRando.php",
-            "meta_description" => "Créer une randonnée",
-            "title" => "Formulaire de création d'une randonnée",
-        ];
-    }
     
     
     // public function users(){
