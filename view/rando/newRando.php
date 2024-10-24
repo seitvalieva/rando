@@ -49,7 +49,7 @@
         <input type="text" id="departure" name="departure" value="<?= htmlspecialchars($departure); ?>" placeholder="Gare de Strasbourg.." minlength="5"
             maxlength="255" required><br><br>
 
-        <label for="destination">Point(s) d'arrivée</label>
+        <label for="destination">Point(s) d'intérêt</label>
         <span class="tooltip-container"> *
             <span class="tooltip-text">Les champs obligatoires</span>
         </span><br>

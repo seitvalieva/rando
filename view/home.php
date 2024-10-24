@@ -66,7 +66,7 @@
                     </p>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                        <span><b>Arrivée : </b>
+                        <span><b>Points d'intérêt : </b>
                             <?= $rando->getDestination() ?>
                         </span>
                     </p>

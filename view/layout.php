@@ -10,7 +10,7 @@
         <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
         <link rel="shortcut icon" href="<?= PUBLIC_DIR ?>/assets/favicon.png" type="image/x-icon">
-        <title> Title </title>
+        <title><?= $title ?></title>
     </head>
     <body>
         <div id="wrapper"> 
@@ -126,7 +126,7 @@
                         <p>
                             &copy;
                             <?= date_create("now")->format("Y") ?>
-                            Rando LLC Tous droits réservés
+                            Rando Tous droits réservés
                         </p>
                     </div>
                 </footer>

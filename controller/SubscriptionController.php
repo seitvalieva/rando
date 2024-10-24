@@ -30,7 +30,8 @@ class SubscriptionController extends AbstractController implements ControllerInt
         
         return [
             "view" => VIEW_DIR."rando/participation.php",
-            "meta_description" => "Participer à la rando"
+            "meta_description" => "Participation à la rando",
+            "title" => "Formulaire de participation à la rando"
         ];
     }
     public function participate($id) {
@@ -67,7 +68,8 @@ class SubscriptionController extends AbstractController implements ControllerInt
         
         return [
             "view" => VIEW_DIR."rando/cancelParticipation.php",
-            "meta_description" => "Annuler mon participation à la rando"
+            "meta_description" => "Annulation de participation à la rando",
+            "title" => "Annulation de participation à la rando"
         ];
     }
 

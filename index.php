@@ -64,7 +64,7 @@ if($action == "ajax"){                     //if the action was ajax
 else{
     ob_start();                             //opens a buffer in which all output is stored.(tampon de sortie = output buffer)
     $meta_description = $result['meta_description'];
-
+    $title = $result['title'];
     include($result['view']);           // the view is inserted into the buffer which must be emptied in the middle of the layout
      
     $page = ob_get_contents();              // we place this display in a variable 

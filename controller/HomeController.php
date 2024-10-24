@@ -15,7 +15,8 @@ class HomeController extends AbstractController implements ControllerInterface {
       
         return [
             "view" => VIEW_DIR."home.php",
-            "meta_description" => "Page d'accueil",
+            "meta_description" => "Randonnées guidées et programmées en Alsace",
+            "title" => "Accueil",
             "data" => [
                 "lastRandos" => $lastRandos
             ]
@@ -27,7 +28,8 @@ class HomeController extends AbstractController implements ControllerInterface {
 
         return [
             "view" => VIEW_DIR."rando/newRando.php",
-            "meta_description" => "Nouvelle Rando"
+            "meta_description" => "Créer une randonnée",
+            "title" => "Formulaire de création d'une randonnée",
         ];
     }
     

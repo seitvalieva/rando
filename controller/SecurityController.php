@@ -97,7 +97,8 @@ class SecurityController extends AbstractController{
             // check if POST method is submitted and the checkbox is checked
         return [
             "view" => VIEW_DIR."connection/register.php",
-            "meta_description" => "Formulaire d'inscription"
+            "meta_description" => "Formulaire d'inscription",
+            "title" => "Formulaire d'inscription"
         ];
     }  
 
@@ -149,7 +150,8 @@ class SecurityController extends AbstractController{
                 // displaying login form
             return [
                 "view" => VIEW_DIR . "connection/login.php",
-                "meta_description" => "Formulaire de connexion"
+                "meta_description" => "Formulaire de connexion",
+                "title" => "Formulaire de connexion"
             ];
     }
     // function sends a link with unique token to user's email to reset forgotten password when logging in
@@ -204,14 +206,16 @@ class SecurityController extends AbstractController{
         }
         return [
             "view" => VIEW_DIR."connection/forgottenPassword.html",
-            "meta_description" => "Réinitialisation de votre mot de passe"
+            "meta_description" => "Réinitialisation du mot de passe oublié",
+            "title" => "Réinitialisation du mot de passe oublié"
         ];
     }
     //display a message that a reset link for forgotten password is sent
     public function sentResetLinkSuccess() {
         return [
             "view" => VIEW_DIR."connection/sentResetLink.html",
-            "meta_description" => "Réinitialisation de votre mot de passe"
+            "meta_description" => "Réinitialisation du mot de passe avec succès",
+            "title" => "Réinitialisation du mot de passe avec succès"
         ];
     }
     // gets token from the url, finds the user by token, checks if the token is valid, and displays a page to create new password
@@ -233,7 +237,8 @@ class SecurityController extends AbstractController{
         // echo "token is valid";
         return [
             "view" => VIEW_DIR."connection/resetPassword.php",
-            "meta_description" => "Création de nouveau mot de passe"
+            "meta_description" => "Réinitialisation du mot de passe",
+            "title" => "Réinitialisation du mot de passe"
         ];
         
     }
@@ -285,14 +290,16 @@ class SecurityController extends AbstractController{
         }
         return [
             "view" => VIEW_DIR."connection/resetPassword.php",
-            "meta_description" => "Création de nouveau mot de passe"
+            "meta_description" => "Création d'un nouveau mot de passe",
+            "title" => "Création d'un nouveau mot de passe"
         ];
     }
     public function setNewPasswordSuccess() {
 
         return [
             "view" => VIEW_DIR."connection/setNewPasswordSuccess.html",
-            "meta_description" => "Création de votre mot de passe"
+            "meta_description" => "Création du mot de passe avec succès",
+            "title" => "Création du mot de passe avec succès"
         ];
     }
 
@@ -301,7 +308,8 @@ class SecurityController extends AbstractController{
 
         return [
             "view" => VIEW_DIR."connection/deleteModal.php",
-            "meta_description" => "Supprimer une rando"
+            "meta_description" => "Confirmation de suppression de la rando",
+            "title" => "Confirmation de suppression de la rando"
         ];
     }
     public function deleteRando() {
@@ -318,29 +326,11 @@ class SecurityController extends AbstractController{
             }
             // echo $id; die();            
             $randoManager = new RandoManager();
-            $imageManager = new ImageManager();
-    
-            $images = $imageManager->getImagesByRandoId($id);
-            if($images) {
-
-                foreach($images as $image){
-                    // var_dump($image); die();
-                    $imageId = $image->getId();
-                    $filename = $image->getFileName();
-                    // echo $filename;die();
-                    $filepath = 'uploads/'.$filename;
-                    // echo $filepath;die();
-                    if (file_exists($filepath)) {
-                        unlink($filepath);
-                    }
-                    $imageManager->delete($imageId);
-                }
-                 
-                $randoManager->delete($id);
-            }
+            
+            $randoManager->delete($id);
+            
             header("Location: index.php");
             exit;
-            // $this->redirectTo("rando","index");
     
         } else {
             header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
@@ -368,6 +358,7 @@ class SecurityController extends AbstractController{
         return [
             "view" => VIEW_DIR."connection/profile.php",
             "meta_description" => "Mon compte",
+            "title" => "Mon compte",
             "data" => [
                 "user" => $user,  
             ]
@@ -403,7 +394,8 @@ class SecurityController extends AbstractController{
         } 
         return [
             "view" => VIEW_DIR."connection/deleteProfileConfirmation.php",
-            "meta_description" => "Confirmation de la suppresion du compte",
+            "meta_description" => "Confirmation de la suppression du compte",
+            "title" => "Confirmation de la suppression du compte",
             
         ];
         
@@ -411,7 +403,8 @@ class SecurityController extends AbstractController{
     public function deleteProfileSuccess() {
         return [
             "view" => VIEW_DIR."connection/deleteProfileSuccess.php",
-            "meta_description" => "Compte supprimé avec succès",
+            "meta_description" => "Suppression du compte avec succès",
+            "title" => "Suppression du compte avec succès",
             
         ];
     }

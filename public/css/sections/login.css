@@ -1,0 +1,17 @@
+.break-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.break-border-ou {
+    border-bottom: 1px solid rgb(var(--primary-color));
+    width: 60%;
+}
+.break-border-connexion {
+    border-bottom: 1px solid rgb(var(--primary-color));
+    width: 28%;
+}
+.break-content {
+    padding: 8px;
+}

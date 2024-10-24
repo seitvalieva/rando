@@ -22,7 +22,8 @@ class RandoController extends AbstractController implements ControllerInterface 
         // the controller communicates with the "list randos" view  to send it the list of randos (data)
         return [
             "view" => VIEW_DIR."rando/listRandos.php",
-            "meta_description" => "Liste des randos",
+            "meta_description" => "Liste des randonnées",
+            "title" => "Liste des randonnées",
             "data" => [
                 "randos" => $randos
             ]
@@ -49,7 +50,8 @@ class RandoController extends AbstractController implements ControllerInterface 
 
         return [
             "view" => VIEW_DIR . "rando/randoDetails.php",
-            "meta_description" => "Rando Details",
+            "meta_description" => "Details de la randonnée",
+            "title" => "Details de la randonnée",
             "data" => [
                 "rando" => $randoManager->getRandoById($id),
                 "imagesNames" => $imageManager->getImagesByRandoId($id),
@@ -164,7 +166,8 @@ class RandoController extends AbstractController implements ControllerInterface 
 
                 return [
                     "view" => VIEW_DIR."rando/searchResults.php",
-                    "meta_description" => "Search results",
+                    "meta_description" => "Recherche de randonnées",
+                    "title" => "Resultats de la recherche de randonnées",
                     "data" => [
                         "randos" => $randos,
                         "keyword" => $keyword
@@ -188,7 +191,8 @@ class RandoController extends AbstractController implements ControllerInterface 
         
         return [
             "view" => VIEW_DIR . "connection/modifyRandoForm.php",
-            "meta_description" => "Modifier la rando",
+            "meta_description" => "Modifier la randonnée",
+            "title" => "Formulaire de modification de la randonnée",           
             "data" => [
                 "rando" => $randoManager->getRandoById($id)
             ]
@@ -296,7 +300,8 @@ class RandoController extends AbstractController implements ControllerInterface 
 
         return [
             "view" => VIEW_DIR."rando/myRandosList.php",
-            "meta_description" => "Mon compte",
+            "meta_description" => "Mes randonnées créées",
+            "title" => "Mes randonnées créées",
             "data" => [
                 "user" => $user,
                 "created_randos" => $created_randos, 
@@ -316,9 +321,9 @@ class RandoController extends AbstractController implements ControllerInterface 
    
         return [
             "view" => VIEW_DIR."rando/myParticipationsList.php",
-            "meta_description" => "Mon compte",
+            "meta_description" => "Mes randonnées à participer",
+            "title" => "Mes participqtions aux randonnées",
             "data" => [
-
                 "participations" => $participations
             ]
         ];

@@ -8,7 +8,7 @@
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas.</span>
             </span>
-            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Pseudo" required><br>
+            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Votre pseudo publique" required><br>
     
             <label for="email">Email</label>
             <span class="tooltip-container"> *
@@ -18,11 +18,11 @@
     
             <label for="password">Mot de passe</label>
             <span class="tooltip-container"> *
-                <span class="tooltip-text">Le mot de passe doit contenir au moins une lettre, un chiffre, un caractère spécial et comporter au moins 8 caractères</span>
+                <span class="tooltip-text">Le mot de passe doit contenir au moins une lettre, un chiffre, un caractère spécial et comporter au moins 12 caractères</span>
             </span>
             <input type="password" name="password" id="password" required><br>
     
-            <label for="confirmPassword">Confirmation du mot de passe </label>
+            <label for="confirmPassword">Confirmer le mot de passe </label>
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Les mots de passe doivent être identiques.</span>
             </span>

@@ -12,8 +12,12 @@ require "app/GoogleSignIn.php";
                 onclick="location.href='<?= $url ?>'"
                 style="width: 25%; height: 40px;">Se connecter avec Google</button>
         <!-- <a href="">Se connecter avec Google</a> -->
-        
-        <p>OU</p>
+        <div class="break-container">
+                <div class="break-border-ou"></div>
+                <span class="break-content">ou</span>
+                <div class="break-border-ou"></div>
+        </div>
+
 
         <form action="index.php?ctrl=security&action=login" method="POST" autocomplete="off">
                 
@@ -40,7 +44,11 @@ require "app/GoogleSignIn.php";
         <button type="submit" name="forgottenPassword"
                 onclick="location.href='index.php?ctrl=security&action=sendForgottenPasswordReset'"
                 style="width: 25%; height: 40px;">Mot de passe oublié?</button>
-        <p>Première connexion ?</p>
+        <div class="break-container">
+                <div class="break-border-connexion"></div>
+                <span class="break-content">Première connexion ?</span>
+                <div class="break-border-connexion"></div>
+        </div>        
         <button type="submit" name="register"
                 onclick="location.href='index.php?ctrl=security&action=register'"
                 style="width: 25%; height: 40px;">Créer un compte</button>
