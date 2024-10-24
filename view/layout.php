@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="<?= $meta_description ?>">
@@ -18,7 +18,7 @@
                 <!-- this is where messages (error or success) are displayed-->
                 <!-- <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3> -->
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
-            <!-- ============= FOOTER ============= -->
+                <!-- ============= FOOTER ============= -->
                 <header class="header">
                     <nav class="nav">
                         <a href="index.php?ctrl=home&action=index" class="nav__logo">
@@ -64,72 +64,73 @@
                         </div>
                     </nav>
                 </header>
-            <!-- ============= MAIN section ============= -->    
+                <!-- ============= MAIN section ============= -->    
                 <main class="main">
                     <?= $page ?>
                 </main>
-            </div>
-            <!-- ============= FOOTER ============= -->
-            <footer class="footer">
-                <div class="footer__container">
-                    <div class="footer__top">
-                        <div class="footer__top-left">
-                            <div class="footer__logo">
-                                <a href="index.php?ctrl=home&action=index">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
-                                </a>
-                                <h3><a href="" class="footer__logo-title">Rando</a></h3>
-                            </div>
-                            <!-- <p>Votre plateforme de choix des randonnées</p> -->
-                            <div class="footer__socials-container">
-                                <p class="footer__socials-title">Retrouvez-nous sur</p>
-                                <div class="footer__socials">
-                                    <a href="https://www.linkedin.com/">
-                                        <img src="<?= PUBLIC_DIR ?>/assets/linkedin.svg" alt="Linkedin" class="footer__social-icon">
+            
+                <!-- ============= FOOTER ============= -->
+                <footer class="footer">
+                    <div class="footer__container">
+                        <div class="footer__top">
+                            <div class="footer__top-left">
+                                <div class="footer__logo">
+                                    <a href="index.php?ctrl=home&action=index">
+                                        <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
                                     </a>
-                                    <a href="https://www.facebook.com/">
-                                        <img src="<?= PUBLIC_DIR ?>/assets/facebook.svg" alt="Facebook" class="footer__social-icon">
-                                    </a>
-                                    <a href="https://www.instagram.com/">
-                                        <img src="<?= PUBLIC_DIR ?>/assets/instagram.svg" alt="Instagram" class="footer__social-icon">
-                                    </a>
+                                    <h3><a href="" class="footer__logo-title">Rando</a></h3>
+                                </div>
+                                <!-- <p>Votre plateforme de choix des randonnées</p> -->
+                                <div class="footer__socials-container">
+                                    <p class="footer__socials-title">Retrouvez-nous sur</p>
+                                    <div class="footer__socials">
+                                        <a href="https://www.linkedin.com/">
+                                            <img src="<?= PUBLIC_DIR ?>/assets/linkedin.svg" alt="Linkedin" class="footer__social-icon">
+                                        </a>
+                                        <a href="https://www.facebook.com/">
+                                            <img src="<?= PUBLIC_DIR ?>/assets/facebook.svg" alt="Facebook" class="footer__social-icon">
+                                        </a>
+                                        <a href="https://www.instagram.com/">
+                                            <img src="<?= PUBLIC_DIR ?>/assets/instagram.svg" alt="Instagram" class="footer__social-icon">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="footer__top-middle">
+                                <a href="#" class="footer__link">À propos</a>
+                                <p>Logo generated by <a href="https://www.freepik.com/" class="footer__link">Freepik</a></p>
+                            </div>
+                            <address class="footer__top-right">
+                                <p class="footer__top-right-title">Nous contacter</p>
+                                <div class="footer__top-contacts">
+                                    <div class="footer__email">
+                                        <img src="<?= PUBLIC_DIR ?>/assets/email.svg" alt="Email" class="footer__social-icon">
+                                        <p><a href="mailto:rando@example.com">rando@example.com</a></p>
+                                    </div>
+                                    <div class="footer__telephone">
+                                        <img src="<?= PUBLIC_DIR ?>/assets/phone.svg" alt="Phone" class="footer__social-icon">
+                                        <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                                    </div>
+                                    <div class="footer__address">
+                                        <img src="<?= PUBLIC_DIR ?>/assets/map-pin.svg" alt="Location" class="footer__social-icon">
+                                        <p><a href="https://maps.app.goo.gl/nwMi8CJyEWxcr6ML7">1 rue de la Gare, <br> 67000 Alsace <br> France</a></p>
+                                    </div>
+                                </div>
+                            </address>
                         </div>
-                        <div class="footer__top-middle">
-                            <a href="#" class="footer__link">À propos</a>
-                            <p>Logo generated by <a href="https://www.freepik.com/" class="footer__link">Freepik</a></p>
-                        </div>
-                        <address class="footer__top-right">
-                            <p class="footer__top-right-title">Nous contacter</p>
-                            <div class="footer__top-contacts">
-                                <div class="footer__email">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/email.svg" alt="Email" class="footer__social-icon">
-                                    <p><a href="mailto:rando@example.com">rando@example.com</a></p>
-                                </div>
-                                <div class="footer__telephone">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/phone.svg" alt="Phone" class="footer__social-icon">
-                                    <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
-                                </div>
-                                <div class="footer__address">
-                                    <img src="<?= PUBLIC_DIR ?>/assets/map-pin.svg" alt="Location" class="footer__social-icon">
-                                    <p><a href="https://maps.app.goo.gl/nwMi8CJyEWxcr6ML7">1 rue de la Gare, <br> 67000 Alsace <br> France</a></p>
-                                </div>
-                            </div>
-                        </address>
                     </div>
-                </div>
-                <div class="footer__bottom">
-                    <p><a href="" class="footer__link">Conditions générales d’utilisation</a></p>
-                    <p><a href="" class="footer__link">Mentions légales</a> </p>
-                    <p><a href="" class="footer__link">Politique de confidentialité</a></p>
-                    <p>
-                        &copy;
-                        <?= date_create("now")->format("Y") ?>
-                        Rando LLC Tous droits réservés
-                    </p>
-                </div>
-            </footer>
+                    <div class="footer__bottom">
+                        <p><a href="" class="footer__link">Conditions générales d’utilisation</a></p>
+                        <p><a href="" class="footer__link">Mentions légales</a> </p>
+                        <p><a href="" class="footer__link">Politique de confidentialité</a></p>
+                        <p>
+                            &copy;
+                            <?= date_create("now")->format("Y") ?>
+                            Rando LLC Tous droits réservés
+                        </p>
+                    </div>
+                </footer>
+            </div>
         </div>
         <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>

@@ -10,10 +10,17 @@
 @import url('sections/registration.css');
 
 :root{
-     --primary-color: 110, 109, 38;  /* green #6e6d26 */
+     /* --primary-color: 110, 109, 38;   */
+     /* green #6e6d26 */
+     --primary-color: 60, 98, 39;
+      /* green #3c6227  */
+    /* --primary-color: 35, 74, 23;  */
+        /* green darker #234A17 */
+    /*--primary-color: 70, 136, 71;*/   
+        /*-green blue #468847 */ 
+    /* --primary-color: 39, 98, 48;  */
+        /* green blue darker#276230 */
 
-    /*--primary-color: 70, 136, 71;   green variant #468847 */ 
-    /* --primary-color: 35, 74, 23;  green darker #234A17 */
     /* --secondary-color: 65, 37, 32; brown */
     
     --secondary-color: 98, 48, 39; /* brown lighter #623027 */
