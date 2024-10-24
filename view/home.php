@@ -48,7 +48,7 @@
                     </h3>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                        <span>
+                        <span><b>Date : </b>
                             <?= date('d-m-Y', strtotime($rando->getDateRando())) ?>
                         </span>
                     </p>

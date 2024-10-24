@@ -25,25 +25,25 @@
                         </h3>
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                            <span>
+                            <span><b>Date : </b>
                                 <?= date('d-m-Y', strtotime($participation->getRando()->getDateRando())) ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
-                            <span>
+                            <span><b>Distance : </b>
                                 <?= $participation->getRando()->getDistance() ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
-                            <span>
+                            <span><b>Départ : </b>
                                 <?= $participation->getRando()->getDeparture() ?>
                             </span>
                         </p>
                         <p class="main__card-detail">
                             <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                            <span>
+                            <span><b>Points d'intérêt : </b>
                                 <?= $participation->getRando()->getDestination() ?>
                             </span>
                         </p>

@@ -30,7 +30,7 @@ $rando = $result["data"]['rando'];
         <label for="departure">Point de départ <span class="required">*</span></label><br>
         <input type="text" id="departure" name="departure" value="<?= $rando->getDeparture() ?>"  minlength="5" maxlength="255" required><br><br>
 
-        <label for="destination">Point(s) d'arrivée <span class="required">*</span></label><br>
+        <label for="destination">Point(s) d'intérêt <span class="required">*</span></label><br>
         <input type="text" id="destination" name="destination" value="<?= $rando->getDestination() ?>" minlength="3" maxlength="255" required><br><br>
 
         <label for="description">Description <span class="required">*</span></label><br>

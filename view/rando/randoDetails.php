@@ -165,19 +165,19 @@ $participants = $result["data"]['participants'];
                             </h3>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
-                                <span><?= date('d-m-Y', strtotime($lastRando->getDateRando())) ?></span>
+                                <span><b>Date : </b><?= date('d-m-Y', strtotime($lastRando->getDateRando())) ?></span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/distance.svg" alt="Distance" title="Distance">
-                                <span><?= $lastRando->getDistance() ?> km</span>
+                                <span><b>Distance : </b><?= $lastRando->getDistance() ?> km</span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
-                                <span><?= $lastRando->getDeparture() ?></span>
+                                <span><b>Départ : </b><?= $lastRando->getDeparture() ?></span>
                             </p>
                             <p class="main__card-detail">
                                 <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
-                                <span><?= $lastRando->getDestination() ?></span>
+                                <span><b>Points d'intérêt : </b><?= $lastRando->getDestination() ?></span>
                             </p>
                         </div>
                     </div>
