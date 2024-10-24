@@ -1,4 +1,3 @@
 controller/MailController.php
-app/GoogleSignIn.php
 app/SignInGoogle.php
 app/redirect.php

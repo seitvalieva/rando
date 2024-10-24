@@ -1,6 +1,14 @@
+<?php
+require "app/SignInGoogle.php";
+
+?>
     <div class="main__container">
         <h1>Créer un compte</h1>
+
         <div class="msg"><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
+
+        <button onclick="location.href='<?= $url ?>'" style="width: 25%; height: 40px;">Se connecter avec Google</button>
+        
         <form action="index.php?ctrl=security&action=register" method="POST" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 
