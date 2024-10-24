@@ -19,7 +19,7 @@ class SecurityController extends AbstractController{
     //setting up the REGISTER function
     public function register(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // $tokenCSRF = $_POST['csrf_token'];
+            
             if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
                 if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
                      // If the CSRF token is invalid, stop the request
@@ -105,49 +105,49 @@ class SecurityController extends AbstractController{
     //  SETTING UP THE LOG IN FUNCTION
     public function login() {
 
-            // if(isset($_POST["submitLogin"])) 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // $tokenCSRF = $_POST['csrf_token'];
+                
                 if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
-                    if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-                         // If the CSRF token is invalid, stop the request
-                        die("Invalid CSRF token.");
-                    }
-                }
-                //PROTECTION XSS (=FILTRES)
-                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                    if(hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                         
+                        //PROTECTION XSS (=FILTRES)
+                        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+                        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+                        if($email && $password) {                   
+                            
+                            $userManager = new UserManager();
+                            $user = $userManager->checkUserExists($email);
     
-                if($email && $password) {                   
-                    
-                    $userManager = new UserManager();
-                    $user = $userManager->checkUserExists($email);
-
-                    if($user){
-                        // var_dump($user);die;
-                        $hash = $user->getPassword();
-                        // var_dump($password, $hash);die;
-                        if(password_verify($password, $hash)){   
-                            // var_dump($password, $hash);die;                   // PASSWORD VERIFICATION 
-                            $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
-                            header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE 
-                            exit; 
-
-                        } else {
-                        // in case of Email address or password error
-                            Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
-                            // header("Location: index.php?ctrl=security&action=login");
-                            // exit;
+                            if($user){
+                                
+                                $hash = $user->getPassword();
+                            
+                                if(password_verify($password, $hash)){          // PASSWORD VERIFICATION
+                                                                                
+                                    $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
+                                    header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE 
+                                    exit; 
+                                } else {
+                                // in case of password error
+                                    Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
+                                }
+                            } else {
+                                // if User not found
+                                Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
                             }
+                        } else {
+                            // if email or password is empty
+                            Session::addFlash('error',"Le mail et le mot de passe sont obligatoires");
+                        }   
                     } else {
-                        // if User not found
-                        Session::addFlash('error',"Le mail ou mot de passe n'est pas correct");
-                        // header("Location: index.php?ctrl=security&action=login");
-                        // exit;
+                        // If the CSRF token is invalid, stop the request
+                        Session::addFlash('error',"Invalid CSRF token.");
                     }
-                }
+                } 
             }
-                // displaying login form
+            // displaying login form
             return [
                 "view" => VIEW_DIR . "connection/login.php",
                 "meta_description" => "Formulaire de connexion",
