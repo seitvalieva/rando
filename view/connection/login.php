@@ -1,6 +1,5 @@
 <?php
-// require "app/SignInGoogle.php";
-
+require "app/SignInGoogle.php";
 ?>
 <div class="main__container">
 
