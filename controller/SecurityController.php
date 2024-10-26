@@ -24,77 +24,83 @@ class SecurityController extends AbstractController{
             // csrf token validation
             if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
             
-            //username validation
-            if (isset($_POST['username'])) {
-                $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                if($username && preg_match('/^[a-z]\w{2,23}[^_]$/i', $username)) {
-                    $userManager = new UserManager();
-                    $usernameExists = $userManager->checkUsernameExists($username);
-                    // if username is already taken
-                    if($usernameExists) {
-                        $errors['username'] = "Le pseudo est déjà pris";
+                //username validation
+                if (isset($_POST['username'])) {
+                    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    if($username && preg_match('/^[a-z]\w{2,23}[^_]$/i', $username)) {
+                        $userManager = new UserManager();
+                        $usernameExists = $userManager->checkUsernameExists($username);
+                        // if username is already taken
+                        if($usernameExists) {
+                            $errors['username'] = "Le nom d'utilisateur n'est pas valide.";
+                        }
+                    } else {
+                        $errors['username'] = "Le nom d'utilisateur n'est pas valide.";
                     }
                 } else {
-                    $errors['username'] = "Le nom d'utilisateur n'est pas valid.";
+                    $errors['username'] = "Le champ du pseudo est requis.";
                 }
-            } else {
-                $errors['username'] = "Le champ du pseudo est requis.";
-            }
-            // Email validation
-            if (isset($_POST['email']))  {
-                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-                if($email){
+                // Email validation
+                if (isset($_POST['email']))  {
+                    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
                     $userManager = new UserManager();
-                    $user = $userManager->checkUserExists($email);
-                    // if user exists in db
-                    if($user) {
-                        $errors['email'] = "L'email est déjà pris";
+                    $user = $userManager->checkUserExists($email);  // if user exists in db
+                    
+                    if(!$email || $user){
+                        $errors['email'] = "L'email n'est pas valid.";
+                    } 
+                } else {
+                        $errors['email'] = "Le champ du email est requis.";
+                }
+                // Password validation
+                if (isset($_POST['password'])) {
+                    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    // checking password requirements
+                    $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
+
+                    if(!$password || !preg_match($pattern, $password)) {
+
+                        $errors['password'] = "Le mot de passe doit contenir au moins une lettre, un chiffre, 
+                        un caractère spécial et comporter au moins 12 caractères";
+                    } 
+                } else {
+                    $errors['password'] = "Le champ mot de passe est requis.";
+                }
+                // Confirm Password validation
+                if (isset($_POST['confirmPassword'])) {
+                    $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    if($password !== $confirmPassword) {
+                        $errors['confirmPassword'] = "Les mots de passe doivent être identiques.";
                     }
                 } else {
-                    $errors['email'] = "L'email n'est pas valid.";
+                    $errors['confirmPassword'] = "Veuillez confirmer votre mot de passe.";
                 }
-            } else {
-                    $errors['email'] = "Le champ du email est requis.";
-            }
-            // Password validation
-            if (isset($_POST['password'])) {
-                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                // checking password requirements
-                $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
-
-                if(!$password || !preg_match($pattern, $password)) {
-
-                    $errors['password'] = "Le mot de passe doit contenir au moins une lettre, un chiffre, 
-                    un caractère spécial et comporter au moins 12 caractères";
-                } 
-            } else {
-                $errors['password'] = "Le champ mot de passe est requis.";
-            }
-            // Confirm Password validation
-            if (isset($_POST['confirmPassword'])) {
-                $confirmPassword = filter_input(INPUT_POST, "confirmPassword", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                if($password !== $confirmPassword) {
-                    $errors['confirmPassword'] = "Les mots de passe doivent être identiques.";
+                // Checkbox validation 
+                if (!isset($_POST["agree"])) {
+                    $errors['agree'] = "Veuillez accepter les conditions générales d’utilisation";
                 }
+                if (empty($errors)) {
+
+                    // ReCaptcha validation
+                    if(!isset($_POST['g-recaptcha-response'])) {
+
+                        $errors['recaptcha'] = "Veuillez vérifier le reCAPTCHA.";
+                    } else {
+                        $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // your secret key from reCAPTCHA
+                        $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
+        
+                        // Verify the reCAPTCHA response with Google
+                        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
+                        $response_data = json_decode($response, true);
+                        // var_dump($response_data['success']); die();
+                        if(!$response_data["success"]) {
+        
+                            $errors['recaptcha'] = "reCAPTCHA verification failed";
+                        }
+                    }
+                }     
             } else {
-                $errors['confirmPassword'] = "Veuillez confirmer votre mot de passe.";
-            }
-            // Checkbox validation 
-            if (!isset($_POST["agree"])) {
-                $errors['agree'] = "Veuillez accepter les conditions générales d’utilisation";
-            }
-            // ReCaptcha validation
-            $recaptcha_secret = '6Leyol0qAAAAAImWdHDATp6U7uQDp7SmXE0hjwnn';  // Replace with your secret key from reCAPTCHA
-            $recaptcha_response = $_POST['g-recaptcha-response']; // The reCAPTCHA response from the form
-            // Verify the reCAPTCHA response with Google
-            $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
-            $response_keys = json_decode($response, true);
-            // If the reCAPTCHA validation fails
-            if(intval($response_keys["success"]) !== 1) {
-                $errors['recaptcha'] = "Veuillez vérifier le reCAPTCHA.";
-            }
-            } else {
-                $errors['csrf'] = "Invalid CSRF token.";
+                $errors['csrf'] = "An error occurred. Please try again.";
             }   
             if (empty($errors)) {
                 //inserting the user into the database
