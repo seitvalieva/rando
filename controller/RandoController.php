@@ -195,7 +195,7 @@ class RandoController extends AbstractController implements ControllerInterface 
         $randoManager = new RandoManager();
         
         return [
-            "view" => VIEW_DIR . "connection/modifyRandoForm.php",
+            "view" => VIEW_DIR . "rando/modifyRandoForm.php",
             "meta_description" => "Modifier la randonnée",
             "title" => "Formulaire de modification de la randonnée",           
             "data" => [
@@ -207,7 +207,7 @@ class RandoController extends AbstractController implements ControllerInterface 
 
     public function modifyRando() {
 
-        // if(isset($_POST['updateRando'])) 
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $tokenCSRF = $_POST['csrf_token'];
             if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {

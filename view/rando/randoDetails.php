@@ -88,7 +88,13 @@ $participants = $result["data"]['participants'];
                         <div class="main__rando-info-aside-btn">
 
                         <?php if(App\Session::getUser()) {
-                            if(App\Session::getUser() != $rando->getUser()){ ?>
+                            if(App\Session::isAdmin()) { ?>
+                                <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
+                                <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                            <?php } 
+                            // if connected user is not the one who created the rando, he can participate
+                            elseif(App\Session::getUser() != $rando->getUser()) { ?>
+                                <!-- the Paprticipate btn is displayed if rando hasn't passed yet /current date less or = than rando date -->
                                 <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
                                     <?php if(!$isSubscribed){ ?>
                                         <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
@@ -96,9 +102,11 @@ $participants = $result["data"]['participants'];
                                         <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
                                     <?php } ?>
                                 <?php } else {?>
-                                <p>Rando est déjà passée</p>
-                            <?php } ?>
+                                    <p>Rando est déjà passée</p>
+                                <?php } ?>
+                            <?php } elseif(App\Session::isAdmin()) {?>
                             <?php } else {?>
+                                <!-- user who created the rando can modify/delete it  -->
                                 <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                                 <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
                             <?php } ?>
