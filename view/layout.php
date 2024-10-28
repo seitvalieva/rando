@@ -26,15 +26,17 @@
                             <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                         </a>
                         <div id="nav-right">
-                            <?php if(App\Session::getUser()){ 
-                                // if the user is logged in
-                                ?> 
+                        <!-- if the user is logged in -->
+                            <?php if(App\Session::getUser()) { ?> 
                                 <ul class="nav__menu">
+                                <?php if (App\Session::isAdmin()) {?> 
+                                    <li><a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=admin&action=index">Admin</a></li>
+                                <?php } ?>
                                     <li><a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a></li>
                                     <li><a href="index.php?ctrl=rando&action=addNewRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a></li>
                                     <li><a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a></li> 
                                 </ul>
-                                
+                            <!-- if user is not logged in     -->
                             <?php } else { ?>
                                     <ul class="nav__menu">
                                         <li><a class="nav__menu-link nav__menu-link-cta" href="index.php?ctrl=security&action=login">Publier une rando</a></li>
@@ -52,9 +54,13 @@
                             <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
                             <nav class="mobile-menu__nav">
                                 <?php if(App\Session::getUser()) { ?>
+                                    <?php if (App\Session::isAdmin()) {?> 
+                                        <a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=admin&action=index">Dashboard</a>
+                                    <?php } ?>
                                     <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                     <a href="index.php?ctrl=home&action=newRando" class="" >Publier une rando</a>
                                     <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
+                                <!-- if user is not logged in -->
                                 <?php } else { ?>
                                     <a href="index.php?ctrl=security&action=login" class="">Publier une rando</a>
                                     <a href="index.php?ctrl=security&action=login" class="">Connexion</a>
@@ -78,7 +84,7 @@
                                     <a href="index.php?ctrl=home&action=index">
                                         <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
                                     </a>
-                                    <h3><a href="" class="footer__logo-title">Rando</a></h3>
+                                    <h3><a href="index.php?ctrl=home&action=index" class="footer__logo-title">Rando</a></h3>
                                 </div>
                                 <!-- <p>Votre plateforme de choix des randonnées</p> -->
                                 <div class="footer__socials-container">

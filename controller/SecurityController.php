@@ -95,12 +95,12 @@ class SecurityController extends AbstractController{
                         // var_dump($response_data['success']); die();
                         if(!$response_data["success"]) {
         
-                            $errors['recaptcha'] = "reCAPTCHA verification failed";
+                            $errors['recaptcha'] = "Veuillez vérifier le reCAPTCHA.";
                         }
                     }
                 }     
             } else {
-                $errors['csrf'] = "An error occurred. Please try again.";
+                $errors['csrf'] = "Une erreur est survenue. Veuillez réessayer.";
             }   
             if (empty($errors)) {
                 //inserting the user into the database
