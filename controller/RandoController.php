@@ -303,6 +303,10 @@ class RandoController extends AbstractController implements ControllerInterface 
     public function deleteRando() {
 
         $id = intval($_GET["id"]);
+        // to prevent un unauthorised removal of rando in case of the modification of the url
+        // if(App\Session::isAdmin() || )
+        // $user = Session::getUser(); 
+
         // if (isset($_POST['deleteConfirmation'])) 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $tokenCSRF = $_POST['csrf_token'];
@@ -312,15 +316,17 @@ class RandoController extends AbstractController implements ControllerInterface 
                     die("Invalid CSRF token.");
                 }
             }
-            // echo $id; die();            
-            $randoManager = new RandoManager();
-            $randoManager->delete($id);
 
-            header("Location: index.php");
-            exit;
-        } else {
-            header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
-        }   
+                $randoManager = new RandoManager();
+                $randoManager->delete($id);
+
+                header("Location: index.php");
+                exit;
+            } else {
+                header("Location: index.php?ctrl=rando&action=randoDetails&id=".$id);
+            }
+         
+        
     }
     public function myRandosList() {
         if(Session::getUser()) {

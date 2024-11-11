@@ -68,7 +68,7 @@ $participants = $result["data"]['participants'];
                                     <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
                                     <span><b>Départ : </b><?= $rando->getDeparture() ?></span>
                                 </p>
-                                <p class="main__card-detail">
+                                <p class="main__card-detail" id="destination">
                                     <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
                                     <span><b>Point(s) d'intérêt : </b><?= $rando->getDestination() ?></span>
                                 </p>
@@ -119,12 +119,13 @@ $participants = $result["data"]['participants'];
                             <?php } ?>
                         <?php } ?>
                         </div>
-                        <!-- ================== RANDO MAP ================== -->
+                        <!-- ================== RANDO MAP and WEATHER================== -->
                         <div class="main_rando-map-card">
                             <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
                             <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
                                 style="width: 456px; height: 270px;">
                         </div>
+                        <div id="weather-info"></div>
                         <?php if(App\Session::getUser() == $rando->getUser()) { ?>
                             <div>
                                 <h2>Liste des participants</h2>
