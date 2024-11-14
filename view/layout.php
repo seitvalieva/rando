@@ -18,7 +18,6 @@
                 <!-- this is where messages (error or success) are displayed-->
                 <!-- <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3> -->
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
-                <!-- ============= FOOTER ============= -->
                 <header class="header">
                     <nav class="nav">
                         <a href="index.php?ctrl=home&action=index" class="nav__logo">
