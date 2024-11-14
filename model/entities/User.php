@@ -13,6 +13,7 @@ final class User extends Entity {
     private $registrationDate;
     private $resetTokenHash;
     private $tokenExpiresAt;
+    private $role;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -82,43 +83,43 @@ final class User extends Entity {
         return $this->username;
     }
 
-    /**
-     * Get the value of resetTokenHash
-     */ 
     public function getResetTokenHash()
     {
         return $this->resetTokenHash;
     }
-
-    /**
-     * Set the value of resetTokenHash
-     *
-     * @return  self
-     */ 
+ 
     public function setResetTokenHash($resetTokenHash)
     {
         $this->resetTokenHash = $resetTokenHash;
 
         return $this;
     }
-
-    /**
-     * Get the value of tokenExpiresAt
-     */ 
+ 
     public function getTokenExpiresAt()
     {
         return $this->tokenExpiresAt;
     }
 
-    /**
-     * Set the value of tokenExpiresAt
-     *
-     * @return  self
-     */ 
     public function setTokenExpiresAt($tokenExpiresAt)
     {
         $this->tokenExpiresAt = $tokenExpiresAt;
 
         return $this;
+    }
+ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+    public function hasRole(...$roles) {
+        
+        return in_array($this->role, $roles); 
     }
 }

@@ -4,8 +4,16 @@ require "app/SignInGoogle.php";
 ?>
     <div class="main__container">
         <h1>Créer un compte</h1>
-
-        <div class="msg"><span style="color: red"><?= App\Session::getFlash("error") ?></span></div>
+        <?php if (isset($_SESSION['errors'])): ?>
+        <div class="msg">
+        <?php foreach ($_SESSION['errors'] as $error): ?>
+            <span style="color: red">
+            <?= htmlspecialchars($error) ?>
+            </span>
+        <?php endforeach; ?>
+        </div>
+        <?php unset($_SESSION['errors']); // Clear errors after displaying ?>
+        <?php endif; ?>
 
         <button onclick="location.href='<?= $url ?>'" style="width: 25%; height: 40px;">Se connecter avec Google</button>
         
@@ -16,13 +24,15 @@ require "app/SignInGoogle.php";
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et le tiret du bas.</span>
             </span>
-            <input type="text" name="username" id="username" minlength="3" maxlength="20" placeholder="Votre pseudo publique" required><br>
+            <?php $usernameValue = isset($_POST['username']) ? $_POST['username']: ''?>
+            <input type="text" name="username" id="username" minlength="3" maxlength="20" value="<?= htmlspecialchars($usernameValue); ?>" placeholder="Votre pseudo publique" required><br>
     
             <label for="email">Email</label>
             <span class="tooltip-container"> *
                 <span class="tooltip-text">Les champs obligatoires</span>
             </span>
-            <input type="email" name="email" placeholder="utilisateur@gmail.com" id="email" required><br>
+            <?php $emailValue = isset($_POST['email']) ? $_POST['email']: ''?>
+            <input type="email" name="email" value="<?= htmlspecialchars($emailValue); ?>" placeholder="utilisateur@gmail.com" id="email" required><br>
     
             <label for="password">Mot de passe</label>
             <span class="tooltip-container"> *

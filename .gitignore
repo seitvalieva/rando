@@ -1,3 +1,4 @@
 controller/MailController.php
 app/SignInGoogle.php
 app/redirect.php
+view/test.php

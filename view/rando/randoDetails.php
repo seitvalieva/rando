@@ -68,7 +68,7 @@ $participants = $result["data"]['participants'];
                                     <img src="<?= PUBLIC_DIR ?>/assets/map-pin-fill.svg" alt="Départ" title="Départ">
                                     <span><b>Départ : </b><?= $rando->getDeparture() ?></span>
                                 </p>
-                                <p class="main__card-detail">
+                                <p class="main__card-detail" id="destination">
                                     <img src="<?= PUBLIC_DIR ?>/assets/map-pin-line.svg" alt="Destination" title="Destination">
                                     <span><b>Point(s) d'intérêt : </b><?= $rando->getDestination() ?></span>
                                 </p>
@@ -88,7 +88,13 @@ $participants = $result["data"]['participants'];
                         <div class="main__rando-info-aside-btn">
 
                         <?php if(App\Session::getUser()) {
-                            if(App\Session::getUser() != $rando->getUser()){ ?>
+                            if(App\Session::isAdmin()) { ?>
+                                <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
+                                <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                            <?php } 
+                            // if connected user is not the one who created the rando, he can participate
+                            elseif(App\Session::getUser() != $rando->getUser()) { ?>
+                                <!-- the Paprticipate btn is displayed if rando hasn't passed yet /current date less or = than rando date -->
                                 <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
                                     <?php if(!$isSubscribed){ ?>
                                         <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
@@ -96,9 +102,11 @@ $participants = $result["data"]['participants'];
                                         <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
                                     <?php } ?>
                                 <?php } else {?>
-                                <p>Rando est déjà passée</p>
-                            <?php } ?>
+                                    <p>Rando est déjà passée</p>
+                                <?php } ?>
+                            <?php } elseif(App\Session::isAdmin()) {?>
                             <?php } else {?>
+                                <!-- user who created the rando can modify/delete it  -->
                                 <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                                 <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>" class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
                             <?php } ?>
@@ -111,12 +119,13 @@ $participants = $result["data"]['participants'];
                             <?php } ?>
                         <?php } ?>
                         </div>
-                        <!-- ================== RANDO MAP ================== -->
+                        <!-- ================== RANDO MAP and WEATHER================== -->
                         <div class="main_rando-map-card">
                             <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
                             <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
                                 style="width: 456px; height: 270px;">
                         </div>
+                        <div id="weather-info"></div>
                         <?php if(App\Session::getUser() == $rando->getUser()) { ?>
                             <div>
                                 <h2>Liste des participants</h2>
