@@ -42,7 +42,6 @@ form.main__search-form button {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: auto;
 }
 .main__rando-title {
   font-size: var(--title-font-size);
