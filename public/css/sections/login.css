@@ -1,17 +1,124 @@
+.fullscreen-container {
+    background-image: url(../../assets/des-vosges.jpg);
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+    /* background-color: hsla(201, 100%, 50%, 0.6); */
+    padding: 20px 30px;
+    width: 50%;
+    max-width: 500px;
+    border-radius: 8px;
+
+    box-shadow: 1px 1px 5px 1px #c8c8c854;
+    background-color: #c8c8c87c;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1px solid #e9e9e94f;
+}
+.login-title {
+    color: white;
+    text-align: center;
+    margin: 0 0 10px;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+.login-btn, .register-btn, .ggl-btn {
+    background: none;
+    border: none;
+    outline: none;  
+    width: 100%;
+    padding: 10px 30px;
+    border-radius: 24px;
+    font-size: 1.25em;
+    /* font-weight: lighter; */
+    margin-top: 10px;
+    cursor: pointer;
+}
+.login-btn {
+    /* dark green */
+    /* background-color:hsla(120,100%,25%,0.3); */
+    background-color: rgba(0, 128, 0, 0.5);
+    border: 1px solid rgba(48, 52, 54, 0);
+    color: white;
+}
+.register-btn {
+    background-color:hsla(120,100%,25%,0.3);
+    border: 1px solid hsl(201, 6%, 20%);
+    color: white;
+}
+.ggl-btn {
+    background-color:hsla(120,100%,25%,0.3);
+    border: 1px solid hsl(201, 6%, 20%);
+    color: white;
+}
+.login-btn:hover, 
+.login-btn:focus {
+    background-color:rgb(var(--primary-color));
+    border-color: rgb(var(--primary-color));
+}
+.button-container a {
+    margin-top: 8px;
+    color: white;
+    text-decoration: underline;
+    font-weight: lighter;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+.input-group label {
+    color: white;
+    font-weight: lighter;
+    font-size: 1.2em;
+    margin-bottom: 7px;
+}
+.input-group input {
+    background: none;
+    border: none; 
+    outline: none;
+    /* background-color: hsla(201, 30%, 95%, 0.4); */
+    background-color: rgba(238, 243, 246, 0.4);
+    font-size: 1em;
+    padding: 10px;
+    border: 1px solid hsl(201, 6%, 20%);
+    border-radius: 5px;
+    color: hsl(201, 6%, 20%); 
+}
+.input-group input:focus {
+    border-color: hsl(201, 50%, 50%);
+}
 .break-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    margin-top: 8px;
 }
 .break-border-ou {
     border-bottom: 1px solid rgb(var(--primary-color));
-    width: 60%;
+    width: 50%;
 }
 .break-border-connexion {
     border-bottom: 1px solid rgb(var(--primary-color));
-    width: 28%;
+    width: 33%;
 }
-.break-content {
+.break-content-or {
+    width: 25%;
+    text-align: center;
+    padding: 8px;
+}
+.break-content-connexion {
+    width: 50%;
+    text-align: center;
     padding: 8px;
 }

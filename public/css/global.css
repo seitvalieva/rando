@@ -16,7 +16,3 @@ a {
 h1, h3 {
     color: rgb(var(--secondary-color));
 }
-
-.required {
-    color: red;
-}
