@@ -111,6 +111,7 @@ class SecurityController extends AbstractController{
                 "password" => password_hash($password, PASSWORD_DEFAULT)
                 ]);
                 //redirection after the registration
+                Session::addFlash('success',"Compte créé avec succès!");
                 header("Location: index.php?ctrl=security&action=login");
                 exit;
             } else {

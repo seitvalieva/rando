@@ -192,7 +192,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                         $errors['images'] = "File {$_FILES['image']['name'][$key]} is not a valid image type.";
                     }
                 }
-            }
+            } 
             // if token is not correct
             } else {
                 $errors['csrf'] = "Une erreur est survenue. Veuillez réessayer.";
@@ -225,36 +225,39 @@ class RandoController extends AbstractController implements ControllerInterface 
                     ];
                     $subscriptionManager->add($data);
                     
-                    foreach($_FILES['image']['tmp_name'] as $key => $value) {
-                        $filename = $_FILES['image']['name'][$key];
-                        $filename_tmp = $_FILES['image']['tmp_name'][$key];
-                        $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
-                        $fileName = '';
+                    if(!empty($_FILES['image']['name'][0])){
 
-                        if(!file_exists('uploads/'.$filename)) {
-                            move_uploaded_file($filename_tmp, 'uploads/'.$filename);
-                            $fileName = $filename;
-                        } else {                                      // if a file with the same name is already exists in the uploads folder
-                            $filename = str_replace('.','-', basename($filename, $extension));
-                            //add current date and time to make the file name unique and protect personal info
-                            // $newFilename = $filename.time().".".$extension;
-
-                            //add a unique randomly generated token to make the file name unique and protect personal info
-                            $token = bin2hex(random_bytes(8));
-                            $newFilename = $filename.$token.".".$extension;
-                            move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
-                            $fileName = $newFilename;
+                        foreach($_FILES['image']['tmp_name'] as $key => $value) {
+                            $filename = $_FILES['image']['name'][$key];
+                            $filename_tmp = $_FILES['image']['tmp_name'][$key];
+                            $extension = pathinfo($filename, PATHINFO_EXTENSION);       // get the extension of the file
+                            $fileName = '';
+    
+                            if(!file_exists('uploads/'.$filename)) {
+                                move_uploaded_file($filename_tmp, 'uploads/'.$filename);
+                                $fileName = $filename;
+                            } else {                                      // if a file with the same name is already exists in the uploads folder
+                                $filename = str_replace('.','-', basename($filename, $extension));
+                                //add current date and time to make the file name unique and protect personal info
+                                // $newFilename = $filename.time().".".$extension;
+    
+                                //add a unique randomly generated token to make the file name unique and protect personal info
+                                $token = bin2hex(random_bytes(8));
+                                $newFilename = $filename.$token.".".$extension;
+                                move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
+                                $fileName = $newFilename;
+                            }
+    
+                            // add images info to the database 
+                            $imageManager = new ImageManager();
+                            $data = [
+                                'fileName' =>$fileName,
+                                'rando_id' => $lastInsertRandoId
+                            ];
+                            $imageManager->add($data);
+                            //update image name in the rando table
+                            $randoManager->addImage($fileName, $lastInsertRandoId);
                         }
-
-                        // add images info to the database 
-                        $imageManager = new ImageManager();
-                        $data = [
-                            'fileName' =>$fileName,
-                            'rando_id' => $lastInsertRandoId
-                        ];
-                        $imageManager->add($data);
-                        //update image name in the rando table
-                        $randoManager->addImage($fileName, $lastInsertRandoId);
                     }
                 }
                 // Redirect user to another page after form processing

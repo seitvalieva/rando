@@ -9,12 +9,12 @@
         <div class="main__feature-subscription">
             <h2 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
                 et rejoignez des randos</h2>
-            <a href="index.php?ctrl=rando&action=index" class="main__feature-subscription-btn">Consulter nos randos</a>
+            <a href="index.php?ctrl=rando&action=index" class="main__feature-subscription-btn">Consulter nos randonnées</a>
         </div>
         <!-- ============= SEARCH form ============= -->
         <div class="main__feature-search">
             <form action="index.php?ctrl=rando&action=searchRando" method="POST">
-                <h2 class="main__feature-search-label">Rechercher une rando</h2>
+                <h2 class="main__feature-search-label">Rechercher une randonnée</h2>
                 <div class="main__feature-search-container">
                     <input type="search" id="search" name="keyword" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
                     <input type="submit" name="submitSearch" value="Rechercher" id="main__feature-search-btn">
@@ -35,7 +35,7 @@
                 <!-- target="_blank" -->
                 <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" >
                     <?php if(!empty($rando->getImage())) {?>
-                    <img class="main__card-img" src="uploads/<?= $rando->getImage() ?>" alt="Les deux Donons"
+                    <img class="main__card-img" src="uploads/<?= $rando->getImage() ?>" alt="<?= $rando->getTitle() ?>"
                         title="Les deux Donons">
                     <?php } else {?>
                         <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt">

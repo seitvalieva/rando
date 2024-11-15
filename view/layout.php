@@ -16,14 +16,17 @@
         <div id="wrapper"> 
             <div id="mainpage">
                 <!-- this is where messages (error or success) are displayed-->
-                <!-- <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3> -->
-                <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+                <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
+                <span class="message" style="color: green"><?= App\Session::getFlash("success") ?></span>
+                <!-- ============= HEADER  ============= -->
                 <header class="header">
                     <nav class="nav">
+                        <!-- LOGO -->
                         <a href="index.php?ctrl=home&action=index" class="nav__logo">
                             <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
                             <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                         </a>
+                        <!-- NAV MENU -->
                         <div id="nav-right">
                         <!-- if the user is logged in -->
                             <?php if(App\Session::getUser()) { ?> 
@@ -33,7 +36,7 @@
                                 <?php } ?>
                                     <li><a href="index.php?ctrl=security&action=profile" class="nav__menu-link"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a></li>
                                     <li><a href="index.php?ctrl=rando&action=addNewRando" class="nav__menu-link nav__menu-link-cta">Publier une rando</a></li>
-                                    <li><a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout">Déconnexion</a></li> 
+                                    <li><a href="index.php?ctrl=security&action=logout" class="nav__menu-link nav__menu-link-logout" onclick="return confirm('Voulez-vous vous déconnecter ?')">Déconnexion</a></li> 
                                 </ul>
                             <!-- if user is not logged in     -->
                             <?php } else { ?>
@@ -48,7 +51,7 @@
                         <div class="nav__burger-menu" id="navBurgerMenu">
                             <img src="<?= PUBLIC_DIR ?>/assets/burger-menu.svg" alt="Mobile Menu" title="Mobile Menu">
                         </div>
-                        <!-- ============= MOBILE MENU ============= -->
+                        <!-- ============= MOBILE NAV MENU ============= -->
                         <div class="mobile-menu" id="mobileMenu">
                             <button class="mobile-menu__close" id="mobileMenuClose">&times;</button>
                             <nav class="mobile-menu__nav">
