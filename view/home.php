@@ -7,8 +7,7 @@
     <!-- ============= FEATURES section ============= -->
     <section class="main__features-container">
         <div class="main__feature-subscription">
-            <h2 class="main__feature-subscription-title">Inscrivez-vous gratuitement <br>
-                et rejoignez des randos</h2>
+            <h2 class="main__feature-subscription-title">Découvrez et rejoignez<br>nos randonnées</h2> 
             <a href="index.php?ctrl=rando&action=index" class="main__feature-subscription-btn">Consulter nos randonnées</a>
         </div>
         <!-- ============= SEARCH form ============= -->
@@ -17,7 +16,6 @@
                 <h2 class="main__feature-search-label">Rechercher une randonnée</h2>
                 <div class="main__feature-search-container">
                     <input type="search" id="search" name="keyword" placeholder="Rechercher une ville où lieu à visiter" minlength="3" maxlength="20">
-                    <input type="submit" name="submitSearch" value="Rechercher" id="main__feature-search-btn">
                 </div>
             </form>
         </div>

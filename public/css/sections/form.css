@@ -2,19 +2,19 @@
     background-image: url(../../assets/des-vosges.jpg);
     min-height: 100vh;
     width: 100%;
+    padding: 10px;
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-container, .registration-container {
-    /* background-color: hsla(201, 100%, 50%, 0.6); */
+.login-container, 
+.registration-container {
     padding: 20px 30px;
-    width: 50%;
+    width: 100%;
     max-width: 500px;
     border-radius: 8px;
-
     box-shadow: 1px 1px 5px 1px #c8c8c854;
     background-color: #c8c8c87c;
     -webkit-backdrop-filter: blur(5px);
@@ -25,7 +25,7 @@
     color: rgb(var(--primary-color));
     text-align: center;
     margin: 0 0 10px;
-    font-size: 2.5em;
+    font-size: 1.5em;
     font-weight: var(--title-font-weight);
 }
 .button-container {
@@ -76,15 +76,20 @@
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
-.input-group label {
-    color: white;
-    font-weight: lighter;
-    font-size: 1.2em;
+.input-group label,
+.checkbox-container label,
+.datetime-group label,
+.duration-group label {
+    color: hsl(201, 6%, 20%);
+    font-size: 1em;
     margin-bottom: 4px;
 }
-.input-group input {
+.input-group input, 
+.input-group textarea,
+.datetime-group input,
+.duration-group input {
     background: none;
     border: none; 
     outline: none;
@@ -117,9 +122,11 @@
     width: 25%;
     text-align: center;
     padding: 8px;
+    color: hsl(201, 6%, 20%);
 }
 .break-content-connexion {
     width: 50%;
     text-align: center;
     padding: 8px;
+    color: hsl(201, 6%, 20%);
 }

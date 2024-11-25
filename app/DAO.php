@@ -1,7 +1,6 @@
 <?php
 namespace App;
 
-// 
 // * Database data access class, abstract
 // *
 // * @property static $bdd the PDO instance that the class will store when connect() is called

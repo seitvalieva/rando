@@ -15,8 +15,8 @@ class HomeController extends AbstractController implements ControllerInterface {
       
         return [
             "view" => VIEW_DIR."home.php",
-            "meta_description" => "Randonnées guidées et programmées en Alsace",
-            "title" => "Accueil",
+            "meta_description" => "Participer aux randonnées guidées et programmées en Alsace avec Rando",
+            "title" => "Rando : idées de randonnée pédestre en Alsace",
             "data" => [
                 "lastRandos" => $lastRandos
             ]

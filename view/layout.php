@@ -22,8 +22,8 @@
                 <header class="header">
                     <nav class="nav">
                         <!-- LOGO -->
-                        <a href="index.php?ctrl=home&action=index" class="nav__logo">
-                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" title="Logo" class="nav__logo-img">
+                        <a href="index.php?ctrl=home&action=index" class="nav__logo" title="Rando">
+                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="Rando" title="Logo" class="nav__logo-img">
                             <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                         </a>
                         <!-- NAV MENU -->
