@@ -130,12 +130,12 @@ class SecurityController extends AbstractController{
     public function login() {
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                
+                 
                 if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
 
                     if(hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
                          
-                        //PROTECTION XSS (=FILTRES)
+                        //PROTECTION XSS FILTRES
                         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
                         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
@@ -144,12 +144,10 @@ class SecurityController extends AbstractController{
                             $userManager = new UserManager();
                             $user = $userManager->checkUserExists($email);
     
-                            if($user){
-                                
+                            if($user){ 
                                 $hash = $user->getPassword();
-                            
-                                if(password_verify($password, $hash)){          // PASSWORD VERIFICATION
-                                                                                
+
+                                if(password_verify($password, $hash)){          // PASSWORD VERIFICATION                                       
                                     $_SESSION["user"] = $user;                // we store all the user's information in a SESSION table
                                     header("Location:index.php?ctrl=home&action=index");    //IF CONNECTION SUCCESSFUL: REDIRECTION TO HOME PAGE 
                                     exit; 
@@ -192,7 +190,8 @@ class SecurityController extends AbstractController{
             }
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
-            $token_hash = hash("sha256", $token);
+            // $token_hash = hash("sha256", $token); replaced with stronger algorithm
+            $token_hash = password_hash($token, PASSWORD_DEFAULT);
             $expiry = date("Y-m-d H:i:s", time() + 60 * 10); // token is valid for only 10 minutes
             
             if($email) {
