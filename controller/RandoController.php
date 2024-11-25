@@ -62,14 +62,12 @@ class RandoController extends AbstractController implements ControllerInterface 
         ];
     }
 
-     // create une rando
+    // create une rando
     public function addNewRando() {
         $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitRando'])) {
             // csrf token validation
             if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-                
                 // Validate TITLE
             if (!empty($_POST['randoTitle'])) {
                 $randoTitle = filter_input(INPUT_POST, "randoTitle", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -95,17 +93,16 @@ class RandoController extends AbstractController implements ControllerInterface 
                 $dateRando = $_POST['dateRando'];
                 $timeRando = $_POST['timeRando'];
                 $dateValid = \DateTime::createFromFormat('Y-m-d', $dateRando);
-                
                 // check the date and time formats 
                 if (!$dateValid || $dateValid->format('Y-m-d') !== $dateRando || !preg_match("/^(2[0-3]|[01][0-9]):([0-5][0-9])$/", $timeRando)) {
                     $errors['dateRando'] = "L'heure ou la date de randonnée n'est pas correcte" ;
                 }
                 // Get the current date and time
                 $currentDate = date('Y-m-d');
-                $currentTime = date('H:i');
+                // $currentTime = date('H:i');
                 // the submitted and current date-times are converted to timestamps to make it easy to compare them
-                $submittedDateTime = strtotime("$dateRando $timeRando");
-                $currentDateTime = strtotime("$currentDate $currentTime");
+                $submittedDateTime = strtotime("$dateRando");
+                $currentDateTime = strtotime("$currentDate");
                 // if submitted date and time are less then the current date and time
                 if($submittedDateTime < $currentDateTime) {
                     $errors['dateRando'] = "L'heure ou la date de randonnée n'est pas correcte" ;
@@ -172,8 +169,8 @@ class RandoController extends AbstractController implements ControllerInterface 
             }
             // validate uploaded IMAGES 
             if (isset($_FILES['image']) && !empty($_FILES['image']['name'][0])) {
-                $extensionAllowed =  ['jpeg','jpg', 'png', 'gif', 'webp',];    // array of allowed extensions for images
-
+                $extensionsAllowed =  ['jpeg','jpg', 'png', 'gif', 'webp',];    // array of allowed extensions for images
+                $mimeTypesAllowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']; // allowed mime types
                 foreach($_FILES['image']['tmp_name'] as $key => $value) {
                     $fileSize = $_FILES['image']['size'][$key];
                     $filename = $_FILES['image']['name'][$key];
@@ -188,7 +185,12 @@ class RandoController extends AbstractController implements ControllerInterface 
                         $errors['images'] = "File {$_FILES['image']['name'][$key]} exceeds the 1 MB size limit.";
                     }
                     // Check FILE EXTENSION  
-                    if(!in_array($extension, $extensionAllowed)) {
+                    if(!in_array($extension, $extensionsAllowed)) {
+                        $errors['images'] = "File {$_FILES['image']['name'][$key]} is not a valid image type.";
+                    }
+                    // Validate MIME type using mime_content_type
+                    $actualMimeType = mime_content_type($filename_tmp);
+                    if (!in_array($actualMimeType, $mimeTypesAllowed)) {
                         $errors['images'] = "File {$_FILES['image']['name'][$key]} is not a valid image type.";
                     }
                 }
@@ -197,7 +199,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             } else {
                 $errors['csrf'] = "Une erreur est survenue. Veuillez réessayer.";
             }   
-            // 
+            // if no errors, add new rando data to db 
             if(empty($errors)) {
                 $userId = Session::getUser()->getId();
                 $randoManager = new RandoManager();
@@ -237,17 +239,13 @@ class RandoController extends AbstractController implements ControllerInterface 
                                 move_uploaded_file($filename_tmp, 'uploads/'.$filename);
                                 $fileName = $filename;
                             } else {                                      // if a file with the same name is already exists in the uploads folder
-                                $filename = str_replace('.','-', basename($filename, $extension));
-                                //add current date and time to make the file name unique and protect personal info
-                                // $newFilename = $filename.time().".".$extension;
-    
+                                $filename = str_replace('.','-', basename($filename, $extension));    
                                 //add a unique randomly generated token to make the file name unique and protect personal info
                                 $token = bin2hex(random_bytes(8));
                                 $newFilename = $filename.$token.".".$extension;
                                 move_uploaded_file($filename_tmp, 'uploads/'.$newFilename);
                                 $fileName = $newFilename;
                             }
-    
                             // add images info to the database 
                             $imageManager = new ImageManager();
                             $data = [
@@ -260,6 +258,7 @@ class RandoController extends AbstractController implements ControllerInterface 
                         }
                     }
                 }
+                Session::addFlash("success", "Votre randonnée a été ajoutée avec succès!");
                 // Redirect user to another page after form processing
                 header("Location: index.php");    
                 exit;   
@@ -271,9 +270,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             "view" => VIEW_DIR."rando/newRando.php",
             "meta_description" => "Créer une randonnée",
             "title" => "Formulaire de création d'une randonnée",
-        ];
-        
-          
+        ];    
     }
     
      // search randos by keyword
@@ -484,7 +481,7 @@ class RandoController extends AbstractController implements ControllerInterface 
         return [
             "view" => VIEW_DIR."rando/myParticipationsList.php",
             "meta_description" => "Mes randonnées à participer",
-            "title" => "Mes participqtions aux randonnées",
+            "title" => "Mes participations aux randonnées",
             "data" => [
                 "participations" => $participations
             ]
