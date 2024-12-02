@@ -2,6 +2,8 @@
     background-image: url(../../assets/panoramic-view.jpg);
     width: 100%;
     padding: 10px;
+    background-size: cover;
+    /* background-position: center; */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,4 @@
 .main {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,7 +80,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   /* background-color: rgb(var(--blue-color)); */
-  background-image: url(../../assets/sky-background.png);
+  /* background-image: url(../../assets/sky-background.png); */
+  background-image: url(../../assets/panoramic-view.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -209,9 +209,10 @@
 }
 .cookie-header i {
   color: #4070f4;
+  font-weight: bold;
   font-size: 32px;
 }
-.cookie-header h2 {
+.cookie-header h3 {
   color: #4070f4;
   font-weight: 500;
 }
@@ -224,6 +225,7 @@
 }
 .cookie-data p a {
   color: #4070f4;
+  font-weight: bold;
   text-decoration: none;
 }
 .cookie-data p a:hover {
@@ -239,6 +241,7 @@
 .cookie-btns .cookie-btn {
   border: none;
   color: #fff;
+  font-weight: bold;
   padding: 8px 0;
   border-radius: 4px;
   background: #4070f4;

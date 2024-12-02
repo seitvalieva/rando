@@ -2,7 +2,4 @@
 <line x1="0.5" y1="1.5" x2="40.5" y2="1.5" stroke="#fff" stroke-width="3"/>
 <line x1="0.5" y1="9.5" x2="40.5" y2="9.5" stroke="#fff" stroke-width="3"/>
 <line x1="0.5" y1="17.5" x2="40.5" y2="17.5" stroke="#fff" stroke-width="3"/>
-<!-- <line x1="0.5" y1="1.5" x2="40.5" y2="1.5" stroke="#6e6d26" stroke-width="3"/>
-<line x1="0.5" y1="9.5" x2="40.5" y2="9.5" stroke="#6e6d26" stroke-width="3"/>
-<line x1="0.5" y1="17.5" x2="40.5" y2="17.5" stroke="#6e6d26" stroke-width="3"/> -->
 </svg>

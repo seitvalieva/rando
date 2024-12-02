@@ -76,3 +76,4 @@ require "app/SignInGoogle.php";
         <?php unset($_SESSION['errors']); // Clear errors after displaying ?>
     </div>
 </div>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

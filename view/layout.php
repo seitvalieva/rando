@@ -60,7 +60,7 @@
                                         <a class="nav__menu-link nav__menu-link-login" href="index.php?ctrl=admin&action=index">Dashboard</a>
                                     <?php } ?>
                                     <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                    <a href="index.php?ctrl=home&action=newRando" class="" >Publier une rando</a>
+                                    <a href="index.php?ctrl=rando&action=addNewRando" class="" >Publier une rando</a>
                                     <a href="index.php?ctrl=security&action=logout" class="">Déconnexion</a>
                                 <!-- if user is not logged in -->
                                 <?php } else { ?>
@@ -173,7 +173,6 @@
                     content_css: '//www.tiny.cloud/css/codepen.min.css'
                 });
             })
-        </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>    
+        </script>    
     </body>
 </html>

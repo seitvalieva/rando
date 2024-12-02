@@ -40,11 +40,11 @@
                     <?php } ?>
                 </a>
                 <div class="main__card-details">
-                    <h3 class="main__card-title">
+                    <h2 class="main__card-title">
                         <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>">
                             <?= $rando->getTitle() ?>
                         </a>
-                    </h3>
+                    </h2>
                     <p class="main__card-detail">
                         <img src="<?= PUBLIC_DIR ?>/assets/calendar.svg" alt="Calendrier" title="Calendrier">
                         <span><b>Date : </b>
@@ -80,7 +80,7 @@
     <div class="cookieBox">
         <div class="cookie-header">
             <i class="bx bx-cookie"></i>
-            <h2>Vos paramètres de cookies</h2>
+            <h3>Vos paramètres de cookies</h3>
         </div>
         <div class="cookie-data">
             <p>Nous utilisons des cookies, y compris des cookies de nos partenaires, afin d’améliorer votre expérience
@@ -95,5 +95,5 @@
             <button class="cookie-btn" id="declineBtn">Refuser</button>
         </div>
     </div>
-
 </div>
+<script src="<?= PUBLIC_DIR ?>/js/cookies.js"></script>

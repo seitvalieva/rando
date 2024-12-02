@@ -43,6 +43,7 @@ class RandoManager extends Manager{
         );
         
     }
+    
     public function addImage($fileName, $id) {
         $sql = "UPDATE ".$this->tableName."
         SET image = :image

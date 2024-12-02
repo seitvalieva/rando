@@ -203,7 +203,6 @@ class RandoController extends AbstractController implements ControllerInterface 
             if(empty($errors)) {
                 $userId = Session::getUser()->getId();
                 $randoManager = new RandoManager();
-
                 $data = [
                     'title' =>$randoTitle,
                     'subtitle'=>$randoSubtitle,
@@ -269,20 +268,18 @@ class RandoController extends AbstractController implements ControllerInterface 
         return [
             "view" => VIEW_DIR."rando/newRando.php",
             "meta_description" => "Créer une randonnée",
-            "title" => "Formulaire de création d'une randonnée",
+            "title" => "Formulaire de création d'une randonnée"
         ];    
     }
     
      // search randos by keyword
     public function searchRando() {
-
         if (isset($_POST['keyword'])) {
             
             $keyword = htmlspecialchars($_POST['keyword']);
             $keyword = trim(strip_tags($keyword));
             // var_dump($keyword);die;
             $randoManager = new RandoManager();
-
             $randos = $randoManager->searchByKeyword($keyword);
             
             if(!empty($randos)) {
@@ -296,7 +293,6 @@ class RandoController extends AbstractController implements ControllerInterface 
                         "keyword" => $keyword
                     ]
                 ];
-
             } else {
                 die("No results");
             }
@@ -325,7 +321,6 @@ class RandoController extends AbstractController implements ControllerInterface 
 
     public function modifyRando() {
 
-        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $tokenCSRF = $_POST['csrf_token'];
             if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token'])) {
@@ -446,6 +441,7 @@ class RandoController extends AbstractController implements ControllerInterface 
          
         
     }
+
     public function myRandosList() {
         if(Session::getUser()) {
             $userId = Session::getUser()->getId();
@@ -467,6 +463,7 @@ class RandoController extends AbstractController implements ControllerInterface 
             ]
         ];
     }
+
     public function myParticipationsList() {
         if(Session::getUser()) {
             $userId = Session::getUser()->getId();

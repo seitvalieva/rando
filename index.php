@@ -43,8 +43,8 @@ if(isset($_GET['action']) && method_exists($ctrl, $_GET['action'])){
     //the method to call will be the one in the url
     $action = $_GET['action'];
 }
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
+if(isset($_GET['id'])) {
+    $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 }
 else $id = null;            
 $result = $ctrl->$action($id);             // example: HomeController->users(null)

@@ -42,7 +42,7 @@
                 <?= isset($_SESSION['errors']['dateRando']) ? "<span style='color: red'>{$_SESSION['errors']['dateRando']}</span>" : '' ?>
             </div>
             <div class="duration-group">
-                <label for="durationDays">Durée</label>
+                <label for="durationDays">Durée en jours ou en heures</label>
                 <div>
                     <input type="number" id="durationDays" name="durationDays" min="1" step="1" placeholder="1">
                     <span>jours</span>
@@ -96,7 +96,7 @@
             </div>
             <div class="image-group">
                 <label for="randoImages">Ajouter des images
-                    <span class="tooltip-container"> ?
+                    <span class="tooltip-container" style="color:blue;"> &#9432
                         <span class="tooltip-text">La taille maximale d'une image 1Mo</span>
                     </span>
                 </label>

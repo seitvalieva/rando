@@ -190,8 +190,7 @@ class SecurityController extends AbstractController{
             }
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $token = bin2hex(random_bytes(16));
-            // $token_hash = hash("sha256", $token); replaced with stronger algorithm
-            $token_hash = password_hash($token, PASSWORD_DEFAULT);
+            $token_hash = hash("sha256", $token); 
             $expiry = date("Y-m-d H:i:s", time() + 60 * 10); // token is valid for only 10 minutes
             
             if($email) {
