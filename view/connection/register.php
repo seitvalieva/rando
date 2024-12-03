@@ -59,7 +59,7 @@ require "app/SignInGoogle.php";
             <div class="checkbox-container">
                 <input type="checkbox" id="agree" name="agree" value="agree" required>
                 <label for="agree">J'accepte les 
-                    <a href="" style="color:blue;">Conditions générales d’utilisation</a>
+                    <a href="index.php?ctrl=security&action=conditionsGeneralesUtilisation" style="color:blue;">Conditions générales d’utilisation</a>
                     <span class="tooltip-container"> *
                         <span class="tooltip-text">Le champ obligatoire.</span>
                     </span>

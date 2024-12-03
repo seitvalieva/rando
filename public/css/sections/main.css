@@ -21,13 +21,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  /* display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 16px; */
 }
 .main__feature-subscription {
   width: 49%;
-  /* max-width: 500px; */
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -36,8 +32,7 @@
   gap: 16px;
   padding: 16px;
   border-radius: 10px;
-  /* background: rgb(var(--orange-color)); */
-  background-image: url(../../assets/sun-background.png);
+  background-image: url(../../assets/sun-background.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -50,7 +45,6 @@
   line-height: 28px;
   font-style: normal;
   line-height: 1.5em;
-  /* border: 2px solid; */
 }
 .main__feature-subscription-btn {
   display: flex;
@@ -72,16 +66,13 @@
 }
 .main__feature-search {
   width: 49%;
-  /* max-width: 590px; */
   height: 200px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  /* background-color: rgb(var(--blue-color)); */
-  /* background-image: url(../../assets/sky-background.png); */
-  background-image: url(../../assets/panoramic-view.jpg);
+  background-image: url(../../assets/panoramic-view.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -92,9 +83,7 @@
   width: 100%;
 }
 .main__feature-search-label {
-  /* color: rgb(var(--secondary-color)); */
   color: rgb(var(--white-color));
-  /* color: #147eb3; */
   font-weight: var(--title-font-weight);
   font-size: var(--heading-font-size);
 }

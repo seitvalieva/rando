@@ -45,7 +45,7 @@ $participants = $result["data"]['participants'];
                     <?php endforeach ?>
                     <?php } else {?>
                     <div class="slide fade">
-                        <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt" style="width: 100%;">
+                        <img src="<?= PUBLIC_DIR ?>/assets/forest-340x200.webp" alt="<?= $rando->getTitle() ?>" style="width: 100%;">
                     </div>
                     <?php } ?>
                     <!-- Next and previous buttons -->
@@ -189,10 +189,10 @@ $participants = $result["data"]['participants'];
             <div class="main__card">
                 <a href="index.php?ctrl=rando&action=randoDetails&id=<?= $rando->getId() ?>" target="_blank">
                     <?php if(!empty($lastRando->getImage())) {?>
-                    <img class="main__card-img" src="uploads/<?= $lastRando->getImage() ?>" alt="Les deux Donons"
-                        title="Les deux Donons">
+                    <img class="main__card-img" src="uploads/<?= $lastRando->getImage() ?>" alt="<?= $lastRando->getTitle() ?>"
+                        title="<?= $lastRando->getTitle() ?>">
                     <?php } else {?>
-                    <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt">
+                    <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.webp" alt="<?= $lastRando->getTitle() ?>">
                     <?php } ?>
                 </a>
                 <div class="main__card-details">

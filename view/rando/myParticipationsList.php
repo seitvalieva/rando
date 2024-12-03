@@ -14,7 +14,7 @@
                         <img class="main__card-img" src="uploads/<?= $participation->getRando()->getImage() ?>" alt="<?= $participation->getRando()->getTitle() ?>"
                             title="<?= $participation->getRando()->getTitle() ?>">
                         <?php } else {?>
-                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.png" alt="Forêt">
+                            <img class="main__card-img" src="<?= PUBLIC_DIR ?>/assets/forest-340x200.webp" alt="<?= $participation->getRando()->getTitle() ?>">
                         <?php } ?>
                     </a>
                     <div class="main__card-details">

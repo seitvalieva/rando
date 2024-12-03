@@ -116,8 +116,7 @@ class SecurityController extends AbstractController{
                 exit;
             } else {
                 $_SESSION['errors'] = $errors;  // Store errors in session
-            }
-            
+            } 
         }
         return [
             "view" => VIEW_DIR."connection/register.php",
@@ -247,22 +246,17 @@ class SecurityController extends AbstractController{
         
         $userManager = new UserManager();
         $user = $userManager->findUserByToken($token_hash);
-
-        // var_dump($user);die;    //true
         // sendForgottenPasswordReset() already checks if checkUserExists($email)
         if (strtotime($user->getTokenExpiresAt()) <= time()) {
             Session::addFlash('error',"Le token est expiré");
             header("Location: index.php?ctrl=security&action=login");
             exit;
-            // die("token has expired");
         }
-        // echo "token is valid";
         return [
             "view" => VIEW_DIR."connection/resetPassword.php",
             "meta_description" => "Réinitialisation du mot de passe",
             "title" => "Réinitialisation du mot de passe"
-        ];
-        
+        ]; 
     }
 
     public function setNewPassword() {
@@ -280,7 +274,6 @@ class SecurityController extends AbstractController{
             $token = $_POST["token"];
             $token_hash = hash("sha256", $token);
             $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/';
-            // $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $userManager = new UserManager();
             $user = $userManager->findUserByToken($token_hash);
 
@@ -288,26 +281,22 @@ class SecurityController extends AbstractController{
                 Session::addFlash('error',"Le token est expiré");
                 header("Location: index.php?ctrl=security&action=login");
                 exit;
-                // die("token has expired");
             }
             if (! preg_match($pattern, $_POST["newPassword"])) {
                     Session::addFlash('error',"Le mot de passe doit contenir au moins une lettre, un chiffre, un symbole spécial et comporter au moins 8 caractères");
                     header("Location: index.php?ctrl=security&action=setNewPassword");
                     exit;
-                // die("Password must contain at least one letter, one number, one special symbol and be at least 8 characters long");
             }
             
             if ($_POST["newPassword"] !== $_POST["confirmNewPassword"]) {
                 Session::addFlash('error',"Les mots de passe ne sont pas identiques");
                 header("Location: index.php?ctrl=security&action=setNewPassword");
                 exit;
-                // die("Passwords must match");
             }
             $password_hash = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
             $user = $userManager->updatePassword($token_hash, $password_hash);
             
             header("Location: index.php?ctrl=security&action=setNewPasswordSuccess");
-            // header("Location: index.php?ctrl=security&action=login");
             exit;
         }
         return [
@@ -365,7 +354,6 @@ class SecurityController extends AbstractController{
             if(Session::getUser()) {
 
                 $uid = Session::getUser()->getId();
-                // echo $uid; die();
                 $userManager = new UserManager();
 
                 if($userManager->delete($uid)) {
@@ -396,5 +384,11 @@ class SecurityController extends AbstractController{
         ];
     }
     
-
+    public function conditionsGeneralesUtilisation(){
+        return [
+            "view" => VIEW_DIR . "connection/cgu.php",
+            "meta_description" => "Conditions generales d'utilisation",
+            "title" => "Conditions generales d'utilisation"
+        ];
+    }
 }

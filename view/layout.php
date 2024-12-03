@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
-        <link rel="shortcut icon" href="<?= PUBLIC_DIR ?>/assets/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="<?= PUBLIC_DIR ?>/assets/favicon.svg" type="image/x-icon">
         <title><?= $title ?></title>
     </head>
     <body>
@@ -23,7 +23,7 @@
                     <nav class="nav">
                         <!-- LOGO -->
                         <a href="index.php?ctrl=home&action=index" class="nav__logo" title="Rando">
-                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="Rando" title="Logo" class="nav__logo-img">
+                            <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking.svg" alt="Rando" title="Logo" class="nav__logo-img">
                             <h3 class="nav__logo-title">Ran<span class="nav__logo-title nav__logo-title-do">do</span></h3>
                         </a>
                         <!-- NAV MENU -->
@@ -84,7 +84,7 @@
                             <div class="footer__top-left">
                                 <div class="footer__logo">
                                     <a href="index.php?ctrl=home&action=index">
-                                        <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking-100x100.png" alt="logo" class="footer__logo-img">
+                                        <img src="<?= PUBLIC_DIR ?>/assets/logo-hiking.svg" alt="logo" class="footer__logo-img">
                                     </a>
                                     <h3><a href="index.php?ctrl=home&action=index" class="footer__logo-title">Rando</a></h3>
                                 </div>
