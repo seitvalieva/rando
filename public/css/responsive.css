@@ -21,6 +21,12 @@
         width: 100%;
         margin-bottom: 10px;
     }
+     /* RANDO DETAILS */
+    .main__rando-info {
+        flex-direction: column;
+        padding: 10px;
+    }
+    /* FOOTER */
     .footer__logo-img {
         width: 60px;
         height: 60px;
@@ -39,7 +45,6 @@
         display: none;
     }
 
-
     .main__cards {
         flex-direction: column;
         justify-content: center;
@@ -55,6 +60,10 @@
     .main__cards-container-arrow {
         visibility: hidden;
     }
+   
+
+
+    /* FOOTER */
     .footer__container {
         gap: 8px;
     }

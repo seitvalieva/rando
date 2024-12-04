@@ -1,3 +1,5 @@
 controller/MailController.php
 app/SignInGoogle.php
 app/redirect.php
+
+# app password for Gmail SMTP server "rxgd ijau jldz ilst"

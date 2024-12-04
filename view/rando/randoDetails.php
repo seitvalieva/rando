@@ -17,8 +17,7 @@ $participants = $result["data"]['participants'];
         <form class="main__search-form" action="index.php?ctrl=rando&action=searchRando" method="POST">
             <input type="search" name="keyword" placeholder="Recherchez par une ville où un lieu à visiter"
                 minlength="3" maxlength="20">
-            <button type="submit" name="submitSearch"><img src="<?= PUBLIC_DIR ?>/assets/search.svg"
-                    alt="Recherche"></button>
+            <button type="submit" name="submitSearch"><i class="fa fa-search"></i></button>
         </form>
     </section>
     <!-- ================== RANDO DETAILS section ================== -->
@@ -31,7 +30,7 @@ $participants = $result["data"]['participants'];
         </p>
 
         <div class="main__rando-info">
-            <div>
+            <div class="main__rando-info-left">
                 <!-- SLIDESHOW container -->
                 <div class="slideshow-container">
                     <!--3 Images with next/previous buttons -->
@@ -93,8 +92,10 @@ $participants = $result["data"]['participants'];
             <!-- ================== RANDO AUTHOR INFO and MAP section ================== -->
             <aside class="main__rando-info-aside">
                 <div class="main__rando-author-info">
-                    <div class="main__rando-author-info-img"><img src="<?= PUBLIC_DIR ?>/assets/person-hiking.svg"
-                            alt=""></div>
+                    <div class="main__rando-author-info-img">
+                        <!-- <span class="fas fa-user"> -->
+                        <img src="<?= PUBLIC_DIR ?>/assets/person-hiking.svg" alt="">
+                    </div>
                     <?php if($rando->getUser()) { ?>
                     <a>
                         <?= $rando->getUser() ?>
@@ -109,7 +110,7 @@ $participants = $result["data"]['participants'];
                     <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>"
                         class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                     <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>"
-                        class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                        class="nav__menu-link deleteRando-btn">Supprimer la rando</a>
                     <?php } 
                             // if connected user is not the one who created the rando, he can participate
                             elseif(App\Session::getUser() != $rando->getUser()) { ?>
@@ -117,7 +118,7 @@ $participants = $result["data"]['participants'];
                     <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
                     <?php if(!$isSubscribed){ ?>
                     <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>"
-                        class="nav__menu-link nav__menu-link-cta">Participer à la rando</a>
+                        class="nav__menu-link nav__menu-link-cta" style="width:100%;">Participer à la rando</a>
                     <?php } else {?>
                     <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>"
                         class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>
@@ -131,12 +132,12 @@ $participants = $result["data"]['participants'];
                     <a href="index.php?ctrl=rando&action=modifyRandoForm&id=<?= $rando->getId() ?>"
                         class="nav__menu-link nav__menu-link-cta">Modifier la rando</a>
                     <a href="index.php?ctrl=rando&action=deleteRandoConfirmation&id=<?= $rando->getId() ?>"
-                        class="nav__menu-link nav__menu-link-cta">Supprimer la rando</a>
+                        class="nav__menu-link deleteRando-btn">Supprimer la rando</a>
                     <?php } ?>
                     <?php } else {?>
                     <!-- if user is not logged in -->
                     <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
-                    <a href="index.php?ctrl=security&action=login" class="nav__menu-link nav__menu-link-cta">Participer
+                    <a href="index.php?ctrl=security&action=login" class="nav__menu-link nav__menu-link-cta" style="width:100%; text-align:center;">Participer
                         à la rando</a>
                     <?php } else {?>
                     <p>Rando est déjà passée</p>
@@ -146,15 +147,14 @@ $participants = $result["data"]['participants'];
                 <!-- ================== RANDO MAP and WEATHER================== -->
                 <div class="main_rando-map-card">
                     <h2 class="main_rando-map-card-title">Carte de la randonnée</h2>
-                    <img src="<?= PUBLIC_DIR ?>/assets/map_tracking_ballon_d'Alsace.jpg" alt="Carte"
-                        style="width: 456px; height: 270px;">
+                    <div id="map"></div>
                 </div>
-                <!-- weather info section for depart point -->
-                <div id="weather-info"></div>
+                <!-- WEATHER info section for depart point -->
+                <div class="main_rando-weather-card" id="weather-info"></div>
                 <!-- List of participnts section displayed for the author of the randonnee -->
                 <?php if(App\Session::getUser() == $rando->getUser()) { ?>
                 <div>
-                    <h2>Liste des participants</h2>
+                    <h2 class="main__rando-info-card-title">Liste des participants</h2>
                     <?php if($participants) { ?>
                     <ul>
                         <?php foreach($participants as $participant) ?>

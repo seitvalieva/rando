@@ -8,6 +8,15 @@
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+        <!-- Leaflet's CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+        </script>
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
         <link rel="shortcut icon" href="<?= PUBLIC_DIR ?>/assets/favicon.svg" type="image/x-icon">
         <title><?= $title ?></title>
@@ -128,9 +137,9 @@
                         </div>
                     </div>
                     <div class="footer__bottom">
-                        <p><a href="" class="footer__link">Conditions générales d’utilisation</a></p>
-                        <p><a href="" class="footer__link">Mentions légales</a> </p>
-                        <p><a href="" class="footer__link">Politique de confidentialité</a></p>
+                        <p><a href="index.php?ctrl=security&action=conditionsGeneralesUtilisation" class="footer__link">Conditions générales d’utilisation</a></p>
+                        <p><a href="index.php?ctrl=security&action=conditionsGeneralesUtilisation" class="footer__link">Mentions légales</a> </p>
+                        <p><a href="index.php?ctrl=security&action=conditionsGeneralesUtilisation" class="footer__link">Politique de confidentialité</a></p>
                         <p>
                             &copy;
                             <?= date_create("now")->format("Y") ?>

@@ -152,6 +152,7 @@
   height: 260px;
   width: 350px;
   border-radius: 16px 16px 0px 0px;
+  object-fit: cover;
 }
 .main__card-details {
   display: flex;

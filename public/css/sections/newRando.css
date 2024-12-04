@@ -1,5 +1,5 @@
 .container {
-    background-image: url(../../assets/panoramic-view.jpg);
+    background-image: url(../../assets/panoramic-view.webp);
     width: 100%;
     padding: 10px;
     background-size: cover;
@@ -81,7 +81,7 @@
     font-size: var(--btn-font-size);
     padding: 8px 15px;
     border: 2px solid rgb(var(--secondary-color));
-    border-radius: 8px;
+    border-radius: 24px;
     cursor: pointer;
 }
 .publish-btn {

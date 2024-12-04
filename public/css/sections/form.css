@@ -1,5 +1,5 @@
 .fullscreen-container {
-    background-image: url(../../assets/des-vosges.jpg);
+    background-image: url(../../assets/des-vosges.webp);
     min-height: 100vh;
     width: 100%;
     padding: 10px;
@@ -45,27 +45,20 @@
     margin-top: 10px;
     cursor: pointer;
 }
-.login-btn {
+.login-btn, .register-btn, .ggl-btn {
     /* dark green */
     /* background-color:hsla(120,100%,25%,0.3); */
-    background-color: rgba(0, 128, 0, 0.5);
-    border: 1px solid rgba(48, 52, 54, 0);
-    color: white;
-}
-.register-btn {
-    background-color:hsla(120,100%,25%,0.3);
-    border: 1px solid hsl(201, 6%, 20%);
-    color: white;
-}
-.ggl-btn {
-    background-color:hsla(120,100%,25%,0.3);
-    border: 1px solid hsl(201, 6%, 20%);
-    color: white;
-}
-.login-btn:hover, 
-.login-btn:focus {
     background-color:rgb(var(--primary-color));
     border-color: rgb(var(--primary-color));
+    color: rgb(var(--white-color));
+}
+
+.login-btn:hover, 
+.register-btn:hover, .ggl-btn:hover {
+    background-color: rgb(var(--white-color));
+    border: 1px solid rgba(0, 128, 0, 0.5);
+    color: rgb(var(--primary-color));
+    transition: all 700ms;
 }
 .button-container a {
     margin-top: 8px;
