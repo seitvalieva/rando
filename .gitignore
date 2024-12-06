@@ -3,3 +3,10 @@ app/SignInGoogle.php
 app/redirect.php
 
 # app password for Gmail SMTP server "rxgd ijau jldz ilst"
+# Google sign in
+# Client secret
+# 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
+# Client ID
+# 25074705049-087k7n7a9nfsc06ica7facghb4tunhep.apps.googleusercontent.com
+# authorized id
+# http://localhost/rando/app/redirect.php

@@ -118,7 +118,7 @@ $participants = $result["data"]['participants'];
                     <?php if(strtotime(date('Y-m-d')) <= strtotime($rando->getDateRando())) {?>
                     <?php if(!$isSubscribed){ ?>
                     <a href="index.php?ctrl=subscription&action=participationCheck&id=<?= $rando->getId() ?>"
-                        class="nav__menu-link nav__menu-link-cta" style="width:100%;">Participer à la rando</a>
+                        class="nav__menu-link nav__menu-link-cta" style="width:100%; text-align:center;">Participer à la rando</a>
                     <?php } else {?>
                     <a href="index.php?ctrl=subscription&action=cancelParticipationModal&id=<?= $rando->getId() ?>"
                         class="nav__menu-link nav__menu-link-cta">Ne plus y participer</a>

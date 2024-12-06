@@ -1,5 +1,5 @@
 
-<div class="main__container">
+<div class="profile__container">
     <h1>Espace d'administrateur</h1>
     
     <section>

@@ -1,4 +1,4 @@
-<div class="main__container">
+<div class="password-reset-container">
     <h1>Créer votre nouveau mot de passe</h1>
     <form action="index.php?ctrl=security&action=setNewPassword" method="POST" autocomplete="off">
         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">

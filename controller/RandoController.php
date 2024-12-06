@@ -257,9 +257,8 @@ class RandoController extends AbstractController implements ControllerInterface 
                         }
                     }
                 }
-                Session::addFlash("success", "Votre randonnée a été ajoutée avec succès!");
-                // Redirect user to another page after form processing
-                header("Location: index.php");    
+                // Redirect user to another page after form processing  
+                header("Location: index.php?ctrl=rando&action=newRandoConfirmation");
                 exit;   
             } else {
                 $_SESSION['errors'] = $errors;  // Store errors in session
@@ -318,7 +317,14 @@ class RandoController extends AbstractController implements ControllerInterface 
         ];
         }
     }
+    public function deleteRandoConfirmation() {
 
+        return [
+            "view" => VIEW_DIR."rando/deleteRandoConfirmation.php",
+            "meta_description" => "Confirmation de suppression de la rando",
+            "title" => "Confirmation de suppression de la rando"
+        ];
+    }
     public function modifyRando() {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -405,12 +411,12 @@ class RandoController extends AbstractController implements ControllerInterface 
         }
     }
     // delete rando
-    public function deleteRandoConfirmation() {
+    public function newRandoConfirmation() {
 
         return [
-            "view" => VIEW_DIR."rando/deleteRandoConfirmation.php",
-            "meta_description" => "Confirmation de suppression de la rando",
-            "title" => "Confirmation de suppression de la rando"
+            "view" => VIEW_DIR."rando/newRandoConfirmation.php",
+            "meta_description" => "Confirmation de publication de la rando",
+            "title" => "Confirmation de publication de la rando"
         ];
     }
     public function deleteRando() {

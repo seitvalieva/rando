@@ -1,0 +1,27 @@
+.participation-container {
+    background-image: url(../../assets/coffee_with_the_view_Ballon_d\'Alsace.webp);
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newParticipation-container {
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px 1px #c8c8c854;
+    background-color: #c8c8c87c;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1px solid #e9e9e94f;
+}
+.participate-btn {
+    background-color: rgb(var(--secondary-color));
+    border: 2px solid rgb(var(--secondary-color));
+    color: rgb(var(--white-color));
+}

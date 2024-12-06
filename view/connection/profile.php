@@ -2,7 +2,7 @@
     $user = $result["data"]['user']; 
 
 ?>
-<div class="main__container">
+<div class="profile__container">
     <h1>Mon compte</h1>
     <section>
         <form action="">

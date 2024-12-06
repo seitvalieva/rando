@@ -10,6 +10,10 @@
 @import url('sections/registration.css');
 @import url('sections/form.css');
 @import url('sections/newRando.css');
+@import url('sections/passwordReset.css');
+@import url('sections/profile.css');
+@import url('sections/deleteRando.css');
+@import url('sections/participation.css');
 
 :root{
     --primary-color: 60, 98, 39;

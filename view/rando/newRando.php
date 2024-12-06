@@ -1,16 +1,14 @@
 <div class="container">
     <div class="rando-container"> 
         <h1 class="form-title">Créer une randonnée</h1>
-
         <?= isset($_SESSION['errors']['csrf']) ? "<div style='color: red'>{$_SESSION['errors']['csrf']}</div>" : '' ?>  
-
+        <small style="color:grey;">* les champs obligatoires</small>
         <form action="index.php?ctrl=rando&action=addNewRando" method="POST" enctype="multipart/form-data">
-
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
             <div class="input-group">
                 <label for="randoTitle">Titre
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le titre doit contenir entre 10 et 255 caractères</span>
                     </span>
                 </label>
                 <?php $title = isset($_POST['randoTitle']) ? $_POST['randoTitle']: ''?>
@@ -21,13 +19,13 @@
             <div class="input-group">
                 <label for="randoSubtitle">Introduction
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le titre doit contenir entre 10 et 255 caractères</span>
                     </span>
                 </label>
                 <textarea id="randoSubtitle" name="randoSubtitle" rows="2" cols="70"
                     placeholder="Écrivez un paragraphe accrocheur..(max 255 charactères)" minlength="10" maxlength="255"
-                    required><?= htmlspecialchars($_POST['randoSubtitle'] ?? '') ?></textarea>
-                <?= isset($_SESSION['errors']['randoSubtitle']) ? "<span style='color: red'>{$_SESSION['errors']['randosubtitle']}</span>" : '' ?>
+                    ><?= htmlspecialchars($_POST['randoSubtitle'] ?? '') ?></textarea>
+                <?= isset($_SESSION['errors']['randoSubtitle']) ? "<span style='color: red'>{$_SESSION['errors']['randoSubtitle']}</span>" : '' ?>
             </div>
             <div class="datetime-group">
                 <label for="dateRando">Date et heure de la Rando
@@ -55,7 +53,7 @@
             <div class="input-group">
                 <label for="distance">Distance (km)
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le champ obligatoire, minimum 1 km</span>
                     </span>
                 </label>
                 <input type="number" id="distance" name="distance" min="1" step="0.5" value="<?= htmlspecialchars($_POST['distance'] ?? '') ?>" required>
@@ -64,18 +62,18 @@
             <div class="input-group">
                 <label for="departure">Point de départ
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le champ doit contenir entre 10 et 255 caractères</span>
                     </span>
                 </label>
                 <?php $departure = isset($_POST['departure']) ? $_POST['departure']: ''?>
-                <input type="text" id="departure" name="departure" value="<?= htmlspecialchars($departure); ?>" placeholder="Gare de Strasbourg.." minlength="5"
+                <input type="text" id="departure" name="departure" value="<?= htmlspecialchars($departure); ?>" placeholder="Strasbourg" minlength="5"
                     maxlength="255" required>
                 <?= isset($_SESSION['errors']['departure']) ? "<span style='color: red'>{$_SESSION['errors']['departure']}</span>" : '' ?>
             </div>
             <div class="input-group">
                 <label for="destination">Point(s) d'intérêt
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le champ doit contenir entre 3 et 255 caractères</span>
                     </span>            
                 </label>
                 <?php $destination = isset($_POST['destination']) ? $_POST['destination']: ''?>
@@ -86,7 +84,7 @@
             <div class="input-group">
                 <label for="description">Description
                     <span class="tooltip-container"> *
-                        <span class="tooltip-text">Les champs obligatoires</span>
+                        <span class="tooltip-text">Le champ doit contenir entre 20 et 1500 caractères</span>
                     </span>
                 </label>
                 <textarea id="description" name="description" rows="15" cols="70"
@@ -96,7 +94,7 @@
             </div>
             <div class="image-group">
                 <label for="randoImages">Ajouter des images
-                    <span class="tooltip-container" style="color:blue;"> &#9432
+                    <span class="tooltip-container" style="color:blue;"> &#9432;
                         <span class="tooltip-text">La taille maximale d'une image 1Mo</span>
                     </span>
                 </label>
@@ -113,6 +111,5 @@
             </div>
             <?php unset($_SESSION['errors']); // Clear errors after displaying ?>
         </form>
-        
     </div>
 </div>

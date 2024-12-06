@@ -59,11 +59,17 @@ class SubscriptionController extends AbstractController implements ControllerInt
                 ];
                 $subscriptionManager->add($data);
             }
-            $this->redirectTo("rando","index");
+            $this->redirectTo("subscription","participationConfirmation");
         }
         
     }
-
+    public function participationConfirmation() {
+        return [
+            "view" => VIEW_DIR."rando/participationConfirmation.php",
+            "meta_description" => "Confirmation de participation à la rando",
+            "title" => "Confirmation de participation à la rando"
+        ];
+    }
     public function cancelParticipationModal($id) {
         
         return [

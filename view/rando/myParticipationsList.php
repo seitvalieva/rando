@@ -2,7 +2,7 @@
   
     $participations = $result["data"]['participations'];
 ?>
-<div class="main__container">
+<div class="profile__container">
 
         <h2>Mes participations aux randos</h2>
         <div class="main__cards">

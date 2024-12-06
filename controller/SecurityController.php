@@ -188,9 +188,10 @@ class SecurityController extends AbstractController{
                 }
             }
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-            $token = bin2hex(random_bytes(16));
-            $token_hash = hash("sha256", $token); 
-            $expiry = date("Y-m-d H:i:s", time() + 60 * 10); // token is valid for only 10 minutes
+            $token = bin2hex(random_bytes(16)); // convert unnprintable caracteres to hexadecimal string
+            $token_hash = hash("sha256", $token); // to store in db in hash value, return 64 characters string
+            $expiry = date("Y-m-d H:i:s", time() + 60 * 10); // token is valid for only 10 minutes to prevent brut force attack
+            // return a current time represented as a number of seconds, 60*10 number of seconds in 10mins
             
             if($email) {
                 // var_dump($email); var_dump($token);die;              
@@ -200,11 +201,13 @@ class SecurityController extends AbstractController{
                 if($user) {
                     
                     $userManager->addToken($email,$token_hash,$expiry);
-
+                    // load mailer script
                     $mail = require  __DIR__ . "/MailController.php";
-                    // $mail->setFrom("noreply@gmail.com");
-                    $mail->addAddress($email);
-                    $mail->Subject = "Password Reset";
+                    // setting the properties on the Mailer object 
+                    // $mail->setFrom("noreply@gmail.com");     // email address of the sender
+                    $mail->addAddress($email);                  // recipient email address
+                    $mail->Subject = "Password Reset";     
+                    //heredoc php    with absolute url - a special syntax to define strings in PHP
                     $mail->Body = <<<END
 
                     Cliquez <a href="http://localhost/rando/index.php?ctrl=security&action=resetPassword&token=$token">ici</a>
@@ -213,7 +216,6 @@ class SecurityController extends AbstractController{
                     to reset your password. It is valid for 10 minutes only.
 
                     END;
-
                     try {
                         $mail->send();                
                     } catch (Exception $e) {               
@@ -221,7 +223,6 @@ class SecurityController extends AbstractController{
                     }               
                 }
             }
-            // echo "Message sent, check your inbox";
             header("Location: index.php?ctrl=security&action=sentResetLinkSuccess");
             exit;
         }

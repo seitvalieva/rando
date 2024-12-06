@@ -1,7 +1,7 @@
 <?php
     $created_randos = $result["data"]['created_randos'];
 ?>
-<div class="main__container">
+<div class="profile__container">
 <h2><a href="">Mes randos publiées</a></h2>
         <div class="main__cards">
             <?php if($created_randos) {
